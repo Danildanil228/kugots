@@ -1,0 +1,24 @@
+.watch:hover{
+    color: white !important;
+    background: #6F73EE;
+}
+.about:hover{
+    color: #6F73EE;
+}
+.back:hover{
+    color: black;
+}
+.back:hover img{
+    filter: brightness(0) invert(0);  
+}
+.cart-bg{
+    transition: 0.2s ease;
+}
+.cart-bg:hover{
+    background: rgba(244, 247, 251, 1); 
+}
+.catologist:hover{
+    background-color: #6F73EE;
+    color: white;
+    border-color: white;
+}
