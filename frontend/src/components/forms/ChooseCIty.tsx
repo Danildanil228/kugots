@@ -1,29 +1,27 @@
-
+import { DropdownMenu, Button } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
-import {Button, DropdownMenu } from "@radix-ui/themes";
-
-export function Price(){
-    
-
+export function ChooseCity(){
     return(
         <>
             <DropdownMenu.Root>
-                <DropdownMenu.Trigger>
-                    <Button className="price text-[#6F73EE]! bg-transparent! font-normal! px-5 py-3 border border-[#6F73EE] rounded-lg transition-all duration-200! ease-in-out hover:text-white! hover:bg-[#6F73EE]! focus:outline-none! focus:ring-0! focus:shadow-none! [&[data-state=open]]:text-white! [&[data-state=open]]:bg-[#6F73EE]! [&[data-state=open]_.trig]:rotate-180" variant="soft">
-                        По цене 
+                <DropdownMenu.Trigger className="">
+                    <Button className="bg-transparent! w-50! px-4! py-3! justify-between! flex! text-black! font-normal! border! border-[#EAEBED]! hover:border-[#6F73EE]! focus:border-[#6F73EE]!  [&[data-state=open]_.trig]:rotate-180" variant="soft">
+                        Веберите свой город
                         <DropdownMenu.TriggerIcon className="trig transition-transform duration-200 ease-in-out"/>
                     </Button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content className='price-drop bg-[#F4F7FB]! border-none! rounded-lg!'>
                     <DropdownMenu.Item className='item bg-[#F4F7FB]! text-[#5D6C7B] transition-all duration-200 ease-in-out hover:bg-transparent! hover:text-[#6F73EE]! cursor-pointer'>
-                        Сначала дорогие
+                        Москва
                     </DropdownMenu.Item>
                     <DropdownMenu.Item className='item bg-[#F4F7FB]! text-[#5D6C7B] transition-all duration-200 ease-in-out hover:bg-transparent! hover:text-[#6F73EE]! cursor-pointer'>
-                        Сначала дешёвые
+                        Питер
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Item className='item bg-[#F4F7FB]! text-[#5D6C7B] transition-all duration-200 ease-in-out hover:bg-transparent! hover:text-[#6F73EE]! cursor-pointer'>
+                        Город региона
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>
             </DropdownMenu.Root>
         </>
-        
     )
 }

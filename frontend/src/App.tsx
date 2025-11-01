@@ -20,6 +20,8 @@ import { Service } from './components/buttons/Service'
 import { Share } from './components/buttons/Share'
 import { WatchAll } from './components/buttons/WatchAll'
 import { PhoneNumber } from './components/forms/PhoneNumber'
+import { ChooseCity } from './components/forms/ChooseCIty'
+import { InputArea } from './components/forms/InputArea'
 
 function App() {
 
@@ -48,6 +50,8 @@ function App() {
             <About/>
             <PhoneNumber/>
             <Search/>
+            <ChooseCity/>
+            <InputArea/>
           </header>
           <main>
 
