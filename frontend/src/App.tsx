@@ -22,6 +22,7 @@ import { WatchAll } from './components/buttons/WatchAll'
 import { PhoneNumber } from './components/forms/PhoneNumber'
 import { ChooseCity } from './components/forms/ChooseCIty'
 import { InputArea } from './components/forms/InputArea'
+import { PaperClip } from './components/forms/PaperClip'
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
             <Search/>
             <ChooseCity/>
             <InputArea/>
+            <PaperClip/>
           </header>
           <main>
 
