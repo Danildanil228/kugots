@@ -1,28 +1,15 @@
+import { Routes, Route } from 'react-router-dom';
 
-import { Search } from './components/forms/Search'
 import './App.css'
-import { About } from './components/buttons/About'
-import { BackCatalog } from './components/buttons/BackCatalog'
-import { Cart } from './components/buttons/Cart'
-import { Catologist } from './components/buttons/Catologist'
-import { Compare } from './components/buttons/Compare'
-import { CompareIcon } from './components/buttons/CompareIcon'
-import { Everywhere } from './components/buttons/Everywhere'
-import { ForCity } from './components/buttons/ForCity'
-import { Heart } from './components/buttons/Heart'
-import { Messengers } from './components/buttons/Messengers'
-import { More } from './components/buttons/More'
-import { Order } from './components/buttons/Order'
-import { Phone } from './components/buttons/Phone'
-import { PreOrder } from './components/buttons/PreOrder'
-import { Price } from './components/buttons/Price'
-import { Service } from './components/buttons/Service'
-import { Share } from './components/buttons/Share'
-import { WatchAll } from './components/buttons/WatchAll'
-import { PhoneNumber } from './components/forms/PhoneNumber'
-import { ChooseCity } from './components/forms/ChooseCIty'
-import { InputArea } from './components/forms/InputArea'
-import { PaperClip } from './components/forms/PaperClip'
+
+
+import { Header } from './components/Header'
+import { AboutPage } from './components/pages/AboutPage';
+import { Delivery } from './components/pages/Delivery';
+import { TestDrive } from './components/pages/TestDrive';
+import { Blog } from './components/pages/Blog';
+import { Contacts } from './components/pages/Contacts';
+import { Actions } from './components/pages/Actions';
 
 function App() {
 
@@ -31,32 +18,17 @@ function App() {
       
         
           <header>
-            <WatchAll/>
-            <PreOrder/>
-            <Order/>
-            <ForCity/>
-            <More/>
-            <Catologist/>
-            <Everywhere/>
-            <Price/>
-            <Service/>
-            <Messengers/>
-            <Phone/>
-            <Compare/>
-            <Share/>
-            <BackCatalog/>
-            <CompareIcon/>
-            <Heart/>
-            <Cart/>
-            <About/>
-            <PhoneNumber/>
-            <Search/>
-            <ChooseCity/>
-            <InputArea/>
-            <PaperClip/>
+            <Header/>
           </header>
           <main>
-
+            <Routes>
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/delivery" element={<Delivery />} />
+              <Route path="/test-drive" element={<TestDrive />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contacts" element={<Contacts />} />
+              <Route path="/actions" element={<Actions />} />
+            </Routes>
           </main>
           <footer>
             
