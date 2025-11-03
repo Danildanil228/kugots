@@ -10,6 +10,7 @@ import { TestDrive } from './components/pages/TestDrive';
 import { Blog } from './components/pages/Blog';
 import { Contacts } from './components/pages/Contacts';
 import { Actions } from './components/pages/Actions';
+import { Footer } from './components/Footer';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
             </Routes>
           </main>
           <footer>
-            
+            <Footer/>
           </footer>
         
       
