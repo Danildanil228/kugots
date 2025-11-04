@@ -11,6 +11,7 @@ import { Blog } from './components/pages/Blog';
 import { Contacts } from './components/pages/Contacts';
 import { Actions } from './components/pages/Actions';
 import { Footer } from './components/Footer';
+import { MainPage } from './components/pages/MainPage';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           </header>
           <main>
             <Routes>
+              <Route path='/main' element={<MainPage/>}/>
               <Route path="/about" element={<AboutPage />} />
               <Route path="/delivery" element={<Delivery />} />
               <Route path="/test-drive" element={<TestDrive />} />
@@ -30,6 +32,7 @@ function App() {
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/actions" element={<Actions />} />
             </Routes>
+            
           </main>
           <footer>
             <Footer/>

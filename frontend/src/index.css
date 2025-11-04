@@ -25,7 +25,7 @@ button{
 }
 a,p{
   text-decoration: none;
-  color: black;
+  
   font-family: "Jost", sans-serif !important;
   transition: 0.2s ease;
 }
