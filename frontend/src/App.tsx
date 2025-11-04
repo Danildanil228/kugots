@@ -12,17 +12,18 @@ import { Contacts } from './components/pages/Contacts';
 import { Actions } from './components/pages/Actions';
 import { Footer } from './components/Footer';
 import { MainPage } from './components/pages/MainPage';
+import { NotFound } from './components/pages/NotFound';
 
 function App() {
 
   return (
     <>
-      
-        
+      <div className='min-h-screen flex flex-col'>
+
           <header>
             <Header/>
           </header>
-          <main>
+          <main className='grow'>
             <Routes>
               <Route path='/main' element={<MainPage/>}/>
               <Route path="/about" element={<AboutPage />} />
@@ -31,12 +32,15 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/actions" element={<Actions />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             
           </main>
           <footer>
             <Footer/>
           </footer>
+      </div>
+        
         
       
     </>
