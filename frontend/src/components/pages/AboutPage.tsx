@@ -1,8 +1,16 @@
-export function AboutPage() {
-  return (
-    <div className="pt-8 p-8">
-      <h1 className="text-3xl font-bold mb-6">О магазине</h1>
-      <p>Информация о нашем магазине KUGOO...</p>
-    </div>
-  );
+import { Breadcrumbs } from "../Breadcrumbs";
+
+export function AboutPage(){
+  return(
+    <>
+      <div>
+        <Breadcrumbs
+        items={[
+          {label: 'Главная', path: '/main'},
+          {label: 'О магазине'}
+        ]}
+        />
+      </div>
+    </>
+  )
 }

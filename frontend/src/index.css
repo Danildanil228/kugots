@@ -3,9 +3,14 @@
 @import "tw-animate-css";
 
 
+
 @custom-variant dark (&:is(.dark *));  
 @import "@radix-ui/themes/styles.css";
 
+
+*{
+  font-family: "Jost", sans-serif !important;
+}
 
 body{
   /* justify-content: center ;
