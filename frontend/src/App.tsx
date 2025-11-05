@@ -34,7 +34,6 @@ function App() {
               <Route path="/actions" element={<Actions />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            
           </main>
           <footer>
             <Footer/>

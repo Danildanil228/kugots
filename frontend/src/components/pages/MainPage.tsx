@@ -1,5 +1,5 @@
 import { WatchAll } from "../buttons/WatchAll";
-
+import { AccordionDemo } from "../forms/AccordionDemo";
 export function MainPage(){
     return(
         <>
@@ -22,8 +22,19 @@ export function MainPage(){
                     </div>
                 </div>
 
-                <div className="Подбор модели электросамоката">
-
+                <div className="flex justify-center">
+                    <div className="flex justify-between w-7xl">
+                        <div className="bg-[url('./model.svg')] bg-cover bg-no-repeat bg-center grid gap-3 px-10 py-8 rounded-[5px]">
+                            <h1 className="uppercase font-semibold text-2xl w-[250px] leading-10">Подбор модели электросамоката</h1>
+                            <p className="w-120">Пройдите тести выберите <br/>электросамокат по своим критериям</p>
+                            <button className=" text-[#6F73EE] gap-2 flex items-center">Подобрать модель<img  src="./arrow4.svg" alt="" /></button>
+                        </div>
+                        <div className="bg-[url('./servise.svg')] bg-cover bg-no-repeat bg-center grid gap-3 px-10 py-8 rounded-[5px]">
+                            <h1 className="uppercase font-semibold text-2xl w-[250px] leading-10">Сервисное обслуживание</h1>
+                            <p className="w-120">Крупнейший сервисный центр<br/>в России для продуктов Kugoo</p>
+                            <button className=" text-[#6F73EE] gap-2 flex items-center">Подобрать модель<img  src="./arrow4.svg" alt="" /></button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -39,8 +50,15 @@ export function MainPage(){
 
             </div>
 
-            <div className="Предлагаем самые выгодные цены на продукты Kugoo за счет прямых поставок">
-
+            <div className="flex justify-center text-center uppercase font-semibold text-[35px]">
+                <div>Предлагаем самые выгодные цены<br/>на продукты Kugoo за счет прямых поставок</div>
+                <div>и заботимся об удобстве покупателей</div>
+                <div></div>
+            </div>
+            <div className="grid justify-center gap-[60px]">
+                <div className="flex justify-center text-[35px] uppercase font-semibold text-center">Отвечаем на вопросы<br/>покупателей</div>
+                <div><AccordionDemo/></div>
+                     
             </div>
         </>
     )
