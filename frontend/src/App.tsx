@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css'
 
@@ -25,6 +25,7 @@ function App() {
           </header>
           <main className='grow'>
             <Routes>
+              <Route path='/' element={<Navigate to="/main" replace/>}/>
               <Route path='/main' element={<MainPage/>}/>
               <Route path="/about" element={<AboutPage />} />
               <Route path="/delivery" element={<Delivery />} />
