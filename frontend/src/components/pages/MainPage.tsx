@@ -1,9 +1,14 @@
 import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
+import { SwiperHeader } from "../forms/SwiperHeader";
+
 export function MainPage(){
     return(
         <>
             <div className="grid justify-center">
+                <div>
+                    <SwiperHeader/>
+                </div>
                 <div className="Электросамокаты ">
                     <div className="flex justify-between w-7xl items-center">
                         <p className="font-semibold uppercase">Электросамокаты</p>
