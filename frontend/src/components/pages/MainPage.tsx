@@ -73,8 +73,17 @@ export function MainPage(){
                 </div>
             </div>
 
-            <div className="Бесплатная доставка электросамокатов по России до 01.09">
+            <div className="flex w-[1440px] justify-center ">
+                <div className="">
 
+                </div>
+                <div className="flex justify-end w-7xl ">
+                    <div className="grid gap-9 py-[70px]">
+                        <p className="bg-[#EE685F] w-fit text-white px-2.5 py-1 rounded-[5px]">Акция</p>
+                        <h1 className="text-[35px] font-semibold uppercase text-white">Бесплатная доставка<br/>электросамокатов<br/>по России до 01.09</h1>
+                        <button className="w-fit bg-white px-6 py-4 rounded-[5px]">Подробнее</button>
+                    </div>
+                </div>
             </div>
 
             <div className="Популярные категории">

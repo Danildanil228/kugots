@@ -10,7 +10,6 @@ export function SwiperHeader(){
     const [activeIndex, setActiveIndex] = useState(0);
     const totalSlides = 5;
 
-    // Вычисляем прогресс в процентах
     const progressWidth = ((activeIndex + 1) / totalSlides) * 100;
 
     return(
@@ -54,7 +53,6 @@ export function SwiperHeader(){
                     </button>
                     <span className="text-white">{activeIndex + 1}</span>
                     
-                    {/* Кастомный прогресс-бар */}
                     <div className="w-[35px] h-1 bg-gray-200 rounded overflow-hidden">
                         <div 
                             className="h-full bg-[#6F73EE] transition-all duration-300"
@@ -68,11 +66,6 @@ export function SwiperHeader(){
                     </button>
                 </div>
                 
-            </div>
-            <div className='justify-center flex'>
-                <div className='justify-between w-7xl'>
-
-                </div>
             </div>
         </>
     );
