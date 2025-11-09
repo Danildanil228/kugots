@@ -1,3 +1,4 @@
+import { More } from "../buttons/More";
 import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
 import { Category } from "../forms/Category";
@@ -62,7 +63,7 @@ export function MainPage(){
                     <div className="flex justify-between w-7xl">
                         <div className="bg-[url('./model.svg')] bg-cover bg-no-repeat bg-center grid gap-3 px-10 py-8 rounded-[5px]">
                             <h1 className="uppercase font-semibold text-2xl w-[250px] leading-10">Подбор модели электросамоката</h1>
-                            <p className="w-120">Пройдите тести выберите <br/>электросамокат по своим критериям</p>
+                            <p className="w-120">Пройдите тести выберите<br/>электросамокат по своим критериям</p>
                             <button className=" text-[#6F73EE] gap-2 flex items-center">Подобрать модель<img  src="./arrow4.svg" alt="" /></button>
                         </div>
                         <div className="bg-[url('./servise.svg')] bg-cover bg-no-repeat bg-center grid gap-3 px-10 py-8 rounded-[5px]">
@@ -78,7 +79,7 @@ export function MainPage(){
                 <div className="bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat  items-center w-[1440px] rounded-[5px]">
                     <div className="justify-end w-7xl grid gap-9 py-[67px]" py->
                         <p className="text-white bg-[#EE685F] w-fit px-[11px] py-1 rounded-[5px]">Акция</p>
-                        <h1 className="uppercase font-semibold text-[35px] text-white">Беспрлатная доставка<br/>Электросамокатов<br/>По России до 01.09</h1>
+                        <h1 className="uppercase font-semibold text-[35px] text-white w-100">Бесплатная доставка Электросамокатов По России до 01.09</h1>
                         <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Подробнее</button>
                     </div>
                 </div>
@@ -88,17 +89,51 @@ export function MainPage(){
                 <Category/>
             </div>
 
-            <div className="Kugoo-Russia — первый официальный дилер Kugoo Kirin в России">
-
+            
+           <div className="flex justify-center my-[100px]">
+                <div className="flex justify-between w-[1440px]">
+                    <div className="bg-[#F4F7FB] rounded-[10px] p-7 w-full">
+                        <div className="flex justify-between w-7xl">
+                            <div className="bg-[url('./bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-[606px] h-[565px] relative">
+                                <div className="absolute bottom-5 right-5">
+                                    <div className="TEXT grid w-fit gap-4 rounded-2xl text-white backdrop-blur-[10px]">
+                                        <div className="pt-[17px] px-5">
+                                            <h2 className="text-[18px] font-semibold">Тест-драйв в Москве</h2>
+                                            <p className="w-50">Оцените все преимущества самокатов лично</p>
+                                        </div>
+                                        <More/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="grid">
+                                <div className="grid gap-[18px]">
+                                    <p className="text-[35px] font-semibold uppercase w-120">Kugoo-Russia — первый официальный дилер Kugoo Kirin в России</p>
+                                    <p className="w-135">Наша цель предоставить полный ассортимент современной продукции Kugoo Kirin, которая улучшает и упрощает жизнь. Стремимся подарить комфорт и эмоции, поэтому помогаем с выбором и внимательно относимся к сервисному обслуживанию.</p>
+                                </div>
+                                <div className="grid bg-white p-5 rounded-2xl">
+                                    <p className="font-semibold">Специализируемся исключительно на бренде Kugoo, поэтому вы получите:</p>
+                                    <div>
+                                        <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>цены от завода-изготовителя Jilong;</p></div>
+                                        <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>бесплатный тест-драйв самокатов;</p></div>
+                                        <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>фирменную гарантию 1 год;</p></div>
+                                        <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>ремонт и обслуживание от 1 дня в собственном сервисном центре;</p></div>
+                                        <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>более 1 000 запчастей и аксессуаров в наличии</p></div>
+                                    </div>
+                                    <button className="text-[#6F73EE] w-fit">Смотреть сертификат</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+           <div className="grid justify-center text-center gap-[18px]">
+                <h1 className="text-[35px] uppercase font-semibold text-center">Предлагаем самые выгодные цены<br/>на продукты Kugoo за счет прямых поставок</h1>
+                <p>и заботимся об удобстве покупателей</p>
+           </div>
 
-            <div className="flex justify-center text-center uppercase font-semibold text-[35px]">
-                <div>Предлагаем самые выгодные цены<br/>на продукты Kugoo за счет прямых поставок</div>
-                <div>и заботимся об удобстве покупателей</div>
-                <div></div>
-            </div>
             <div className="grid justify-center gap-[60px]">
-                <div className="flex justify-center text-[35px] uppercase font-semibold text-center">Отвечаем на вопросы<br/>покупателей</div>
+                <div className="flex justify-center text-[35px] uppercase font-semibold text-center">Отвечаем на вопросы покупателей</div>
                 <div><AccordionDemo/></div>
                      
             </div>

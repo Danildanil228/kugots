@@ -40,7 +40,7 @@ export function Category(){
                 <div className="flex items-center bg-[#F4F7FB] rounded-[5px] gap-5 p-3">
                     <img src="./manager.svg" alt="" />
                     <div className="grid gap-1">
-                        <p>Менеджер ответит на любой<br/>ваш вопрос о продуктах Kugoo</p>
+                        <p className='max-w-55'>Менеджер ответит на любой ваш вопрос о продуктах Kugoo</p>
                         <button className="w-fit text-[#6F73EE]">Задать вопрос</button>
                     </div>
                 </div>
