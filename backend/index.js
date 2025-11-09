@@ -25,6 +25,15 @@ app.get('/product', async (req, res) => {
   }
 });
 
+app.get('/category', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM category');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Ошибка сервера');
+  }
+});
 
 const PORT = 3000;
 app.listen(PORT, () => {

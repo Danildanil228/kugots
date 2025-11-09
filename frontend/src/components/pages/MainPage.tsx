@@ -1,5 +1,6 @@
 import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
+import { Category } from "../forms/Category";
 import { Product } from "../forms/Product";
 import { SwiperHeader } from "../forms/SwiperHeader";
 
@@ -73,21 +74,18 @@ export function MainPage(){
                 </div>
             </div>
 
-            <div className="flex w-[1440px] justify-center ">
-                <div className="">
-
-                </div>
-                <div className="flex justify-end w-7xl ">
-                    <div className="grid gap-9 py-[70px]">
-                        <p className="bg-[#EE685F] w-fit text-white px-2.5 py-1 rounded-[5px]">Акция</p>
-                        <h1 className="text-[35px] font-semibold uppercase text-white">Бесплатная доставка<br/>электросамокатов<br/>по России до 01.09</h1>
-                        <button className="w-fit bg-white px-6 py-4 rounded-[5px]">Подробнее</button>
+            <div className="flex justify-center pt-[110px]">
+                <div className="bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat  items-center w-[1440px] rounded-[5px]">
+                    <div className="justify-end w-7xl grid gap-9 py-[67px]" py->
+                        <p className="text-white bg-[#EE685F] w-fit px-[11px] py-1 rounded-[5px]">Акция</p>
+                        <h1 className="uppercase font-semibold text-[35px] text-white">Беспрлатная доставка<br/>Электросамокатов<br/>По России до 01.09</h1>
+                        <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Подробнее</button>
                     </div>
                 </div>
             </div>
 
-            <div className="Популярные категории">
-
+            <div className="justify-center grid pt-20">
+                <Category/>
             </div>
 
             <div className="Kugoo-Russia — первый официальный дилер Kugoo Kirin в России">
