@@ -54,12 +54,10 @@ export function MainPage(){
                     <div className="database py-[50px]">
                         <Product/>
                     </div>
-                    <div className="flex justify-center">
-                        <WatchAll/>
-                    </div>
+                    
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-[60px]">
                     <div className="flex justify-between w-7xl">
                         <div className="bg-[url('./model.svg')] bg-cover bg-no-repeat bg-center grid gap-3 px-10 py-8 rounded-[5px]">
                             <h1 className="uppercase font-semibold text-2xl w-[250px] leading-10">Подбор модели электросамоката</h1>
