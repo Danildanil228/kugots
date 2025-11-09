@@ -22,11 +22,11 @@ export function SwiperHeader(){
                         prevEl: '.custom-prev',
                     }}
                     modules={[Navigation]}
-                    className="w-[1441px] h-105"
+                    className="w-[1441px] h-105 rounded-[5px] bg-[#6F73EE]"
                     onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                     
                 >
-                    <SwiperSlide className='bg-[url("./bgswiper.svg")]! bg-cover! bg-no-repeat! bg-center! rounded-[5px]'>
+                    <SwiperSlide className='bg-[url("./bgswiper.svg")]! bg-cover! bg-no-repeat! bg-center! '>
                         <div className='flex py-[35px] px-20'>
                             <div className='grid justify-between w-6xl text-start text-white gap-[34px]'>
                                 <div className='flex'>
@@ -39,7 +39,6 @@ export function SwiperHeader(){
                                 <div>
                                     <Catologist/>
                                 </div>
-
                             </div>
                         </div>
                     </SwiperSlide>

@@ -1,5 +1,6 @@
 import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
+import { Product } from "../forms/Product";
 import { SwiperHeader } from "../forms/SwiperHeader";
 
 export function MainPage(){
@@ -9,18 +10,49 @@ export function MainPage(){
                 <div>
                     <SwiperHeader/>
                 </div>
-                <div className="Электросамокаты ">
-                    <div className="flex justify-between w-7xl items-center">
-                        <p className="font-semibold uppercase">Электросамокаты</p>
-                        <div className="flex gap-3">
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px]">Хиты продаж</button>
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px]">Для города</button>
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px]">Для взрослых</button>
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px]">Для детей</button>
+                <div className="flex justify-center pb-20">
+                    <div className="justify-between flex w-7xl items-center">
+                        <div className="flex gap-20">
+                            <div>
+                                <h1 className="uppercase text-[25px] font-semibold">Гарантия 1 год</h1>
+                                <p>на весь ассортимент</p>
+                            </div>
+                            <div>
+                                <h1 className="uppercase text-[25px] font-semibold">Рассрочка</h1>
+                                <p>от 6 месяцев</p>
+                            </div>
+                            
+                        </div>
+                        <div className="flex items-center gap-[200px]">
+                            <div>
+                                <h1 className="uppercase text-[25px] font-semibold">Подарки</h1>
+                                <p>и бонусы к покупкам</p>
+                            </div>
+                            <div className="flex gap-[18px] p-3 border border-[#5D6C7B1A] rounded-[5px]">
+                                <a href=""><img src="./yandex.svg" alt="" /></a>
+                                <div className="text-center">
+                                    <p className="text-[#5D6C7B]">Яндекс отзывы</p>
+                                    <div className="flex">
+                                        <img src="./star.svg" alt="" />
+                                        <p className="text-[25px] font-semibold">DataBase</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="database">
-
+                </div>
+                <div className="justify-center grid">
+                    <div className="flex justify-between w-7xl items-center">
+                        <p className="font-semibold uppercase text-[35px]">Электросамокаты</p>
+                        <div className="flex gap-3">
+                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Хиты продаж</button>
+                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Для города</button>
+                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Для взрослых</button>
+                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Для детей</button>
+                        </div>
+                    </div>
+                    <div className="database py-[50px]">
+                        <Product/>
                     </div>
                     <div className="flex justify-center">
                         <WatchAll/>
