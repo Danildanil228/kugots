@@ -110,7 +110,6 @@ export function Product(){
                 ))}
             </div>
             
-            {/* Кнопка с меняющимся текстом */}
             {data.length > 8 && (
                 <div className="flex justify-center mt-8">
                     <button onClick={() => setShowAll(!showAll)}>

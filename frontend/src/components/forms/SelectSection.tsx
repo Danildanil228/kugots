@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Product } from "./Product";
 
 export function SelectSection(){
     const [product, setProducts] = useState([]);
