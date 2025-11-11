@@ -3,6 +3,7 @@ import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
 import { Category } from "../forms/Category";
 import { Product } from "../forms/Product";
+import { SelectSection } from "../forms/SelectSection";
 import { SwiperHeader } from "../forms/SwiperHeader";
 
 export function MainPage(){
@@ -130,6 +131,7 @@ export function MainPage(){
            <div className="grid justify-center text-center gap-[18px]">
                 <h1 className="text-[35px] uppercase font-semibold text-center">Предлагаем самые выгодные цены<br/>на продукты Kugoo за счет прямых поставок</h1>
                 <p>и заботимся об удобстве покупателей</p>
+                <SelectSection/>
            </div>
 
             <div className="grid justify-center gap-[60px]">
