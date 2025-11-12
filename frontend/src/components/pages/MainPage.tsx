@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { More } from "../buttons/More";
 import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
@@ -5,8 +6,14 @@ import { Category } from "../forms/Category";
 import { Product } from "../forms/Product";
 import { SelectSection } from "../forms/SelectSection";
 import { SwiperHeader } from "../forms/SwiperHeader";
+import { CaruselSlider } from '../forms/CaruselSlider';
+import { VideoSwiper } from '../forms/VideoSwiper';
+import { BlogSwiper } from '../forms/BlogSwiper';
+
+
 
 export function MainPage(){
+    const [isPlaying, setIsPlaying] = useState(false);
     return(
         <>
             <div className="grid justify-center">
@@ -133,6 +140,82 @@ export function MainPage(){
                 <p>и заботимся об удобстве покупателей</p>
                 <SelectSection/>
            </div>
+
+            <div className="justify-center flex my-[100px]">
+                <div className="relative w-[1440px] h-[630px] ">
+                    {!isPlaying && (
+                        <div 
+                            className="w-[1440px] h-[630px] bg-cover bg-center relative cursor-pointer rounded-[5px]"
+                            style={{ backgroundImage: `url('./videomain.svg')` }}
+                            onClick={() => setIsPlaying(true)}
+                        >
+                            <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                                <img src="./playicon.svg" alt="Play" className="w-20 h-20" />
+                            </button>
+                        </div>
+                    )}
+                    
+                    {isPlaying && (
+                        <iframe
+                            width="1440"
+                            height="630"
+                            src="https://www.youtube.com/embed/6n-wJGHyIE0?autoplay=1"
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-[1440px] h-[630px]"
+                        ></iframe>
+                    )}
+                </div>
+            </div>
+            <div className='justify-center grid'>
+                <div className='justify-center text-center gap-4 grid'>
+                    <h1 className='uppercase font-semibold text-[35px]'>Отзывы и фото реальных покупателей</h1>
+                    <div className='flex justify-center'>
+                        <button className='text-[#6F73EE] flex gap-2 items-center text-center'>
+                            <p>Читать отзывы на Яндекс</p>
+                            <img src="./arrow4.svg" alt="" />
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+
+            <CaruselSlider/>
+
+            <div className='justify-center grid gap-14'>
+                <div className='justify-between w-7xl flex'>
+                    <div className='grid gap-4'>
+                        <h1 className='uppercase font-semibold text-[35px]'>Вдеообзоры</h1>
+                        <p className='w-115'>Узнайте больше о самокатах Kugoo и посмотрите сравнительные обзоры разных моделей на нашем YouTube-канале.</p>
+                    </div>
+                    <div>
+                        <button className='text-[#6F73EE] flex gap-2 items-center text-center'>
+                            <p>Смотреть все видеообзоры</p>
+                            <img src="./arrow4.svg" alt="" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className='justify-center flex'>
+
+               
+                <VideoSwiper/>
+                
+            </div>
+            <div className='justify-center flex'>
+                <div>
+                    <div className='justify-between w-7xl'>
+                        <h1 className='uppercase font-semibold text-[35px]'>Новые статьи в блоге</h1>
+                    </div>
+                    <div>
+                        <BlogSwiper/>
+                    </div>
+                </div>
+            </div>
 
             <div className="grid justify-center gap-[60px]">
                 <div className="flex justify-center text-[35px] uppercase font-semibold text-center">Отвечаем на вопросы покупателей</div>

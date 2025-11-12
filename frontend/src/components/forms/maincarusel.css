@@ -1,0 +1,53 @@
+.card {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1px; 
+    border-radius: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.caroisel-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-track, .carousel-track-down {
+    display: flex;
+    width: max-content;
+    gap: 1.25rem;
+}
+
+.carousel-track {
+    animation: scroll 30s linear infinite;
+}
+
+.carousel-track-down {
+    animation: scrolldown 35s linear infinite;
+}
+
+@keyframes scrolldown {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.caroisel-container:hover .carousel-track,
+.caroisel-container:hover .carousel-track-down {
+    animation-play-state: paused;
+}
