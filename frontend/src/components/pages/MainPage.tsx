@@ -10,7 +10,6 @@ import { CaruselSlider } from '../forms/CaruselSlider';
 import { VideoSwiper } from '../forms/VideoSwiper';
 import { BlogSwiper } from '../forms/BlogSwiper';
 import { HitProduct } from '../forms/HitProduct';
-import { OrderCall } from '../modal/OrderCall';
 
 
 
@@ -232,7 +231,7 @@ export function MainPage(){
                     <HitProduct/>
                 </div>
             </div>
-            <OrderCall/>
+            
         </>
     )
 }

@@ -1,6 +1,8 @@
+import { AlertDialog, Button, Checkbox, RadioCards } from "@radix-ui/themes";
 import { Messengers } from "./buttons/Messengers";
 import { InputEmail } from "./forms/InputEmail";
 import { Link, useLocation } from 'react-router-dom';
+import { PhoneNumber } from "./forms/PhoneNumber";
 
 export function Footer(){
     return(
@@ -12,7 +14,32 @@ export function Footer(){
                     </div>
                     <div className="flex gap-5">
                         <InputEmail/>
-                        <button className="text-[#6F73EE] py-4 px-6 bg-white rounded-[5px]">Подписаться</button>
+                        
+                        <div className="items-center!">
+
+                            <AlertDialog.Root >
+                                <AlertDialog.Trigger className='items-center!'>
+                                    <Button className='bg-white! text-[#6F73EE]! font-normal! text-[16px]! items-center! py-7! px-6!  transition-colors duration-200! cursor-pointer!'>Подписаться</Button>
+                                </AlertDialog.Trigger>
+                                <AlertDialog.Content maxWidth="800px" height="44 hover:border-[]0px" className=''>
+                                    <div className='justify-end flex'>
+                                        <AlertDialog.Action><img src='./crest.svg' className='rotate-45 cursor-pointer'></img></AlertDialog.Action>
+                                    </div>
+                                    <div className="grid gap-7 justify-center text-center">
+                                        <h1 className="text-[25px] font-semibold uppercase">Благодарим за подписку<br/>на рассылку</h1>
+                                        <p>Перейдите в свою почту, чтобы подтвердить подписку и получить<br/>видеообзор «Топ-3 электросамоката 2021г.»</p>
+                                        <p className="text-[#5D6C7B]">Выберите свой почтовый сервис</p>
+                                        <div className="flex gap-4 justify-center">
+                                            <a   className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./searchIc.svg" alt="" /></a>
+                                            <a  className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yandexIc.svg" alt="" /></a>
+                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./out.svg" alt="" /></a>
+                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yahoo.svg" alt="" /></a>
+                                        </div>
+                                        <p className="text-[#5D6C7B]">Если письма не во входящих, проверьте папку «Промоакции»<br/>или «Спам».  Письмо могло попасть туда по ошибке.</p>
+                                    </div>
+                                </AlertDialog.Content>
+                            </AlertDialog.Root>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,7 +81,61 @@ export function Footer(){
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center mb-2">
                             <h1 className="font-semibold text-lg">Контакты</h1>
-                            <button className="text-[#6F73EE] font-medium">Заказать звонок</button>
+                            <AlertDialog.Root >
+                            <AlertDialog.Trigger className=''>
+                                <Button className='bg-transparent! text-[#6F73EE]! font-normal! text-[16px]! items-center! p-0! m-0!  transition-colors duration-200! cursor-pointer!'>Заказать звонок</Button>
+                            </AlertDialog.Trigger>
+                            <AlertDialog.Content maxWidth="900px" height="650px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
+                                <div>
+                                    <div className='justify-end flex'>
+                                        <AlertDialog.Action><img src='./crest.svg' className='rotate-45 cursor-pointer'></img></AlertDialog.Action>
+                                    </div>
+                                    <div className='flex'>
+                                        <div className='grid gap-9'>
+                                            <div className='grid gap-4'>
+                                                <h1 className='text-[25px] font-semibold uppercase w-115'>Оставьте заявку и получите профессиональную консультациюот нашего менеджера</h1>
+                                                <p className='w-80'>Позвоним в течение 5 минут и ответим на все вопросы.</p>
+                                            </div>
+                                            <div className='grid w-[250px] gap-5'>
+                                                <div className="grid gap-2">
+                                                    <p className="text-[#5D6C7B]">Как с вами удобнее связаться?</p>
+                                                    <div className="flex gap-4">
+                                                        <RadioCards.Root defaultValue="1" className="flex! ">
+                                                            <RadioCards.Item value="1" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                <img  className="w-[18px] " src="./viber.svg" alt="" />
+                                                            </RadioCards.Item>
+                                                            <RadioCards.Item value="2" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                <img className="w-[18px] " src="./whatsap.svg" alt="" />
+                                                            </RadioCards.Item>
+                                                            <RadioCards.Item value="3" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                <img  className="w-[18px] "src="./tg.svg" alt="" />
+                                                            </RadioCards.Item>
+                                                        </RadioCards.Root>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                                <PhoneNumber/>
+                                                <button className='bg-[#6F73EE] py-4 rounded-[5px] text-white'>Позвоните мне</button>
+                                                <div className='flex items-baseline gap-3'>
+                                                    <Checkbox variant="soft" defaultChecked />
+                                                    <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    
+                                </div>
+                            </AlertDialog.Content>
+                        </AlertDialog.Root>
                         </div>
                         
                         <div className="grid gap-7">

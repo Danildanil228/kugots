@@ -55,7 +55,7 @@ export function PhoneNumber() {
     };
 
     return (
-        <div className="relative">
+        
             <input 
                 ref={inputRef}
                 type="tel" 
@@ -67,6 +67,6 @@ export function PhoneNumber() {
                 placeholder="+7 (___) __ - __ - __" 
                 className="px-[25px] py-3 border! border-[#EAEBED]! rounded-[5px] transition-all duration-200 ease-in-out outline-none hover:border-[#6F73EE]! focus:border-[#6F73EE]!"
             />
-        </div>
+        
     );
 }

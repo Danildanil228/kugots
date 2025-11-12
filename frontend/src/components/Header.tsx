@@ -6,7 +6,7 @@ import { Heart } from "./buttons/Heart";
 import { Messengers } from "./buttons/Messengers";
 import { Phone } from "./buttons/Phone";
 import { Search } from "./forms/Search";
-import { AlertDialog, Button, Flex } from '@radix-ui/themes';
+import { AlertDialog, Button, Checkbox, Flex } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
 
 export function Header(){
@@ -42,19 +42,28 @@ export function Header(){
                             <AlertDialog.Trigger className=''>
                                 <Button className='bg-transparent! text-[#5D6C7B]! font-normal! text-[16px]! items-center! p-0! m-0! hover:text-black! transition-colors duration-200! cursor-pointer!'>Заказать звонок</Button>
                             </AlertDialog.Trigger>
-                            <AlertDialog.Content maxWidth="1280px" height="430px" >
-                                <div >
+                            <AlertDialog.Content maxWidth="800px" height="500px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
+                                <div>
                                     <div className='justify-end flex'>
                                         <AlertDialog.Action><img src='./crest.svg' className='rotate-45 cursor-pointer'></img></AlertDialog.Action>
                                     </div>
                                     <div className='flex'>
-
-                                        <div className='grid gap-4'>
-                                            <h1 className='text-[25px] font-semibold uppercase w-115'>Менеджер позвонит вам в течение 5 минут</h1>
-                                            <p className='w-80'>ответит на все вопросы и проконсультирует по продуктам Kugoo</p>
-                                            <PhoneNumber/>
+                                        <div className='grid gap-9'>
+                                            <div className='grid gap-4'>
+                                                <h1 className='text-[25px] font-semibold uppercase w-115'>Менеджер позвонит вам в течение 5 минут</h1>
+                                                <p className='w-80'>ответит на все вопросы и проконсультирует по продуктам Kugoo</p>
+                                            </div>
+                                            <div className='grid w-[250px] gap-5'>
+                                                <PhoneNumber/>
+                                                <button className='bg-[#6F73EE] py-4 rounded-[5px] text-white'>Позвоните мне</button>
+                                                <div className='flex items-baseline gap-3'>
+                                                    <Checkbox variant="soft" defaultChecked />
+                                                    <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
-                                        <div >
+                                        <div>
                                             
                                         </div>
                                     </div>
