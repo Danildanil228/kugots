@@ -9,11 +9,14 @@ import { SwiperHeader } from "../forms/SwiperHeader";
 import { CaruselSlider } from '../forms/CaruselSlider';
 import { VideoSwiper } from '../forms/VideoSwiper';
 import { BlogSwiper } from '../forms/BlogSwiper';
+import { HitProduct } from '../forms/HitProduct';
+import { OrderCall } from '../modal/OrderCall';
 
 
 
 export function MainPage(){
     const [isPlaying, setIsPlaying] = useState(false);
+    
     return(
         <>
             <div className="grid justify-center">
@@ -220,8 +223,16 @@ export function MainPage(){
             <div className="grid justify-center gap-[60px]">
                 <div className="flex justify-center text-[35px] uppercase font-semibold text-center">Отвечаем на вопросы покупателей</div>
                 <div><AccordionDemo/></div>
-                     
             </div>
+            <div className="justify-center grid mt-25">
+                <div className='flex justify-center'>
+                    <h1 className='text-[35px] font-semibold uppercase w-fit'>Часто покупают</h1>
+                </div>
+                <div className=''>
+                    <HitProduct/>
+                </div>
+            </div>
+            <OrderCall/>
         </>
     )
 }

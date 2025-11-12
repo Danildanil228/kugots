@@ -35,6 +35,16 @@ app.get('/category', async (req, res) => {
   }
 });
 
+app.get('/product/hit', async (req, res) => {
+  try {
+    const result = await pool.query("select * from product where descr = 'Хит' limit 4");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Ошибка сервера');
+  }
+});
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
