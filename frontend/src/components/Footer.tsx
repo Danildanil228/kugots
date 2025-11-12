@@ -1,10 +1,56 @@
 import { AlertDialog, Button, Checkbox, RadioCards } from "@radix-ui/themes";
-import { Messengers } from "./buttons/Messengers";
 import { InputEmail } from "./forms/InputEmail";
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { PhoneNumber } from "./forms/PhoneNumber";
+import { Link } from "react-router-dom";
+import { Messengers } from "./buttons/Messengers";
 
 export function Footer(){
+    const [email, setEmail] = useState('');
+    const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleEmailChange = (value: string, isValid: boolean) => {
+        setEmail(value);
+        setIsEmailValid(isValid);
+        setError('');
+    };
+
+    const handleSubscribe = async () => {
+        if (!isEmailValid) return;
+
+        setIsLoading(true);
+        setError('');
+
+        try {
+            const response = await fetch('http://localhost:3000/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email }),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || 'Ошибка при отправке');
+            }
+
+            if (result.success) {
+                setIsDialogOpen(true);
+                setEmail('');
+                setIsEmailValid(false);
+            }
+
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Ошибка при подписке');
+        } finally {
+            setIsLoading(false);
+        }
+    };
     return(
         <>
             <div className="flex justify-center bg-[#6F73EE] py-6">
@@ -13,13 +59,27 @@ export function Footer(){
                         Оставьте свою почту и станьте первым, кто получит скидку на новые самокаты
                     </div>
                     <div className="flex gap-5">
-                        <InputEmail/>
+                        <InputEmail onEmailChange={handleEmailChange}/>
+                        {error && (
+                            <div className="text-red-200 text-sm mt-1">
+                                {error}
+                            </div>
+                        )}
+                        
                         
                         <div className="items-center!">
 
-                            <AlertDialog.Root >
+                            <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <AlertDialog.Trigger className='items-center!'>
-                                    <Button className='bg-white! text-[#6F73EE]! font-normal! text-[16px]! items-center! py-7! px-6!  transition-colors duration-200! cursor-pointer!'>Подписаться</Button>
+                                    <Button 
+                                        className={`bg-white! text-[#6F73EE]! font-normal! text-[16px]! items-center! py-7! px-6! transition-colors duration-200! ${
+                                            !isEmailValid || isLoading ? 'opacity-50 cursor-not-allowed!' : 'cursor-pointer!'
+                                        }`}
+                                        onClick={handleSubscribe}
+                                        disabled={!isEmailValid || isLoading}
+                                    >
+                                        {isLoading ? 'Отправка...' : 'Подписаться'}
+                                    </Button>
                                 </AlertDialog.Trigger>
                                 <AlertDialog.Content maxWidth="800px" height="44 hover:border-[]0px" className=''>
                                     <div className='justify-end flex'>
@@ -111,10 +171,6 @@ export function Footer(){
                                                                 <img  className="w-[18px] "src="./tg.svg" alt="" />
                                                             </RadioCards.Item>
                                                         </RadioCards.Root>
-                                                        
-                                                        
-                                                        
-                                                        
                                                     </div>
                                                 </div>
                                                 <PhoneNumber/>
@@ -124,15 +180,8 @@ export function Footer(){
                                                     <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
                                                 </div>
                                             </div>
-                                            
-                                        </div>
-                                        <div>
-                                            
                                         </div>
                                     </div>
-                                </div>
-                                <div>
-                                    
                                 </div>
                             </AlertDialog.Content>
                         </AlertDialog.Root>

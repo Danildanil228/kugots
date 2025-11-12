@@ -1,18 +1,31 @@
 import React, { useState, useRef } from "react";
 
-export function PhoneNumber() {
-    const [value, setValue] = useState('');
+interface PhoneNumberProps {
+    onPhoneChange?: (phone: string, isValid: boolean) => void;
+    value?: string;
+}
+
+export function PhoneNumber({ onPhoneChange, value = '' }: PhoneNumberProps) {
+    const [internalValue, setInternalValue] = useState(value);
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const validatePhone = (phone: string) => {
+        const cleanPhone = phone.replace(/\D/g, '');
+        return cleanPhone.length === 11; // +7 и 10 цифр
+    };
+
     const handleFocus = () => {
-        if (!value) {
-            setValue('+7 ');
+        if (!internalValue && !value) {
+            const newValue = '+7 ';
+            setInternalValue(newValue);
+            onPhoneChange?.(newValue, validatePhone(newValue));
         }
     };
 
     const handleBlur = () => {
-        if (value === '+7 ' || !value) {
-            setValue('');
+        if ((internalValue === '+7 ' || !internalValue) && !value) {
+            setInternalValue('');
+            onPhoneChange?.('', false);
         }
     };
 
@@ -42,7 +55,17 @@ export function PhoneNumber() {
             formatted += `-${limitedDigits.substring(8, 10)}`;
         }
         
-        setValue(formatted);
+        const currentValue = value || internalValue;
+        if (formatted !== currentValue) {
+            if (value !== undefined) {
+                // Контролируемый режим
+                onPhoneChange?.(formatted, validatePhone(formatted));
+            } else {
+                // Неконтролируемый режим
+                setInternalValue(formatted);
+                onPhoneChange?.(formatted, validatePhone(formatted));
+            }
+        }
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -51,22 +74,21 @@ export function PhoneNumber() {
             !(e.ctrlKey || e.metaKey)) {
             e.preventDefault();
         }
-        
     };
 
+    const displayValue = value !== undefined ? value : internalValue;
+
     return (
-        
-            <input 
-                ref={inputRef}
-                type="tel" 
-                value={value}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onKeyDown={handleKeyDown}
-                placeholder="+7 (___) __ - __ - __" 
-                className="px-[25px] py-3 border! border-[#EAEBED]! rounded-[5px] transition-all duration-200 ease-in-out outline-none hover:border-[#6F73EE]! focus:border-[#6F73EE]!"
-            />
-        
+        <input 
+            ref={inputRef}
+            type="tel" 
+            value={displayValue}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            placeholder="+7 (___) __ - __ - __" 
+            className="px-[25px] py-3 border! border-[#EAEBED]! rounded-[5px] transition-all duration-200 ease-in-out outline-none hover:border-[#6F73EE]! focus:border-[#6F73EE]!"
+        />
     );
 }

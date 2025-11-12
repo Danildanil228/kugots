@@ -8,6 +8,7 @@ import { Phone } from "./buttons/Phone";
 import { Search } from "./forms/Search";
 import { AlertDialog, Button, Checkbox, Flex } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
+import { useState } from 'react';
 
 export function Header(){
     const location = useLocation();
@@ -30,6 +31,79 @@ export function Header(){
         ) }
     ];
 
+    const [phone, setPhone] = useState('');
+    const [isPhoneValid, setIsPhoneValid] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [isChecked, setIsChecked] = useState(true);
+
+    
+    const handlePhoneChange = (value: string, isValid: boolean) => {
+        setPhone(value);
+        setIsPhoneValid(isValid);
+        setError('');
+    };
+
+    const handleCallOrder = async () => {
+    if (!isPhoneValid || !isChecked) return;
+
+    setIsLoading(true);
+    setError('');
+
+    try {
+        const response = await fetch('http://localhost:3000/api/call-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                phone: phone,
+                type: 'callback'
+            }),
+        });
+
+        
+        if (!response.ok) {
+
+            let errorMessage = 'Ошибка при отправке';
+            
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.message || errorMessage;
+            } catch (jsonError) {
+                const textError = await response.text();
+                errorMessage = textError || errorMessage;
+            }
+            
+            throw new Error(errorMessage);
+        }
+        const result = await response.json();
+
+        if (result.success) {
+            setIsDialogOpen(false);
+            setPhone('');
+            setIsPhoneValid(false);
+            setIsChecked(true);
+        } else {
+            throw new Error(result.message || 'Произошла ошибка');
+        }
+
+    } catch (err) {
+        console.error('Ошибка:', err);
+        setError(err instanceof Error ? err.message : 'Произошла ошибка при отправке заявки');
+    } finally {
+        setIsLoading(false);
+    }
+};
+
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+        setPhone('');
+        setIsPhoneValid(false);
+        setError('');
+    };
+
     return(
         <>
         <div>
@@ -38,41 +112,73 @@ export function Header(){
                     <div className="flex gap-7 items-center">
                         <a href="" className="text-[#5D6C7B]! hover:text-black! transition-colors">Сервис</a>
                         <a href="" className="text-[#5D6C7B]! hover:text-black! transition-colors">Сотрудничество</a>
-                        <AlertDialog.Root >
+                        
+                        <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                             <AlertDialog.Trigger className=''>
-                                <Button className='bg-transparent! text-[#5D6C7B]! font-normal! text-[16px]! items-center! p-0! m-0! hover:text-black! transition-colors duration-200! cursor-pointer!'>Заказать звонок</Button>
+                                <Button className='bg-transparent! text-[#5D6C7B]! font-normal! text-[16px]! items-center! p-0! m-0! hover:text-black! transition-colors duration-200! cursor-pointer!'>
+                                    Заказать звонок
+                                </Button>
                             </AlertDialog.Trigger>
                             <AlertDialog.Content maxWidth="800px" height="500px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
                                 <div>
                                     <div className='justify-end flex'>
-                                        <AlertDialog.Action><img src='./crest.svg' className='rotate-45 cursor-pointer'></img></AlertDialog.Action>
+                                        <AlertDialog.Action>
+                                            <img 
+                                                src='./crest.svg' 
+                                                className='rotate-45 cursor-pointer'
+                                                alt="Закрыть"
+                                                onClick={handleCloseDialog}
+                                            />
+                                        </AlertDialog.Action>
                                     </div>
                                     <div className='flex'>
                                         <div className='grid gap-9'>
                                             <div className='grid gap-4'>
-                                                <h1 className='text-[25px] font-semibold uppercase w-115'>Менеджер позвонит вам в течение 5 минут</h1>
-                                                <p className='w-80'>ответит на все вопросы и проконсультирует по продуктам Kugoo</p>
+                                                <h1 className='text-[25px] font-semibold uppercase w-115'>
+                                                    Менеджер позвонит вам в течение 5 минут
+                                                </h1>
+                                                <p className='w-80'>
+                                                    ответит на все вопросы и проконсультирует по продуктам Kugoo
+                                                </p>
                                             </div>
-                                            <div className='grid w-[250px] gap-5'>
-                                                <PhoneNumber/>
-                                                <button className='bg-[#6F73EE] py-4 rounded-[5px] text-white'>Позвоните мне</button>
+                                            <div className='grid w-[350px] gap-5'>
+                                                <PhoneNumber 
+                                                    onPhoneChange={handlePhoneChange} 
+                                                    value={phone}
+                                                />
+                                                {error && (
+                                                    <div className="text-red-500 text-sm mt-1 text-center">
+                                                        {error}
+                                                    </div>
+                                                )}
+                                                
+                                                <button 
+                                                    className={`bg-[#6F73EE] py-4 rounded-[5px] text-white transition-colors ${
+                                                        !isPhoneValid || !isChecked || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a5fc9]'
+                                                    }`}
+                                                    onClick={handleCallOrder}
+                                                    disabled={!isPhoneValid || !isChecked || isLoading}
+                                                >
+                                                    {isLoading ? 'Отправка...' : 'Позвоните мне'}
+                                                </button>
+                                                
                                                 <div className='flex items-baseline gap-3'>
-                                                    <Checkbox variant="soft" defaultChecked />
-                                                    <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
+                                                    <Checkbox 
+                                                        variant="soft" 
+                                                        checked={isChecked}
+                                                        onCheckedChange={(checked) => setIsChecked(checked === true)}
+                                                    />
+                                                    <p className='text-[14px]'>
+                                                        Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            
-                                        </div>
-                                        <div>
-                                            
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    
-                                </div>
                             </AlertDialog.Content>
                         </AlertDialog.Root>
+                        
                         <Messengers/>
                     </div>
                     <div>
@@ -80,6 +186,9 @@ export function Header(){
                     </div>
                 </div>
             </div>
+        
+        
+        
             
             <div className="w-full bg-[#ECF3FF] h-px my-4"/>
             
