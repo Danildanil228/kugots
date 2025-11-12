@@ -10,15 +10,20 @@ import { CaruselSlider } from '../forms/CaruselSlider';
 import { VideoSwiper } from '../forms/VideoSwiper';
 import { BlogSwiper } from '../forms/BlogSwiper';
 import { HitProduct } from '../forms/HitProduct';
-
-
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import { ScrollToTop } from '../ScrollToTop';
 
 export function MainPage(){
+   
+    const [activeButton, setActiveButton] = useState('Хиты продаж');
+    const buttons = ['Хиты продаж', 'Для города', 'Для взрослых', 'Для детей'];
     const [isPlaying, setIsPlaying] = useState(false);
-    
     return(
         <>
+
             <div className="grid justify-center">
+                <ScrollToTop/>
                 <div>
                     <SwiperHeader/>
                 </div>
@@ -33,7 +38,6 @@ export function MainPage(){
                                 <h1 className="uppercase text-[25px] font-semibold">Рассрочка</h1>
                                 <p>от 6 месяцев</p>
                             </div>
-                            
                         </div>
                         <div className="flex items-center gap-[200px]">
                             <div>
@@ -53,21 +57,37 @@ export function MainPage(){
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div className="justify-center grid">
                     <div className="flex justify-between w-7xl items-center">
                         <p className="font-semibold uppercase text-[35px]">Электросамокаты</p>
                         <div className="flex gap-3">
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Хиты продаж</button>
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Для города</button>
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Для взрослых</button>
-                            <button className="text-[#5D6C7B] px-5 py-3 bg-[#F4F7FB] rounded-[5px] hover:text-[#6F73EE] border-[#F4F7FB] border hover:bg-white hover:border-[#6F73EE]">Для детей</button>
+                            {buttons.map((buttonText) => (
+                                <button
+                                    key={buttonText}
+                                    onClick={() => setActiveButton(buttonText)}
+                                    className={`px-5 py-3 rounded-[5px] border transition-all ${
+                                        activeButton === buttonText
+                                            ? "text-[#6F73EE] bg-white border-[#6F73EE]"
+                                            : "text-[#5D6C7B] bg-[#F4F7FB] border-[#F4F7FB] hover:text-[#6F73EE] hover:bg-white hover:border-[#6F73EE]"
+                                    }`}
+                                >
+                                    {buttonText} 
+                                </button>
+                            ))}
                         </div>
                     </div>
-                    <div className="database py-[50px]">
-                        <Product/>
+                    <div className="py-[50px]">
+                        <Product activeFilter={activeButton} />
                     </div>
-                    
                 </div>
+
+
+
+
 
                 <div className="flex justify-center mt-[60px]">
                     <div className="flex justify-between w-7xl">
@@ -181,9 +201,6 @@ export function MainPage(){
                         </button>
                     </div>
                 </div>
-                <div>
-                    
-                </div>
             </div>
 
             <CaruselSlider/>
@@ -202,12 +219,7 @@ export function MainPage(){
                     </div>
                 </div>
             </div>
-            <div className='justify-center flex'>
-
-               
-                <VideoSwiper/>
-                
-            </div>
+            <div className='justify-center flex'><VideoSwiper/></div>
             <div className='justify-center flex'>
                 <div>
                     <div className='justify-between w-7xl'>

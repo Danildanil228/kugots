@@ -1,5 +1,4 @@
 import './maincarusel.css';
-
 const StarRating = ({ rating = 5 }: { rating?: number }) => (
     <div className="flex text-yellow-400">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -9,7 +8,6 @@ const StarRating = ({ rating = 5 }: { rating?: number }) => (
         ))}
     </div>
 );
-
 const ReviewCard = ({ imageSrc, profileSrc = "./profile1.svg", name = "Имя", level = "Уровень", date = "01.01.2023", text = "Текст отзыва будет отображаться здесь. Очень доволен обслуживанием!" }: {
     imageSrc: string;
     profileSrc?: string;
@@ -48,9 +46,7 @@ export function CaruselSlider() {
         "./otziv1.svg", "./otziv2.svg", "./otziv3.svg", "./otziv4.svg", 
         "./otziv5.svg", "./otziv6.svg", "./otziv7.svg", "./otziv8.svg", "./otziv10.svg"
     ];
-
     const doubledImages = [...reviewImages, ...reviewImages];
-
     return (
         <div className="caroisel-container grid gap-5 mt-15 mb-20">
            
@@ -63,7 +59,6 @@ export function CaruselSlider() {
                     />
                 ))}
             </div>
-            
             <div className="carousel-track-down">
                 {doubledImages.map((image, index) => (
                     <ReviewCard 

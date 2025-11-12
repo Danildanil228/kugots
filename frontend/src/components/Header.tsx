@@ -1,14 +1,19 @@
+import { useState } from "react";
+import { Popover } from "@mui/material";
 import { Link, useLocation } from 'react-router-dom';
-import { Cart } from "./buttons/Cart";
 import { CatalogDropdown } from "./buttons/CatalogDropdown";
 import { CompareIcon } from "./buttons/CompareIcon";
 import { Heart } from "./buttons/Heart";
 import { Messengers } from "./buttons/Messengers";
 import { Phone } from "./buttons/Phone";
 import { Search } from "./forms/Search";
-import { AlertDialog, Button, Checkbox, Flex } from '@radix-ui/themes';
+import { AlertDialog, Button, Checkbox } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
-import { useState } from 'react';
+
+import { CartMenu } from './forms/CartMenu';
+import { ScrollArea } from "@radix-ui/themes";
+import IconButton from '@mui/material/IconButton';
+
 
 export function Header(){
     const location = useLocation();
@@ -38,6 +43,7 @@ export function Header(){
     const [error, setError] = useState('');
     const [isChecked, setIsChecked] = useState(true);
 
+    
     
     const handlePhoneChange = (value: string, isValid: boolean) => {
         setPhone(value);
@@ -104,9 +110,22 @@ export function Header(){
         setError('');
     };
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    
+    const handleOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    
+   
+   
     return(
         <>
-        <div>
+        <div className=''>
             <div className="justify-center flex my-4">
                 <div className="flex justify-between w-7xl">
                     <div className="flex gap-7 items-center">
@@ -182,16 +201,69 @@ export function Header(){
                         <Messengers/>
                     </div>
                     <div>
-                        <Phone/>
+                        <div className="phone flex gap-3 items-center">
+                            <p>+7 (800) 505-54-61</p>
+                            <button onClick={handleOpen} className="plus-btn p-1.5 border border-[#5D6C7B] rounded-full transition-all duration-200 ease-in-out hover:bg-[#5D6C7B] group">
+                            <img 
+                                className="plus transition-all duration-200 ease-in-out group-hover:filter group-hover:brightness-0 group-hover:invert" 
+                                src="./+.svg" 
+                                alt="Add" 
+                            />
+                            </button>
+                        </div>
+                        <Popover
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            sx={{
+                                '& .MuiPopover-paper': {
+                                    width: 250,
+                                    borderRadius: '8px',
+                                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                                    marginTop: '8px'
+                                }
+                            }}
+                            disableScrollLock={true}
+                        >
+                            <div className="text-[12px] grid-cols-1 grid">
+                                
+                                <div className="py-4 px-5">
+                                    <p className="text-[#5D6C7B]">Сервисный центр</p>
+                                    <h2 className="text-[16px] font-semibold">+ 7 (499) 350 76 92</h2>
+                                </div>
+                                <div className="border-t border-b border-[#EAEBED]">
+                                    <div className="py-4 px-5">
+                                        <p className="text-[#5D6C7B]">Оптовый отдел</p>
+                                        <h2 className="text-[16px] font-semibold">+7 (499) 281-64-52
+</h2>
+                                        <p className="text-[#5D6C7B]">пн-сб 10:00 - 19:00</p>
+                                    </div>
+                                </div>
+                                <div className="py-4 px-5">
+                                    <p className="text-[#5D6C7B]">Отдел рекламаций и претензий</p>
+                                    <h2 className="text-[16px] font-semibold">+7 (499) 350-76-92</h2>
+                                    <p className="text-[#5D6C7B]">ср-вс с 10:00 до 19:00</p>
+                                </div>
+                                
+                            </div>
+                        </Popover>
+
                     </div>
                 </div>
             </div>
-        
-        
-        
-            
             <div className="w-full bg-[#ECF3FF] h-px my-4"/>
             
+
+
+
             <div className="flex justify-center my-8">
                 <div className="flex justify-between w-7xl">
                     <div className="flex items-center">
@@ -206,11 +278,18 @@ export function Header(){
                     <div className="flex items-center gap-4">
                         <CompareIcon/>
                         <Heart/>
-                        <Cart/>
+
+                        {/* корзина */}
+                        <CartMenu/>
+                       
                     </div>
                 </div>
             </div>
             
+
+
+
+
             <div className="flex justify-center bg-[#F4F7FB] py-3">
                 <div className="flex justify-start w-7xl">
                     <div className="flex gap-12 ">

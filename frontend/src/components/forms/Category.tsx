@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { WatchAll } from '../buttons/WatchAll';
 export function Category(){
-
     const [data, setData] = useState([]);
     const [showAll, setShowAll] = useState(false);
     

@@ -1,4 +1,3 @@
-import React from "react";
 import { Everywhere } from "../buttons/Everywhere";
 
 export function Search(){

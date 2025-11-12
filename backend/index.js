@@ -17,7 +17,18 @@ app.use(express.json());
 // Маршруты продуктов
 app.get('/product', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM product');
+    const { type } = req.query;
+    let query = 'SELECT * FROM product';
+    let params = [];
+
+    if (type) {
+      query += ' WHERE type = $1';
+      params.push(type);
+    }
+
+    query += ' LIMIT 12'; 
+
+    const result = await pool.query(query, params);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -70,7 +81,7 @@ app.post('/api/subscribe', async (req, res) =>{
       data: result.rows[0]
     });
   }catch (err) {
-    // Если email уже существует (нарушение UNIQUE constraint)
+    
     if (err.code === '23505') {
       return res.status(409).json({
         success: false,
@@ -86,7 +97,7 @@ app.post('/api/subscribe', async (req, res) =>{
   }
 });
 
-// Простой endpoint для просмотра подписчиков
+
 app.get('/api/subscribers', async (req, res) => {
   try {
     const result = await pool.query(
@@ -102,14 +113,12 @@ app.get('/api/subscribers', async (req, res) => {
 
 
 //Телефон
-// Добавьте этот endpoint в ваш index.js
+
 app.post('/api/call-order', async (req, res) => {
   try {
     const { phone, type = 'callback' } = req.body;
-
     console.log('Получена заявка на звонок:', phone);
 
-    // Валидация телефона
     if (!phone) {
       return res.status(400).json({
         success: false,
@@ -125,10 +134,6 @@ app.post('/api/call-order', async (req, res) => {
       });
     }
 
-    // Создайте таблицу если её нет
-    // CREATE TABLE call_orders (id SERIAL PRIMARY KEY, phone VARCHAR(50) NOT NULL, type VARCHAR(50) DEFAULT 'callback', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
-
-    // Сохраняем в базу данных
     const result = await pool.query(
       'INSERT INTO call_orders (phone, type) VALUES ($1, $2) RETURNING id, phone',
       [phone, type]
@@ -145,7 +150,7 @@ app.post('/api/call-order', async (req, res) => {
   } catch (err) {
     console.error('Ошибка при создании заявки:', err);
     
-    // Если ошибка дублирования email (если есть UNIQUE constraint)
+    
     if (err.code === '23505') {
       return res.status(409).json({
         success: false,

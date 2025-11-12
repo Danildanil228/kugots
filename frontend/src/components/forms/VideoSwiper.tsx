@@ -37,7 +37,7 @@ export function VideoSwiper(){
     return(
         <>
             <div 
-                className="flex justify-between w-7xl gap-6 items-start h-100 mb-20 mt-14" // items-start чтобы блоки не растягивались
+                className="flex justify-between w-7xl gap-6 items-start h-100 mb-20 mt-14"
                 onMouseLeave={() => setActiveVideo(0)}
             >
                 {videos.map((video, index) => (
@@ -46,8 +46,7 @@ export function VideoSwiper(){
                         className={`${getTransitionClass} cursor-pointer flex flex-col`}
                         onMouseEnter={() => handleMouseEnter(index)}
                     >
-                        {/* Видео блок с фиксированной высотой контейнера */}
-                        <div className={`${getTransitionClass} min-h-0`}> {/* min-h-0 предотвращает растягивание */}
+                        <div className={`${getTransitionClass} min-h-0`}>
                             {!playingStates[index] && (
                                 <div 
                                     className={`${getVideoSize(index)} bg-cover bg-center relative rounded-[5px] ${getTransitionClass}`}
@@ -73,8 +72,6 @@ export function VideoSwiper(){
                                 ></iframe>
                             )}
                         </div>
-                        
-                        {/* Текст с плавной анимацией позиции */}
                         <div className={`${getTransitionClass} mt-5`}>
                             <p className={`font-semibold ${getTextWidth(index)} ${getTransitionClass}`}>
                                 {video.title}

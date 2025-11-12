@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-
 export function PaperClip() {
     const [file, setFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);

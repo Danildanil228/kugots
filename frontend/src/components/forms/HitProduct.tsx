@@ -38,9 +38,7 @@ export function HitProduct(){
         }, []);
     return(
         <>
-        <div className="flex justify-between w-7xl">
-            
-
+            <div className="flex justify-between w-7xl">
                 {data.map((product) => (
                     <div key={product.id} className="border-[#EAEBED] border rounded-xl w-70 my-[65px]">
                         <div 
@@ -103,8 +101,6 @@ export function HitProduct(){
                     </div>
                 ))}
             </div>
-
-            
         </>
     )
 }

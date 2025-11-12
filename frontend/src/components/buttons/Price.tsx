@@ -1,10 +1,7 @@
-
 import "@radix-ui/themes/styles.css";
 import {Button, DropdownMenu } from "@radix-ui/themes";
 
 export function Price(){
-    
-
     return(
         <>
             <DropdownMenu.Root>

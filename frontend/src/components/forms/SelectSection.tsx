@@ -15,7 +15,6 @@ export function SelectSection(){
             console.error("Error fetching products", error);
         }
     };
-
     useEffect(() => {
         fetchProducts();
     }, []);

@@ -2,23 +2,50 @@ import { CartIcon } from "../buttons/CartIcon";
 import { CompareIcon } from "../buttons/CompareIcon";
 import { HeartAlt } from "../buttons/HeartAlt";
 import { WatchAll } from "../buttons/WatchAll";
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export function Product(){
-    const [data, setData] = useState([]);
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  oldprice: number;
+  img: string;
+  acum: string;
+  speed: string;
+  power: string;
+  time: string;
+  descr: string;
+  type: string;
+}
+
+export function Product({ activeFilter }: { activeFilter: string }) {
+    const [data, setData] = useState<Product[]>([]);
     const [showAll, setShowAll] = useState(false);
     
-    const fetchItems = async () => {
+    const fetchItems = async (filter = '') => {
         try {
-            const response = await axios.get("http://localhost:3000/product");
+            let url = "http://localhost:3000/product";
+            if (filter && filter !== 'Хиты продаж') {
+                url += `?type=${getFilterType(filter)}`;
+            }
+            const response = await axios.get(url);
             setData(response.data);
         } catch (error) {
             console.error("Error fetching data", error);
         }
     };
     
-    const formatPrice = (price) => {
+    const getFilterType = (buttonText: string) => {
+        switch(buttonText) {
+            case 'Для города': return 'city';
+            case 'Для взрослых': return 'man';
+            case 'Для детей': return 'child';
+            default: return '';
+        }
+    };
+    
+    const formatPrice = (price: number) => {
         if (!price) return '';
         
         let cleanPrice = price.toString()
@@ -30,19 +57,19 @@ export function Product(){
         return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     };
     
-    const getTagColor = (descr) => {
+    const getTagColor = (descr: string) => {
         if (!descr) return 'opacity-0';
         if (descr === 'Хит') return 'bg-[#EE685F]';
         if (descr === 'Новинка') return 'bg-[#75D14A]';
         return 'bg-[#EE685F]';
     };
 
-    const visibleProducts = showAll ? data : data.slice(0, 8);
-
     useEffect(() => {
-        fetchItems();
-    }, []);
-  
+        fetchItems(activeFilter);
+    }, [activeFilter]);
+
+    const visibleProducts = showAll ? data : data.slice(0, 8);
+    const shouldShowWatchAll = data.length > 8;
 
     return(
         <div className="grid gap-[30px]">
@@ -89,18 +116,23 @@ export function Product(){
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="line-through! text-[#5D6C7B] text-[12px]">
+                                        <p className="line-through text-[#5D6C7B] text-[12px]">
                                             {formatPrice(product.oldprice)} ₽
                                         </p>
                                         <p className="text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
                                     </div>
                                     <div className="flex gap-2.5">
-                                        <CartIcon/>
+                                        <CartIcon product={{
+                                            id: product.id,
+                                            name: product.name,
+                                            price: product.price,
+                                            img: product.img
+                                        }}/>
                                         <HeartAlt/>
                                     </div>
                                 </div>
                                 <div className="justify-center flex">
-                                    <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE]">
+                                    <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors">
                                         Купить в 1 клик
                                     </button>
                                 </div>
@@ -110,7 +142,7 @@ export function Product(){
                 ))}
             </div>
             
-            {data.length > 8 && (
+            {shouldShowWatchAll && (
                 <div className="flex justify-center mt-8">
                     <button onClick={() => setShowAll(!showAll)}>
                         <WatchAll text={showAll ? "Скрыть" : "Смотреть все"} />
@@ -118,5 +150,5 @@ export function Product(){
                 </div>
             )}
         </div>
-    )
+    );
 }
