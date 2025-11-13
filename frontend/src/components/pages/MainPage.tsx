@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import { More } from "../buttons/More";
-import { WatchAll } from "../buttons/WatchAll";
 import { AccordionDemo } from "../forms/AccordionDemo";
 import { Category } from "../forms/Category";
 import { Product } from "../forms/Product";
@@ -10,8 +9,6 @@ import { CaruselSlider } from '../forms/CaruselSlider';
 import { VideoSwiper } from '../forms/VideoSwiper';
 import { BlogSwiper } from '../forms/BlogSwiper';
 import { HitProduct } from '../forms/HitProduct';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import { ScrollToTop } from '../ScrollToTop';
 
 export function MainPage(){

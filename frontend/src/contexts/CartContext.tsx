@@ -1,4 +1,3 @@
-// contexts/CartContext.tsx
 import { createContext, useContext, useState, type ReactNode,  } from 'react';
 
 export interface CartItem {
@@ -7,6 +6,7 @@ export interface CartItem {
   price: number;
   img: string;
   quantity: number;
+  count: number;
 }
 
 interface CartContextType {
@@ -17,7 +17,7 @@ interface CartContextType {
   getTotalPrice: () => number;
   getTotalItems: () => number;
   clearCart: () => void;
-  isInCart: (productId: number) => boolean; // Новая функция
+  isInCart: (productId: number) => boolean; 
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -79,7 +79,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       getTotalPrice,
       getTotalItems,
       clearCart,
-      isInCart // Добавляем в контекст
+      isInCart 
     }}>
       {children}
     </CartContext.Provider>

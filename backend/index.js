@@ -55,6 +55,16 @@ app.get('/product/hit', async (req, res) => {
     res.status(500).send('Ошибка сервера');
   }
 });
+//subscribersMessengers
+app.get('/submes', async (req, res) => {
+  try {
+    const result = await pool.query("select * from submes");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Ошибка сервера');
+  }
+});
 
 //email
 app.post('/api/subscribe', async (req, res) =>{
@@ -116,8 +126,8 @@ app.get('/api/subscribers', async (req, res) => {
 
 app.post('/api/call-order', async (req, res) => {
   try {
-    const { phone, type = 'callback' } = req.body;
-    console.log('Получена заявка на звонок:', phone);
+    const { phone, type = 'callback', productId, productName } = req.body;
+    console.log('Получена заявка:', { phone, type, productId, productName });
 
     if (!phone) {
       return res.status(400).json({
@@ -134,16 +144,22 @@ app.post('/api/call-order', async (req, res) => {
       });
     }
 
+    // Убираем проверку уникальности и добавляем поля продукта
     const result = await pool.query(
-      'INSERT INTO call_orders (phone, type) VALUES ($1, $2) RETURNING id, phone',
-      [phone, type]
+      'INSERT INTO call_orders (phone, type, product_id, product_name, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING id, phone, type, product_id',
+      [phone, type, productId || null, productName || null, new Date()]
     );
 
-    console.log('Новая заявка на звонок сохранена:', result.rows[0]);
+    console.log('Новая заявка сохранена:', result.rows[0]);
+
+    let successMessage = 'Заявка принята! Мы позвоним вам в течение 5 минут.';
+    if (type === 'orderProduct') {
+      successMessage = 'Предзаказ оформлен! Мы сообщим вам о поступлении товара.';
+    }
 
     res.status(201).json({
       success: true,
-      message: 'Заявка принята! Мы позвоним вам в течение 5 минут.',
+      message: successMessage,
       data: result.rows[0]
     });
 
@@ -151,20 +167,12 @@ app.post('/api/call-order', async (req, res) => {
     console.error('Ошибка при создании заявки:', err);
     
     
-    if (err.code === '23505') {
-      return res.status(409).json({
-        success: false,
-        message: 'Заявка с этим номером уже существует'
-      });
-    }
-
     res.status(500).json({
       success: false,
       message: 'Внутренняя ошибка сервера'
     });
   }
 });
-
 
 const PORT = 3000;
 app.listen(PORT, () => {

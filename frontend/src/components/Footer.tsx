@@ -1,16 +1,21 @@
 import { AlertDialog, Button, Checkbox, RadioCards } from "@radix-ui/themes";
 import { InputEmail } from "./forms/InputEmail";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PhoneNumber } from "./forms/PhoneNumber";
 import { Link } from "react-router-dom";
 import { Messengers } from "./buttons/Messengers";
+import axios from "axios";
 
 export function Footer(){
     const [email, setEmail] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isSubscribeDialogOpen, setIsSubscribeDialogOpen] = useState(false); // Переименовано
+    const [isCallDialogOpen, setIsCallDialogOpen] = useState(false); // Новое состояние для заказа звонка
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const [phone, setPhone] = useState('');
+    const [isPhoneValid, setIsPhoneValid] = useState(false);
+    const [isChecked, setIsChecked] = useState(true);
 
     const handleEmailChange = (value: string, isValid: boolean) => {
         setEmail(value);
@@ -40,7 +45,7 @@ export function Footer(){
             }
 
             if (result.success) {
-                setIsDialogOpen(true);
+                setIsSubscribeDialogOpen(true); // Используем правильное состояние
                 setEmail('');
                 setIsEmailValid(false);
             }
@@ -51,6 +56,87 @@ export function Footer(){
             setIsLoading(false);
         }
     };
+
+    const [data, setData] = useState([]);
+    const fetchItems = async () => {
+        try {
+            const response = await axios.get("http://localhost:3000/submes");
+            setData(response.data);
+        } catch (error) {
+            console.error("Error fetching data", error);
+        }
+    };
+    
+    useEffect(() => {
+        fetchItems();
+    }, []);
+
+    const handleCallOrder = async () => {
+        if (!isPhoneValid || !isChecked) return;
+        setIsLoading(true);
+        setError('');
+
+        try {
+            const response = await fetch('http://localhost:3000/api/call-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    phone: phone,
+                    type: 'callback'
+                }),
+            });
+            
+            if (!response.ok) {
+                let errorMessage = 'Ошибка при отправке';
+                
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || errorMessage;
+                } catch (jsonError) {
+                    const textError = await response.text();
+                    errorMessage = textError || errorMessage;
+                }
+                
+                throw new Error(errorMessage);
+            }
+            const result = await response.json();
+
+            if (result.success) {
+                setIsCallDialogOpen(false); // Закрываем диалог заказа звонка
+                setPhone('');
+                setIsPhoneValid(false);
+                setIsChecked(true);
+            } else {
+                throw new Error(result.message || 'Произошла ошибка');
+            }
+
+        } catch (err) {
+            console.error('Ошибка:', err);
+            setError(err instanceof Error ? err.message : 'Произошла ошибка при отправке заявки');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleCloseCallDialog = () => {
+        setIsCallDialogOpen(false);
+        setPhone('');
+        setIsPhoneValid(false);
+        setError('');
+    };
+
+    const handleCloseSubscribeDialog = () => {
+        setIsSubscribeDialogOpen(false);
+    };
+
+    const handlePhoneChange = (value: string, isValid: boolean) => {
+        setPhone(value);
+        setIsPhoneValid(isValid);
+        setError('');
+    };
+
     return(
         <>
             <div className="flex justify-center bg-[#6F73EE] py-6">
@@ -66,10 +152,9 @@ export function Footer(){
                             </div>
                         )}
                         
-                        
                         <div className="items-center!">
-
-                            <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                            {/* Диалог для подписки */}
+                            <AlertDialog.Root open={isSubscribeDialogOpen} onOpenChange={setIsSubscribeDialogOpen}>
                                 <AlertDialog.Trigger className='items-center!'>
                                     <Button 
                                         className={`bg-white! text-[#6F73EE]! font-normal! text-[16px]! items-center! py-7! px-6! transition-colors duration-200! ${
@@ -81,17 +166,23 @@ export function Footer(){
                                         {isLoading ? 'Отправка...' : 'Подписаться'}
                                     </Button>
                                 </AlertDialog.Trigger>
-                                <AlertDialog.Content maxWidth="800px" height="44 hover:border-[]0px" className=''>
+                                <AlertDialog.Content maxWidth="800px" height="440px" className=''>
                                     <div className='justify-end flex'>
-                                        <AlertDialog.Action><img src='./crest.svg' className='rotate-45 cursor-pointer'></img></AlertDialog.Action>
+                                        <AlertDialog.Action>
+                                            <img 
+                                                src='./crest.svg' 
+                                                className='rotate-45 cursor-pointer'
+                                                onClick={handleCloseSubscribeDialog}
+                                            />
+                                        </AlertDialog.Action>
                                     </div>
                                     <div className="grid gap-7 justify-center text-center">
                                         <h1 className="text-[25px] font-semibold uppercase">Благодарим за подписку<br/>на рассылку</h1>
                                         <p>Перейдите в свою почту, чтобы подтвердить подписку и получить<br/>видеообзор «Топ-3 электросамоката 2021г.»</p>
                                         <p className="text-[#5D6C7B]">Выберите свой почтовый сервис</p>
                                         <div className="flex gap-4 justify-center">
-                                            <a   className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./searchIc.svg" alt="" /></a>
-                                            <a  className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yandexIc.svg" alt="" /></a>
+                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./searchIc.svg" alt="" /></a>
+                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yandexIc.svg" alt="" /></a>
                                             <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./out.svg" alt="" /></a>
                                             <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yahoo.svg" alt="" /></a>
                                         </div>
@@ -103,6 +194,7 @@ export function Footer(){
                     </div>
                 </div>
             </div>
+
             <div className="bg-[#F4F7FB] justify-center grid">
                 <div className="flex justify-between w-7xl py-10">
                     <div className="flex gap-[125px]">
@@ -137,56 +229,79 @@ export function Footer(){
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center mb-2">
                             <h1 className="font-semibold text-lg">Контакты</h1>
-                            <AlertDialog.Root >
-                            <AlertDialog.Trigger className=''>
-                                <Button className='bg-transparent! text-[#6F73EE]! font-normal! text-[16px]! items-center! p-0! m-0!  transition-colors duration-200! cursor-pointer!'>Заказать звонок</Button>
-                            </AlertDialog.Trigger>
-                            <AlertDialog.Content maxWidth="900px" height="650px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
-                                <div>
-                                    <div className='justify-end flex'>
-                                        <AlertDialog.Action><img src='./crest.svg' className='rotate-45 cursor-pointer'></img></AlertDialog.Action>
-                                    </div>
-                                    <div className='flex'>
-                                        <div className='grid gap-9'>
-                                            <div className='grid gap-4'>
-                                                <h1 className='text-[25px] font-semibold uppercase w-115'>Оставьте заявку и получите профессиональную консультациюот нашего менеджера</h1>
-                                                <p className='w-80'>Позвоним в течение 5 минут и ответим на все вопросы.</p>
-                                            </div>
-                                            <div className='grid w-[250px] gap-5'>
-                                                <div className="grid gap-2">
-                                                    <p className="text-[#5D6C7B]">Как с вами удобнее связаться?</p>
-                                                    <div className="flex gap-4">
-                                                        <RadioCards.Root defaultValue="1" className="flex! ">
-                                                            <RadioCards.Item value="1" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
-                                                                <img  className="w-[18px] " src="./viber.svg" alt="" />
-                                                            </RadioCards.Item>
-                                                            <RadioCards.Item value="2" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
-                                                                <img className="w-[18px] " src="./whatsap.svg" alt="" />
-                                                            </RadioCards.Item>
-                                                            <RadioCards.Item value="3" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
-                                                                <img  className="w-[18px] "src="./tg.svg" alt="" />
-                                                            </RadioCards.Item>
-                                                        </RadioCards.Root>
-                                                    </div>
+                            {/* Диалог для заказа звонка */}
+                            <AlertDialog.Root open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
+                                <AlertDialog.Trigger className=''>
+                                    <Button 
+                                        className='bg-transparent! text-[#6F73EE]! font-normal! text-[16px]! items-center! p-0! m-0! transition-colors duration-200! cursor-pointer!'
+                                        onClick={() => setIsCallDialogOpen(true)}
+                                    >
+                                        Заказать звонок
+                                    </Button>
+                                </AlertDialog.Trigger>
+                                <AlertDialog.Content maxWidth="900px" height="650px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
+                                    <div>
+                                        <div className='justify-end flex'>
+                                            <AlertDialog.Action>
+                                                <img 
+                                                    src='./crest.svg' 
+                                                    className='rotate-45 cursor-pointer' 
+                                                    onClick={handleCloseCallDialog}
+                                                />
+                                            </AlertDialog.Action>
+                                        </div>
+                                        <div className='flex'>
+                                            <div className='grid gap-9'>
+                                                <div className='grid gap-4'>
+                                                    <h1 className='text-[25px] font-semibold uppercase w-115'>Оставьте заявку и получите профессиональную консультацию от нашего менеджера</h1>
+                                                    <p className='w-80'>Позвоним в течение 5 минут и ответим на все вопросы.</p>
                                                 </div>
-                                                <PhoneNumber/>
-                                                <button className='bg-[#6F73EE] py-4 rounded-[5px] text-white'>Позвоните мне</button>
-                                                <div className='flex items-baseline gap-3'>
-                                                    <Checkbox variant="soft" defaultChecked />
-                                                    <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
+                                                <div className='grid w-[250px] gap-5'>
+                                                    <div className="grid gap-2">
+                                                        <p className="text-[#5D6C7B]">Как с вами удобнее связаться?</p>
+                                                        <div className="flex gap-4">
+                                                            <RadioCards.Root defaultValue="1" className="flex! ">
+                                                                <RadioCards.Item value="1" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                    <img className="w-[18px] " src="./viber.svg" alt="" />
+                                                                </RadioCards.Item>
+                                                                <RadioCards.Item value="2" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                    <img className="w-[18px] " src="./whatsap.svg" alt="" />
+                                                                </RadioCards.Item>
+                                                                <RadioCards.Item value="3" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                    <img className="w-[18px] "src="./tg.svg" alt="" />
+                                                                </RadioCards.Item>
+                                                            </RadioCards.Root>
+                                                        </div>
+                                                    </div>
+                                                    <PhoneNumber onPhoneChange={handlePhoneChange} value={phone}/>
+                                                    {error && (
+                                                        <div className="text-red-500 text-sm mt-1 text-center">{error}</div>
+                                                    )}
+                                                    <button 
+                                                        className={`bg-[#6F73EE] py-4 rounded-[5px] text-white transition-colors ${
+                                                            !isPhoneValid || !isChecked || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a5fc9]'
+                                                        }`}
+                                                        onClick={handleCallOrder}
+                                                        disabled={!isPhoneValid || !isChecked || isLoading}
+                                                    >
+                                                        {isLoading ? 'Отправка...' : 'Позвоните мне'}
+                                                    </button>
+                                                    <div className='flex items-baseline gap-3'>
+                                                        <Checkbox variant="soft" checked={isChecked} onCheckedChange={(checked) => setIsChecked(checked === true)} />
+                                                        <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </AlertDialog.Content>
-                        </AlertDialog.Root>
+                                </AlertDialog.Content>
+                            </AlertDialog.Root>
                         </div>
-                        
+
                         <div className="grid gap-7">
                             <div className="flex gap-8">
                                 <div className="grid gap-2">
@@ -217,6 +332,7 @@ export function Footer(){
                         </div>
                     </div>
                 </div>
+
                 <div className="bg-[#5D6C7B] w-full h-px opacity-15 mt-10"></div>
                 <div className="justify-between flex my-10">
                     <div className="flex items-center gap-[60px]">
@@ -229,42 +345,17 @@ export function Footer(){
                         </div>
                     </div>
                     <div className="flex gap-3">
-                        <a href="">
-                            <div className="flex gap-3 py-2 px-4 bg-white rounded-[5px]">
-                                <img src="./vksub.svg"  alt="" />
-                                <div className="grid">
-                                    <p className="font-semibold">ВКонтакте</p>
-                                    <p>DataBase</p>
+                        {data.map((submes) => (
+                            <a href="" key={submes.id}>
+                                <div className="flex gap-3 py-2 px-4 bg-white rounded-[5px]">
+                                    <img src={submes.img} alt="" />
+                                    <div className="grid">
+                                        <p className="font-semibold">{submes.mes}</p>
+                                        <p>{submes.sub}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div className="flex gap-3 py-2 px-4 bg-white rounded-[5px]">
-                                <img src="./instsub.svg"  alt="" />
-                                <div className="grid">
-                                    <p className="font-semibold">Instagram</p>
-                                    <p>DataBase</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="">
-                            <div className="flex gap-3 py-2 px-4 bg-white rounded-[5px]">
-                                <img src="./youtubesub.svg"  alt="" />
-                                <div className="grid">
-                                    <p className="font-semibold">YouTube</p>
-                                    <p>DataBase</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://t.me">
-                            <div className="flex gap-3 py-2 px-4 bg-white rounded-[5px]">
-                                <img src="./tgsub.svg"  alt="" />
-                                <div className="grid">
-                                    <p className="font-semibold">Telegram</p>
-                                    <p>DataBase</p>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        ))}
                     </div>
                 </div>
                 <div className="bg-[#5D6C7B] w-full h-px opacity-15"></div>

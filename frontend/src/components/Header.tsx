@@ -5,14 +5,11 @@ import { CatalogDropdown } from "./buttons/CatalogDropdown";
 import { CompareIcon } from "./buttons/CompareIcon";
 import { Heart } from "./buttons/Heart";
 import { Messengers } from "./buttons/Messengers";
-import { Phone } from "./buttons/Phone";
 import { Search } from "./forms/Search";
 import { AlertDialog, Button, Checkbox } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
 
 import { CartMenu } from './forms/CartMenu';
-import { ScrollArea } from "@radix-ui/themes";
-import IconButton from '@mui/material/IconButton';
 
 
 export function Header(){
@@ -52,56 +49,55 @@ export function Header(){
     };
 
     const handleCallOrder = async () => {
-    if (!isPhoneValid || !isChecked) return;
+        if (!isPhoneValid || !isChecked) return;
+        setIsLoading(true);
+        setError('');
 
-    setIsLoading(true);
-    setError('');
+        try {
+            const response = await fetch('http://localhost:3000/api/call-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    phone: phone,
+                    type: 'callback'
+                }),
+            });
 
-    try {
-        const response = await fetch('http://localhost:3000/api/call-order', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                phone: phone,
-                type: 'callback'
-            }),
-        });
-
-        
-        if (!response.ok) {
-
-            let errorMessage = 'Ошибка при отправке';
             
-            try {
-                const errorData = await response.json();
-                errorMessage = errorData.message || errorMessage;
-            } catch (jsonError) {
-                const textError = await response.text();
-                errorMessage = textError || errorMessage;
+            if (!response.ok) {
+
+                let errorMessage = 'Ошибка при отправке';
+                
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || errorMessage;
+                } catch (jsonError) {
+                    const textError = await response.text();
+                    errorMessage = textError || errorMessage;
+                }
+                
+                throw new Error(errorMessage);
             }
-            
-            throw new Error(errorMessage);
-        }
-        const result = await response.json();
+            const result = await response.json();
 
-        if (result.success) {
-            setIsDialogOpen(false);
-            setPhone('');
-            setIsPhoneValid(false);
-            setIsChecked(true);
-        } else {
-            throw new Error(result.message || 'Произошла ошибка');
-        }
+            if (result.success) {
+                setIsDialogOpen(false);
+                setPhone('');
+                setIsPhoneValid(false);
+                setIsChecked(true);
+            } else {
+                throw new Error(result.message || 'Произошла ошибка');
+            }
 
-    } catch (err) {
-        console.error('Ошибка:', err);
-        setError(err instanceof Error ? err.message : 'Произошла ошибка при отправке заявки');
-    } finally {
-        setIsLoading(false);
-    }
-};
+        } catch (err) {
+            console.error('Ошибка:', err);
+            setError(err instanceof Error ? err.message : 'Произошла ошибка при отправке заявки');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleCloseDialog = () => {
         setIsDialogOpen(false);

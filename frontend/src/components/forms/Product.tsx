@@ -4,6 +4,7 @@ import { HeartAlt } from "../buttons/HeartAlt";
 import { WatchAll } from "../buttons/WatchAll";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { AlertOrderProduct } from "./AlertOrderProduct";
 
 interface Product {
   id: number;
@@ -17,6 +18,7 @@ interface Product {
   time: string;
   descr: string;
   type: string;
+  count: number;
 }
 
 export function Product({ activeFilter }: { activeFilter: string }) {
@@ -63,6 +65,7 @@ export function Product({ activeFilter }: { activeFilter: string }) {
         if (descr === 'Новинка') return 'bg-[#75D14A]';
         return 'bg-[#EE685F]';
     };
+    
 
     useEffect(() => {
         fetchItems(activeFilter);
@@ -114,6 +117,7 @@ export function Product({ activeFilter }: { activeFilter: string }) {
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div className="flex items-center justify-between">
                                     <div>
                                         <p className="line-through text-[#5D6C7B] text-[12px]">
@@ -122,20 +126,33 @@ export function Product({ activeFilter }: { activeFilter: string }) {
                                         <p className="text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
                                     </div>
                                     <div className="flex gap-2.5">
-                                        <CartIcon product={{
-                                            id: product.id,
-                                            name: product.name,
-                                            price: product.price,
-                                            img: product.img
-                                        }}/>
+                                        {product.count >0 && (
+                                            <CartIcon product={{
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price,
+                                                img: product.img
+                                            }}/>
+                                        )}
                                         <HeartAlt/>
                                     </div>
                                 </div>
                                 <div className="justify-center flex">
-                                    <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors">
-                                        Купить в 1 клик
-                                    </button>
-                                </div>
+                                    {
+                                        product.count === 0 ?(
+                                            <AlertOrderProduct product={{
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price,
+                                                img: product.img
+                                            }}/>
+                                        ) : (
+                                            <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors">
+                                                Купить в 1 клик
+                                            </button>
+                                        )
+                                        }
+                                    </div>
                             </div>
                         </div>
                     </div>

@@ -3,10 +3,25 @@ import { useEffect, useState } from "react";
 import { CompareIcon } from "../buttons/CompareIcon";
 import { CartIcon } from "../buttons/CartIcon";
 import { HeartAlt } from "../buttons/HeartAlt";
+import { AlertOrderProduct } from "./AlertOrderProduct";
+
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    oldprice: number;
+    img: string;
+    acum: string;
+    speed: string;
+    power: string;
+    time: string;
+    descr: string;
+    type: string;
+    count: number;
+}
 
 export function HitProduct(){
-    const [data, setData] = useState([]);
-    const [showAll, setShowAll] = useState(false);
+    const [data, setData] = useState<Product[]>([]);
     
     const fetchItems = async () => {
         try {
@@ -16,7 +31,7 @@ export function HitProduct(){
             console.error("Error fetching data", error);
         }
     };
-    const formatPrice = (price) => {
+    const formatPrice = (price : number) => {
         if (!price) return '';
         
         let cleanPrice = price.toString()
@@ -27,7 +42,7 @@ export function HitProduct(){
         
         return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     };
-    const getTagColor = (descr) => {
+    const getTagColor = (descr : string) => {
         if (!descr) return 'opacity-0';
         if (descr === 'Хит') return 'bg-[#EE685F]';
         if (descr === 'Новинка') return 'bg-[#75D14A]';
@@ -87,14 +102,33 @@ export function HitProduct(){
                                         <p className="text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
                                     </div>
                                     <div className="flex gap-2.5">
-                                        <CartIcon/>
+                                        {product.count >0 && (
+                                            <CartIcon product={{
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price,
+                                                img: product.img
+                                            }}/>
+
+                                        )}
                                         <HeartAlt/>
                                     </div>
                                 </div>
                                 <div className="justify-center flex">
-                                    <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE]">
-                                        Купить в 1 клик
-                                    </button>
+                                    {
+                                        product.count === 0 ? (
+                                            <AlertOrderProduct product={{
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price,
+                                                img: product.img
+                                            }}/>
+                                        ) : (
+                                            <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors">
+                                                Купить в 1 клик
+                                            </button>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

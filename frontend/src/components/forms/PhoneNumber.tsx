@@ -11,7 +11,7 @@ export function PhoneNumber({ onPhoneChange, value = '' }: PhoneNumberProps) {
 
     const validatePhone = (phone: string) => {
         const cleanPhone = phone.replace(/\D/g, '');
-        return cleanPhone.length === 11; // +7 и 10 цифр
+        return cleanPhone.length === 11;
     };
 
     const handleFocus = () => {
@@ -58,10 +58,8 @@ export function PhoneNumber({ onPhoneChange, value = '' }: PhoneNumberProps) {
         const currentValue = value || internalValue;
         if (formatted !== currentValue) {
             if (value !== undefined) {
-                // Контролируемый режим
                 onPhoneChange?.(formatted, validatePhone(formatted));
             } else {
-                // Неконтролируемый режим
                 setInternalValue(formatted);
                 onPhoneChange?.(formatted, validatePhone(formatted));
             }

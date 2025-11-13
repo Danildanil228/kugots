@@ -7,14 +7,14 @@ import { FreeMode } from 'swiper/modules';
 export function BlogSwiper(){
     return(
         <>
-            <div className='mt-[60px] mb-25'>
+            <div className='mt-[60px] mb-25 '>
                 <Swiper
                     slidesPerView={'auto'}
                     spaceBetween={30}
                     freeMode={true}
                     
                     modules={[FreeMode]}
-                    className="w-7xl !overflow-visible"
+                    className="w-7xl "
                 >
                     <SwiperSlide className='!w-[400px] bg-transparent!'>
                         <div className='flex flex-col bg-white rounded-lg  overflow-hidden'>
