@@ -11,7 +11,7 @@ interface CartIconProps {
 
 export function CartIcon({ product }: CartIconProps) {
   const { addToCart, isInCart } = useCart();
-
+  const inCart = product ? isInCart(product.id) : false;
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -21,10 +21,7 @@ export function CartIcon({ product }: CartIconProps) {
       console.log('Товар добавлен в корзину:', product.name);
     }
   };
-
-  // Проверяем, есть ли товар в корзине
-  const inCart = product ? isInCart(product.id) : false;
-
+  
   return(
     <>
       <button onClick={handleAddToCart}>

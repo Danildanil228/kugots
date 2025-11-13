@@ -3,8 +3,12 @@ import { Popover } from "@mui/material";
 import { ScrollArea } from "@radix-ui/themes";
 import IconButton from '@mui/material/IconButton';
 import { useCart } from "../../contexts/CartContext";
+import { Link, useLocation } from 'react-router-dom';
 
 export function CartMenu(){
+    const navItems =[
+        { patch: '/cart', label: 'Перейти в корзину'}
+    ];
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const { cartItems, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
     
@@ -83,7 +87,6 @@ export function CartMenu(){
                         <h2 className="font-semibold">В вашей корзине</h2>
                         <p>{getTotalItems()} товара</p>
                     </div>
-                    
                     <div className="w-full">
                         <ScrollArea className="h-auto max-h-[300px]">
                             {cartItems.length === 0 ? (
@@ -137,17 +140,25 @@ export function CartMenu(){
                             )}
                         </ScrollArea>
                     </div>
-                    
                     {cartItems.length > 0 && (
                         <div className="flex justify-between w-full p-5 items-center">
                             <div>
                                 <p className="text-gray-600">Сумма:</p>
                                 <p className="font-semibold text-lg">{formatPrice(getTotalPrice())} ₽</p>
                             </div>
-                            <div>
+                            <div className="grid">
                                 <button className="px-[30px] py-2.5 bg-[#6F73EE] text-white rounded-[5px] hover:bg-[#5A5FD8] transition-colors">
                                     Оформить заказ
                                 </button>
+                                {navItems.map((item) => (
+                                    <Link
+                                        key={item.patch}
+                                        to={item.patch}
+                                        className=""
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     )}

@@ -18,7 +18,6 @@ export function MainPage(){
     const [isPlaying, setIsPlaying] = useState(false);
     return(
         <>
-
             <div className="grid justify-center">
                 <ScrollToTop/>
                 <div>
@@ -54,10 +53,6 @@ export function MainPage(){
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <div className="justify-center grid">
                     <div className="flex justify-between w-7xl items-center">
                         <p className="font-semibold uppercase text-[35px]">Электросамокаты</p>
@@ -81,11 +76,6 @@ export function MainPage(){
                         <Product activeFilter={activeButton} />
                     </div>
                 </div>
-
-
-
-
-
                 <div className="flex justify-center mt-[60px]">
                     <div className="flex justify-between w-7xl">
                         <div className="bg-[url('./model.svg')] bg-cover bg-no-repeat bg-center grid gap-3 px-10 py-8 rounded-[5px]">
@@ -101,7 +91,6 @@ export function MainPage(){
                     </div>
                 </div>
             </div>
-
             <div className="flex justify-center pt-[110px]">
                 <div className="bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat  items-center w-[1440px] rounded-[5px]">
                     <div className="justify-end w-7xl grid gap-9 py-[67px]" py->
@@ -111,12 +100,9 @@ export function MainPage(){
                     </div>
                 </div>
             </div>
-
             <div className="justify-center grid pt-20">
                 <Category/>
             </div>
-
-            
            <div className="flex justify-center my-[100px]">
                 <div className="flex justify-between w-[1440px]">
                     <div className="bg-[#F4F7FB] rounded-[10px] p-7 w-full">
@@ -153,13 +139,11 @@ export function MainPage(){
                     </div>
                 </div>
             </div>
-            
            <div className="grid justify-center text-center gap-[18px]">
                 <h1 className="text-[35px] uppercase font-semibold text-center">Предлагаем самые выгодные цены<br/>на продукты Kugoo за счет прямых поставок</h1>
                 <p>и заботимся об удобстве покупателей</p>
                 <SelectSection/>
            </div>
-
             <div className="justify-center flex my-[100px]">
                 <div className="relative w-[1440px] h-[630px] ">
                     {!isPlaying && (
@@ -199,9 +183,7 @@ export function MainPage(){
                     </div>
                 </div>
             </div>
-
             <CaruselSlider/>
-
             <div className='justify-center grid gap-14'>
                 <div className='justify-between w-7xl flex'>
                     <div className='grid gap-4'>
@@ -227,7 +209,6 @@ export function MainPage(){
                     </div>
                 </div>
             </div>
-
             <div className="grid justify-center gap-[60px]">
                 <div className="flex justify-center text-[35px] uppercase font-semibold text-center">Отвечаем на вопросы покупателей</div>
                 <div><AccordionDemo/></div>
@@ -240,7 +221,6 @@ export function MainPage(){
                     <HitProduct/>
                 </div>
             </div>
-            
         </>
     )
 }

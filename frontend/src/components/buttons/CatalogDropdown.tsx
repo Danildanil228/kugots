@@ -38,7 +38,6 @@ export function CatalogDropdown() {
               Весы
             </DropdownMenu.Item>
           </Flex>
-
           <Flex direction="column" gap="3" className="flex-1">
             <Text weight="bold" size="3" className="text-gray-900 mb-2">Особенности</Text>
             <DropdownMenu.Item className="text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 px-2 py-1.5 rounded cursor-pointer">
@@ -57,7 +56,6 @@ export function CatalogDropdown() {
               Без сиденья
             </DropdownMenu.Item>
           </Flex>
-
           <Flex direction="column" gap="3" className="flex-1">
             <Text weight="bold" size="3" className="text-gray-900 mb-2">Для кого</Text>
             <DropdownMenu.Item className="text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 px-2 py-1.5 rounded cursor-pointer">

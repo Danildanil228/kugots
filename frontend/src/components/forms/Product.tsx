@@ -117,7 +117,6 @@ export function Product({ activeFilter }: { activeFilter: string }) {
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div className="flex items-center justify-between">
                                     <div>
                                         <p className="line-through text-[#5D6C7B] text-[12px]">
@@ -151,14 +150,13 @@ export function Product({ activeFilter }: { activeFilter: string }) {
                                                 Купить в 1 клик
                                             </button>
                                         )
-                                        }
-                                    </div>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-            
             {shouldShowWatchAll && (
                 <div className="flex justify-center mt-8">
                     <button onClick={() => setShowAll(!showAll)}>

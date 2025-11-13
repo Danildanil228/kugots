@@ -8,7 +8,6 @@ import { Messengers } from "./buttons/Messengers";
 import { Search } from "./forms/Search";
 import { AlertDialog, Button, Checkbox } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
-
 import { CartMenu } from './forms/CartMenu';
 
 
@@ -65,7 +64,6 @@ export function Header(){
                 }),
             });
 
-            
             if (!response.ok) {
 
                 let errorMessage = 'Ошибка при отправке';
@@ -117,8 +115,6 @@ export function Header(){
         setAnchorEl(null);
     };
     
-   
-   
     return(
         <>
         <div className=''>
@@ -193,7 +189,6 @@ export function Header(){
                                 </div>
                             </AlertDialog.Content>
                         </AlertDialog.Root>
-                        
                         <Messengers/>
                     </div>
                     <div>
@@ -238,8 +233,7 @@ export function Header(){
                                 <div className="border-t border-b border-[#EAEBED]">
                                     <div className="py-4 px-5">
                                         <p className="text-[#5D6C7B]">Оптовый отдел</p>
-                                        <h2 className="text-[16px] font-semibold">+7 (499) 281-64-52
-</h2>
+                                        <h2 className="text-[16px] font-semibold">+7 (499) 281-64-52</h2>
                                         <p className="text-[#5D6C7B]">пн-сб 10:00 - 19:00</p>
                                     </div>
                                 </div>
@@ -256,10 +250,6 @@ export function Header(){
                 </div>
             </div>
             <div className="w-full bg-[#ECF3FF] h-px my-4"/>
-            
-
-
-
             <div className="flex justify-center my-8">
                 <div className="flex justify-between w-7xl">
                     <div className="flex items-center">
@@ -274,18 +264,10 @@ export function Header(){
                     <div className="flex items-center gap-4">
                         <CompareIcon/>
                         <Heart/>
-
-                        {/* корзина */}
                         <CartMenu/>
-                       
                     </div>
                 </div>
             </div>
-            
-
-
-
-
             <div className="flex justify-center bg-[#F4F7FB] py-3">
                 <div className="flex justify-start w-7xl">
                     <div className="flex gap-12 ">

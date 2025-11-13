@@ -18,7 +18,7 @@ app.use(express.json());
 app.get('/product', async (req, res) => {
   try {
     const { type } = req.query;
-    let query = 'SELECT * FROM product';
+    let query = 'SELECT * FROM product order by id';
     let params = [];
 
     if (type) {
@@ -137,18 +137,17 @@ app.post('/api/call-order', async (req, res) => {
     }
 
     const cleanPhone = phone.replace(/\D/g, '');
-    if (cleanPhone.length !== 11) { // +7 и 10 цифр
+    if (cleanPhone.length !== 11) { 
       return res.status(400).json({
         success: false,
         message: 'Некорректный номер телефона'
       });
     }
 
-    // Убираем проверку уникальности и добавляем поля продукта
     const result = await pool.query(
-      'INSERT INTO call_orders (phone, type, product_id, product_name, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING id, phone, type, product_id',
-      [phone, type, productId || null, productName || null, new Date()]
-    );
+  'INSERT INTO call_orders (phone, type, product_id, product_name, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING id, phone, type, product_id',
+  [phone, type, productId || null, productName || null, new Date()]
+);
 
     console.log('Новая заявка сохранена:', result.rows[0]);
 

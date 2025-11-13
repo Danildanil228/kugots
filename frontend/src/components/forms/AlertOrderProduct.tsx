@@ -124,16 +124,13 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
                                 <p className="text-gray-600">
                                     Сообщим вам, когда товар появится в наличии
                                 </p>
-                                
                                 <div className="grid gap-4">
                                     <PhoneNumber onPhoneChange={handlePhoneChange} value={phone}/>
-                                    
                                     {error && (
                                         <div className="text-red-500 text-sm text-center">
                                             {error}
                                         </div>
                                     )}
-                                    
                                     <button 
                                         className={`bg-[#6F73EE] py-3 rounded-[5px] text-white transition-colors ${
                                             !isPhoneValid || !isChecked || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a5fc9]'
@@ -156,7 +153,6 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
                                     </div>
                                 </div>
                             </div>
-                            
                             <div className="flex-1">
                                 <img 
                                     src={product.img} 

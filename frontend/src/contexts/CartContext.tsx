@@ -65,7 +65,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCartItems([]);
   };
 
-  // Новая функция для проверки наличия товара в корзине
   const isInCart = (productId: number) => {
     return cartItems.some(item => item.id === productId);
   };

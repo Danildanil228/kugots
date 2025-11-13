@@ -13,6 +13,7 @@ import { Actions } from './components/pages/Actions';
 import { Footer } from './components/Footer';
 import { MainPage } from './components/pages/MainPage';
 import { NotFound } from './components/pages/NotFound';
+import { Cart } from './components/pages/Cart';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
 
           <header>
             <Header/>
+            
           </header>
           <main className='grow'>
             <Routes>
@@ -34,6 +36,7 @@ function App() {
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/actions" element={<Actions />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </main>
           <footer>

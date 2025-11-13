@@ -9,8 +9,8 @@ import axios from "axios";
 export function Footer(){
     const [email, setEmail] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
-    const [isSubscribeDialogOpen, setIsSubscribeDialogOpen] = useState(false); // Переименовано
-    const [isCallDialogOpen, setIsCallDialogOpen] = useState(false); // Новое состояние для заказа звонка
+    const [isSubscribeDialogOpen, setIsSubscribeDialogOpen] = useState(false); 
+    const [isCallDialogOpen, setIsCallDialogOpen] = useState(false); 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [phone, setPhone] = useState('');
@@ -45,7 +45,7 @@ export function Footer(){
             }
 
             if (result.success) {
-                setIsSubscribeDialogOpen(true); // Используем правильное состояние
+                setIsSubscribeDialogOpen(true); 
                 setEmail('');
                 setIsEmailValid(false);
             }
@@ -104,7 +104,7 @@ export function Footer(){
             const result = await response.json();
 
             if (result.success) {
-                setIsCallDialogOpen(false); // Закрываем диалог заказа звонка
+                setIsCallDialogOpen(false);
                 setPhone('');
                 setIsPhoneValid(false);
                 setIsChecked(true);
@@ -151,9 +151,7 @@ export function Footer(){
                                 {error}
                             </div>
                         )}
-                        
                         <div className="items-center!">
-                            {/* Диалог для подписки */}
                             <AlertDialog.Root open={isSubscribeDialogOpen} onOpenChange={setIsSubscribeDialogOpen}>
                                 <AlertDialog.Trigger className='items-center!'>
                                     <Button 
@@ -194,7 +192,6 @@ export function Footer(){
                     </div>
                 </div>
             </div>
-
             <div className="bg-[#F4F7FB] justify-center grid">
                 <div className="flex justify-between w-7xl py-10">
                     <div className="flex gap-[125px]">
@@ -233,7 +230,6 @@ export function Footer(){
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center mb-2">
                             <h1 className="font-semibold text-lg">Контакты</h1>
-                            {/* Диалог для заказа звонка */}
                             <AlertDialog.Root open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
                                 <AlertDialog.Trigger className=''>
                                     <Button 
@@ -301,7 +297,6 @@ export function Footer(){
                                 </AlertDialog.Content>
                             </AlertDialog.Root>
                         </div>
-
                         <div className="grid gap-7">
                             <div className="flex gap-8">
                                 <div className="grid gap-2">
@@ -332,7 +327,6 @@ export function Footer(){
                         </div>
                     </div>
                 </div>
-
                 <div className="bg-[#5D6C7B] w-full h-px opacity-15 mt-10"></div>
                 <div className="justify-between flex my-10">
                     <div className="flex items-center gap-[60px]">
