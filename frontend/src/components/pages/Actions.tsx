@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../Breadcrumbs";
 
-export function Actions() {
+export default function Actions() {
   return (
     <>
       <div>

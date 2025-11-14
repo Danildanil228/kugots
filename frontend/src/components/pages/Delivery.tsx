@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../Breadcrumbs";
 
-export function Delivery() {
+export default function Delivery() {
   return (
     <>
       <div>

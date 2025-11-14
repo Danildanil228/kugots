@@ -1,24 +1,34 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-
+import { lazy, Suspense } from 'react';
 import './App.css'
 
-
+// Components
 import { Header } from './components/Header'
-import { AboutPage } from './components/pages/AboutPage';
-import { Delivery } from './components/pages/Delivery';
-import { TestDrive } from './components/pages/TestDrive';
-import { Blog } from './components/pages/Blog';
-import { Contacts } from './components/pages/Contacts';
-import { Actions } from './components/pages/Actions';
-import { Footer } from './components/Footer';
-import { MainPage } from './components/pages/MainPage';
-import { NotFound } from './components/pages/NotFound';
-import { Cart } from './components/pages/Cart';
-import { Like } from './components/pages/Like';
-import { Compare } from './components/pages/Compare';
+import { Footer } from './components/Footer'
+
+// Lazy loaded pages
+const MainPage = lazy(() => import('./components/pages/MainPage'));
+const AboutPage = lazy(() => import('./components/pages/AboutPage'));
+const Delivery = lazy(() => import('./components/pages/Delivery'));
+const TestDrive = lazy(() => import('./components/pages/TestDrive'));
+const Blog = lazy(() => import('./components/pages/Blog'));
+const Contacts = lazy(() => import('./components/pages/Contacts'));
+const Actions = lazy(() => import('./components/pages/Actions'));
+const Cart = lazy(() => import('./components/pages/Cart'));
+const Like = lazy(() => import('./components/pages/Like'));
+const Compare = lazy(() => import('./components/pages/Compare'));
+const NotFound = lazy(() => import('./components/pages/NotFound'));
+
+// Loading component
+function LoadingSpinner() {
+  return (
+    <div className="flex justify-center items-center h-64">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6F73EE]"></div>
+    </div>
+  );
+}
 
 function App() {
-
   return (
     <>
       <div className='min-h-screen flex flex-col'>
@@ -26,28 +36,27 @@ function App() {
             <Header/>
           </header>
           <main className='grow'>
-            <Routes>
-              <Route path='/' element={<Navigate to="/main" replace/>}/>
-              <Route path='/main' element={<MainPage/>}/>
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/delivery" element={<Delivery />} />
-              <Route path="/test-drive" element={<TestDrive />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contacts" element={<Contacts />} />
-              <Route path="/actions" element={<Actions />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/like" element={<Like />} />
-              <Route path="/compare" element={<Compare />} />
-            </Routes>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path='/' element={<Navigate to="/main" replace/>}/>
+                <Route path='/main' element={<MainPage/>}/>
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/delivery" element={<Delivery />} />
+                <Route path="/test-drive" element={<TestDrive />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/contacts" element={<Contacts />} />
+                <Route path="/actions" element={<Actions />} />
+                <Route path="*" element={<NotFound />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/like" element={<Like />} />
+                <Route path="/compare" element={<Compare />} />
+              </Routes>
+            </Suspense>
           </main>
           <footer>
             <Footer/>
           </footer>
       </div>
-        
-        
-      
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode, useCallback, useMemo } from 'react';
 
 export interface CompareItem {
   id: number;
@@ -19,7 +19,7 @@ const CompareContext = createContext<CompareContextType | undefined>(undefined);
 export function CompareProvider({ children }: { children: ReactNode }) {
   const [compareItems, setCompareItems] = useState<CompareItem[]>([]);
 
-  const addToCompare = (product: CompareItem) => {
+  const addToCompare = useCallback((product: CompareItem) => {
     setCompareItems(prev => {
       const existingItem = prev.find(item => item.id === product.id);
       if (existingItem) {
@@ -27,23 +27,26 @@ export function CompareProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, product];
     });
-  };
+  }, []);
 
-  const removeFromCompare = (productId: number) => {
+  const removeFromCompare = useCallback((productId: number) => {
     setCompareItems(prev => prev.filter(item => item.id !== productId));
-  };
+  }, []);
 
-  const isCompared = (productId: number) => {
+  const isCompared = useCallback((productId: number) => {
     return compareItems.some(item => item.id === productId);
-  };
+  }, [compareItems]);
+
+
+  const contextValue = useMemo(() => ({
+    compareItems,
+    addToCompare,
+    removeFromCompare,
+    isCompared
+  }), [compareItems, addToCompare, removeFromCompare, isCompared]);
 
   return (
-    <CompareContext.Provider value={{
-      compareItems,
-      addToCompare,
-      removeFromCompare,
-      isCompared
-    }}>
+    <CompareContext.Provider value={contextValue}>
       {children}
     </CompareContext.Provider>
   );

@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../Breadcrumbs";
 
-export function Cart(){
+export default function Cart(){
     
     return(
         <>

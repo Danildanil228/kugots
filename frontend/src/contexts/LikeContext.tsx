@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode, useCallback, useMemo } from 'react';
 
 export interface LikeItem {
   id: number;
@@ -19,7 +19,7 @@ const LikeContext = createContext<LikeContextType | undefined>(undefined);
 export function LikeProvider({ children }: { children: ReactNode }) {
   const [likeItems, setLikeItems] = useState<LikeItem[]>([]);
 
-  const addToLike = (product: LikeItem) => {
+  const addToLike = useCallback((product: LikeItem) => {
     setLikeItems(prev => {
       const existingItem = prev.find(item => item.id === product.id);
       if (existingItem) {
@@ -27,23 +27,26 @@ export function LikeProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, product];
     });
-  };
+  }, []);
 
-  const removeFromLike = (productId: number) => {
+  const removeFromLike = useCallback((productId: number) => {
     setLikeItems(prev => prev.filter(item => item.id !== productId));
-  };
+  }, []);
 
-  const isLiked = (productId: number) => {
+  const isLiked = useCallback((productId: number) => {
     return likeItems.some(item => item.id === productId);
-  };
+  }, [likeItems]);
+
+
+  const contextValue = useMemo(() => ({
+    likeItems,
+    addToLike,
+    removeFromLike,
+    isLiked
+  }), [likeItems, addToLike, removeFromLike, isLiked]);
 
   return (
-    <LikeContext.Provider value={{
-      likeItems,
-      addToLike,
-      removeFromLike,
-      isLiked
-    }}>
+    <LikeContext.Provider value={contextValue}>
       {children}
     </LikeContext.Provider>
   );

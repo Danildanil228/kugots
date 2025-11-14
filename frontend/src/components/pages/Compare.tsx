@@ -1,8 +1,7 @@
-// src/components/pages/Compare.tsx
 import { Breadcrumbs } from "../Breadcrumbs";
 import { useCompare } from "../../contexts/CompareContext";
 
-export function Compare() {
+export default function Compare() {
     const { compareItems, removeFromCompare } = useCompare();
 
     const formatPrice = (price: number) => {

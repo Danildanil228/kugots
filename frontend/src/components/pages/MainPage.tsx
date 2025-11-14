@@ -11,7 +11,7 @@ import { BlogSwiper } from '../forms/BlogSwiper';
 import { HitProduct } from '../forms/HitProduct';
 import { ScrollToTop } from '../ScrollToTop';
 
-export function MainPage(){
+export default function MainPage(){
    
     const [activeButton, setActiveButton] = useState('Хиты продаж');
     const buttons = ['Хиты продаж', 'Для города', 'Для взрослых', 'Для детей'];

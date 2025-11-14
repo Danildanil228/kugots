@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../Breadcrumbs";
 
-export function TestDrive() {
+export default function TestDrive() {
   return (
     <>
       <div>

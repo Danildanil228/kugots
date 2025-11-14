@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "../Breadcrumbs";
 
-export function NotFound(){
+export default function NotFound(){
     return(
         <>
             <div className="flex justify-center">

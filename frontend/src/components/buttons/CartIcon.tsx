@@ -1,4 +1,5 @@
 import { useCart } from '../../contexts/CartContext';
+import { memo } from 'react';
 
 interface CartIconProps {
   product?: {
@@ -9,9 +10,10 @@ interface CartIconProps {
   };
 }
 
-export function CartIcon({ product }: CartIconProps) {
+export const CartIcon = memo(({ product }: CartIconProps) => {
   const { addToCart, removeFromCart, isInCart } = useCart();
   const inCart = product ? isInCart(product.id) : false;
+  
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -40,5 +42,9 @@ export function CartIcon({ product }: CartIconProps) {
         </div>
       </button>
     </>
-  )
-}
+  );
+});
+
+CartIcon.displayName = 'CartIcon';
+
+export default CartIcon;
