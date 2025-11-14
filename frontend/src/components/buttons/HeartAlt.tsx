@@ -30,8 +30,14 @@ export function HeartAlt({ product }: HeartAltProps) {
   return(
     <>
       <button onClick={handleToggleLike}>
-        <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 ease-in-out hover:bg-[#F4F7FB] border border-[#EAEBED] hover:border-none">
-          <img src="./Heartblue.svg" alt="" />
+        <div className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 ease-in-out border ${
+          liked 
+            ? 'bg-[white] border-[#6F73EE]' 
+            : 'border-[#EAEBED] hover:bg-[#F4F7FB] hover:border-none'
+        }`}>
+          <img 
+            src={liked ? "./heartblue.svg" : "./Heart.svg"} 
+          />
         </div>
       </button>
     </>

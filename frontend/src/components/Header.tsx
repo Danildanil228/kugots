@@ -9,6 +9,7 @@ import { AlertDialog, Button, Checkbox } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
 import { CartMenu } from './forms/CartMenu';
 import { LikeMenu } from "./forms/LikeMenu";
+import { CompareMenu } from "./forms/CompareMenu";
 
 
 export function Header(){
@@ -266,7 +267,7 @@ export function Header(){
                         <Search/>
                     </div>
                     <div className="flex items-center gap-4">
-                        <CompareIcon/>
+                        <CompareMenu/>
                         <LikeMenu/>
                         <CartMenu/>
                     </div>

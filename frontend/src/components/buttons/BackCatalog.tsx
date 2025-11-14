@@ -6,7 +6,8 @@ export function BackCatalog(){
                     className="arrow group-hover:brightness-100 group-hover:invert-0" 
                     src="./arrow3.svg" 
                     alt="" 
-                />Вернуться в каталог
+                />
+                Вернуться в каталог
             </button>
         </>
     )

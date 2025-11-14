@@ -44,7 +44,7 @@ export function Product({ activeFilter }: { activeFilter: string }) {
     
     const getFilterType = (buttonText: string) => {
         switch(buttonText) {
-            case 'Хиты продаж': return ''; // Пустая строка для всех товаров
+            case 'Хиты продаж': return ''; 
             case 'Для города': return 'city';
             case 'Для взрослых': return 'man';
             case 'Для детей': return 'child';
@@ -92,7 +92,12 @@ export function Product({ activeFilter }: { activeFilter: string }) {
                                 <div className={`py-1 px-2 rounded-[5px] text-white gap-[30px] text-[12px] ${getTagColor(product.descr)}`}>
                                     {product.descr}
                                 </div>
-                                <CompareIcon/>
+                                <CompareIcon product={{
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    img: product.img
+                                }}/>
                             </div>
                         </div>
                         <div className="desc">

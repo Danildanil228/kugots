@@ -64,7 +64,12 @@ export function HitProduct(){
                                 <div className={`py-1 px-2 rounded-[5px] text-white gap-[30px] text-[12px] ${getTagColor(product.descr)}`}>
                                     {product.descr}
                                 </div>
-                                <CompareIcon/>
+                                <CompareIcon product={{
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    img: product.img
+                                }}/>
                             </div>
                         </div>
                         <div className="desc">
@@ -111,7 +116,12 @@ export function HitProduct(){
                                             }}/>
 
                                         )}
-                                        <HeartAlt/>
+                                        <HeartAlt product={{
+                                            id: product.id,
+                                            name: product.name,
+                                            price: product.price,
+                                            img: product.img
+                                        }}/>
                                     </div>
                                 </div>
                                 <div className="justify-center flex">

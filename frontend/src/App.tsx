@@ -15,6 +15,7 @@ import { MainPage } from './components/pages/MainPage';
 import { NotFound } from './components/pages/NotFound';
 import { Cart } from './components/pages/Cart';
 import { Like } from './components/pages/Like';
+import { Compare } from './components/pages/Compare';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/like" element={<Like />} />
+              <Route path="/compare" element={<Compare />} />
             </Routes>
           </main>
           <footer>
