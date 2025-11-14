@@ -3,12 +3,12 @@ import { Popover } from "@mui/material";
 import { Link, useLocation } from 'react-router-dom';
 import { CatalogDropdown } from "./buttons/CatalogDropdown";
 import { CompareIcon } from "./buttons/CompareIcon";
-import { Heart } from "./buttons/Heart";
 import { Messengers } from "./buttons/Messengers";
 import { Search } from "./forms/Search";
 import { AlertDialog, Button, Checkbox } from '@radix-ui/themes';
 import { PhoneNumber } from './forms/PhoneNumber';
 import { CartMenu } from './forms/CartMenu';
+import { LikeMenu } from "./forms/LikeMenu";
 
 
 export function Header(){
@@ -38,7 +38,7 @@ export function Header(){
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [isChecked, setIsChecked] = useState(true);
-
+    const [isSubmitted, setIsSubmitted] = useState(false);
     
     
     const handlePhoneChange = (value: string, isValid: boolean) => {
@@ -60,7 +60,7 @@ export function Header(){
                 },
                 body: JSON.stringify({ 
                     phone: phone,
-                    type: 'callback'
+                    type: 'callback-consult'
                 }),
             });
 
@@ -81,7 +81,7 @@ export function Header(){
             const result = await response.json();
 
             if (result.success) {
-                setIsDialogOpen(false);
+                setIsSubmitted(true); 
                 setPhone('');
                 setIsPhoneValid(false);
                 setIsChecked(true);
@@ -164,13 +164,17 @@ export function Header(){
                                                 )}
                                                 
                                                 <button 
-                                                    className={`bg-[#6F73EE] py-4 rounded-[5px] text-white transition-colors ${
-                                                        !isPhoneValid || !isChecked || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a5fc9]'
+                                                    className={`py-3 rounded-[5px] text-white transition-colors ${
+                                                        isSubmitted 
+                                                            ? 'bg-green-500 cursor-default' 
+                                                            : !isPhoneValid || !isChecked || isLoading 
+                                                                ? 'bg-[#6F73EE] opacity-50 cursor-not-allowed' 
+                                                                : 'bg-[#6F73EE] hover:bg-[#5a5fc9]'
                                                     }`}
-                                                    onClick={handleCallOrder}
-                                                    disabled={!isPhoneValid || !isChecked || isLoading}
+                                                    onClick={isSubmitted ? undefined : handleCallOrder}
+                                                    disabled={isSubmitted || !isPhoneValid || !isChecked || isLoading}
                                                 >
-                                                    {isLoading ? 'Отправка...' : 'Позвоните мне'}
+                                                    {isSubmitted ? 'Отправлено!' : (isLoading ? 'Отправка...' : 'Позвоните мне')}
                                                 </button>
                                                 
                                                 <div className='flex items-baseline gap-3'>
@@ -263,7 +267,7 @@ export function Header(){
                     </div>
                     <div className="flex items-center gap-4">
                         <CompareIcon/>
-                        <Heart/>
+                        <LikeMenu/>
                         <CartMenu/>
                     </div>
                 </div>

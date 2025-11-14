@@ -20,6 +20,7 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [isChecked, setIsChecked] = useState(true);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const formatPrice = (price: number) => {
         if (!price) return '';
@@ -41,6 +42,7 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
         setPhone('');
         setIsPhoneValid(false);
         setError('');
+        setIsSubmitted(false);
     };
 
     const handleCallOrder = async () => {
@@ -77,7 +79,7 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
             const result = await response.json();
 
             if (result.success) {
-                setIsDialogOpen(false);
+                setIsSubmitted(true); 
                 setPhone('');
                 setIsPhoneValid(false);
                 setIsChecked(true);
@@ -132,13 +134,17 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
                                         </div>
                                     )}
                                     <button 
-                                        className={`bg-[#6F73EE] py-3 rounded-[5px] text-white transition-colors ${
-                                            !isPhoneValid || !isChecked || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a5fc9]'
+                                        className={`py-3 rounded-[5px] text-white transition-colors ${
+                                            isSubmitted 
+                                                ? 'bg-green-500 cursor-default' 
+                                                : !isPhoneValid || !isChecked || isLoading 
+                                                    ? 'bg-[#6F73EE] opacity-50 cursor-not-allowed' 
+                                                    : 'bg-[#6F73EE] hover:bg-[#5a5fc9]'
                                         }`}
-                                        onClick={handleCallOrder}
-                                        disabled={!isPhoneValid || !isChecked || isLoading}
+                                        onClick={isSubmitted ? undefined : handleCallOrder}
+                                        disabled={isSubmitted || !isPhoneValid || !isChecked || isLoading}
                                     >
-                                        {isLoading ? 'Отправка...' : 'Оформить предзаказ'}
+                                        {isSubmitted ? 'Отправлено!' : (isLoading ? 'Отправка...' : 'Оформить предзаказ')}
                                     </button>
                                     
                                     <div className='flex items-start gap-3'>

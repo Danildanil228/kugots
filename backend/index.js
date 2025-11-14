@@ -18,21 +18,27 @@ app.use(express.json());
 app.get('/product', async (req, res) => {
   try {
     const { type } = req.query;
-    let query = 'SELECT * FROM product order by id';
+    console.log('Received request for products with type:', type);
+    
+    let query = 'SELECT * FROM product';
     let params = [];
 
-    if (type) {
+    if (type && type !== '') {
       query += ' WHERE type = $1';
       params.push(type);
     }
 
-    query += ' LIMIT 12'; 
+    query += ' LIMIT 12';
 
+    console.log('Executing query:', query, 'with params:', params);
+    
     const result = await pool.query(query, params);
+    console.log('Found products:', result.rows.length);
+    
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Ошибка сервера');
+    console.error('Database error:', err);
+    res.status(500).json({ error: 'Ошибка сервера', details: err.message });
   }
 });
 

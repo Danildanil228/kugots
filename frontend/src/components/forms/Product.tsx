@@ -28,9 +28,13 @@ export function Product({ activeFilter }: { activeFilter: string }) {
     const fetchItems = async (filter = '') => {
         try {
             let url = "http://localhost:3000/product";
-            if (filter && filter !== 'Хиты продаж') {
-                url += `?type=${getFilterType(filter)}`;
+            const filterType = getFilterType(filter);
+            
+            if (filterType) {
+                url += `?type=${filterType}`;
             }
+            
+            console.log('Fetching from:', url, 'Filter:', filter, 'FilterType:', filterType);
             const response = await axios.get(url);
             setData(response.data);
         } catch (error) {
@@ -40,6 +44,7 @@ export function Product({ activeFilter }: { activeFilter: string }) {
     
     const getFilterType = (buttonText: string) => {
         switch(buttonText) {
+            case 'Хиты продаж': return ''; // Пустая строка для всех товаров
             case 'Для города': return 'city';
             case 'Для взрослых': return 'man';
             case 'Для детей': return 'child';
@@ -65,9 +70,9 @@ export function Product({ activeFilter }: { activeFilter: string }) {
         if (descr === 'Новинка') return 'bg-[#75D14A]';
         return 'bg-[#EE685F]';
     };
-    
 
     useEffect(() => {
+        console.log('Active filter changed:', activeFilter);
         fetchItems(activeFilter);
     }, [activeFilter]);
 
@@ -133,7 +138,12 @@ export function Product({ activeFilter }: { activeFilter: string }) {
                                                 img: product.img
                                             }}/>
                                         )}
-                                        <HeartAlt/>
+                                         <HeartAlt product={{
+                                            id: product.id,
+                                            name: product.name,
+                                            price: product.price,
+                                            img: product.img
+                                        }}/>
                                     </div>
                                 </div>
                                 <div className="justify-center flex">

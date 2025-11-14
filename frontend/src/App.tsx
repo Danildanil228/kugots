@@ -14,16 +14,15 @@ import { Footer } from './components/Footer';
 import { MainPage } from './components/pages/MainPage';
 import { NotFound } from './components/pages/NotFound';
 import { Cart } from './components/pages/Cart';
+import { Like } from './components/pages/Like';
 
 function App() {
 
   return (
     <>
       <div className='min-h-screen flex flex-col'>
-
           <header>
             <Header/>
-            
           </header>
           <main className='grow'>
             <Routes>
@@ -37,6 +36,7 @@ function App() {
               <Route path="/actions" element={<Actions />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/like" element={<Like />} />
             </Routes>
           </main>
           <footer>

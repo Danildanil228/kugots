@@ -2,15 +2,15 @@ import { useState } from "react";
 import { Popover } from "@mui/material";
 import { ScrollArea } from "@radix-ui/themes";
 import IconButton from '@mui/material/IconButton';
-import { useCart } from "../../contexts/CartContext";
+import { useLike } from "../../contexts/LikeContext";
 import { Link, useLocation } from 'react-router-dom';
 
-export function CartMenu(){
+export function LikeMenu(){
     const navItems =[
-        { patch: '/cart', label: 'В вашей корзине'}
+        { patch: '/cart', label: 'В ваших избранных'}
     ];
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const { cartItems, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
+    const { likeItems, removeFromLike } = useLike();
     
     const open = Boolean(anchorEl);
 
@@ -27,7 +27,6 @@ export function CartMenu(){
 
     const handlePopoverClose = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
         if (reason === "backdropClick") {
-            
             event?.preventDefault?.();
         }
         setAnchorEl(null);
@@ -47,13 +46,12 @@ export function CartMenu(){
 
     return(
         <>
-            <button className="cart-icon" onClick={handleOpen}>
-                <div className="cart-bg w-30 h-10 flex justify-center items-center gap-2 rounded-[30px] transition-all duration-200 hover:bg-[#F4F7FB] relative">
-                    <img src="./cart.svg" alt="Корзина" />
-                    Корзина
-                    {getTotalItems() > 0 && (
+            <button className="heart-icon" onClick={handleOpen}>
+                <div className="heart-bg w-10 h-10 flex justify-center items-center gap-2 rounded-[30px] transition-all duration-200 hover:bg-[#F4F7FB] relative">
+                    <img src="./Heart.svg" alt="Избранное" />
+                    {likeItems.length > 0 && (
                         <span className="absolute -top-2 -right-2 bg-[#6F73EE] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                            {getTotalItems()}
+                            {likeItems.length}
                         </span>
                     )}
                 </div>
@@ -94,16 +92,17 @@ export function CartMenu(){
                                         {item.label}
                                     </Link>
                                 ))}</h2>
-                        <p>{getTotalItems()} товара</p>
+                        <p>{likeItems.length} товара</p>
                     </div>
+                    
                     <div className="w-full">
                         <ScrollArea className="h-auto max-h-[300px]">
-                            {cartItems.length === 0 ? (
+                            {likeItems.length === 0 ? (
                                 <div className="p-5 text-center text-gray-500">
-                                    Корзина пуста
+                                    Нет избранных товаров
                                 </div>
                             ) : (
-                                cartItems.map((item) => (
+                                likeItems.map((item) => (
                                     <div key={item.id} className="border-b border-[#EAEBED]">
                                         <div className="p-5 flex justify-between">
                                             <div className="flex items-center gap-4">
@@ -116,28 +115,13 @@ export function CartMenu(){
                                                     <h2 className="font-semibold text-sm">{item.name}</h2>
                                                     <div className="flex gap-3 items-center mt-1">
                                                         <p className="">{formatPrice(item.price)} ₽</p>
-                                                        <div className="flex items-center gap-2">
-                                                            <button 
-                                                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                                className="w-5 h-5 rounded bg-gray-200 flex items-center justify-center text-xs hover:bg-gray-300"
-                                                            >
-                                                                -
-                                                            </button>
-                                                            <span className="text-sm">{item.quantity}</span>
-                                                            <button 
-                                                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                                className="w-5 h-5 rounded bg-gray-200 flex items-center justify-center text-xs hover:bg-gray-300"
-                                                            >
-                                                                +
-                                                            </button>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
                                                 <IconButton 
                                                     aria-label="delete"
-                                                    onClick={() => removeFromCart(item.id)}
+                                                    onClick={() => removeFromLike(item.id)}
                                                     size="small"
                                                 >
                                                     <img src="./Delete.svg" alt="delete" className="w-5 h-5" />
@@ -149,19 +133,6 @@ export function CartMenu(){
                             )}
                         </ScrollArea>
                     </div>
-                    {cartItems.length > 0 && (
-                        <div className="flex justify-between w-full p-5 items-center">
-                            <div>
-                                <p className="text-gray-600">Сумма:</p>
-                                <p className="font-semibold text-lg">{formatPrice(getTotalPrice())} ₽</p>
-                            </div>
-                            <div className="grid">
-                                <button className="px-[30px] py-2.5 bg-[#6F73EE] text-white rounded-[5px] hover:bg-[#5A5FD8] transition-colors">
-                                    Оформить заказ
-                                </button>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </Popover>
         </>

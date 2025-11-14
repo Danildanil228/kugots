@@ -16,6 +16,7 @@ export function Footer(){
     const [phone, setPhone] = useState('');
     const [isPhoneValid, setIsPhoneValid] = useState(false);
     const [isChecked, setIsChecked] = useState(true);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleEmailChange = (value: string, isValid: boolean) => {
         setEmail(value);
@@ -84,7 +85,7 @@ export function Footer(){
                 },
                 body: JSON.stringify({ 
                     phone: phone,
-                    type: 'callback'
+                    type: 'callback-consult'
                 }),
             });
             
@@ -104,7 +105,7 @@ export function Footer(){
             const result = await response.json();
 
             if (result.success) {
-                setIsCallDialogOpen(false);
+                setIsSubmitted(true); 
                 setPhone('');
                 setIsPhoneValid(false);
                 setIsChecked(true);
@@ -278,13 +279,17 @@ export function Footer(){
                                                         <div className="text-red-500 text-sm mt-1 text-center">{error}</div>
                                                     )}
                                                     <button 
-                                                        className={`bg-[#6F73EE] py-4 rounded-[5px] text-white transition-colors ${
-                                                            !isPhoneValid || !isChecked || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#5a5fc9]'
+                                                        className={`py-3 rounded-[5px] text-white transition-colors ${
+                                                            isSubmitted 
+                                                                ? 'bg-green-500 cursor-default' 
+                                                                : !isPhoneValid || !isChecked || isLoading 
+                                                                    ? 'bg-[#6F73EE] opacity-50 cursor-not-allowed' 
+                                                                    : 'bg-[#6F73EE] hover:bg-[#5a5fc9]'
                                                         }`}
-                                                        onClick={handleCallOrder}
-                                                        disabled={!isPhoneValid || !isChecked || isLoading}
+                                                        onClick={isSubmitted ? undefined : handleCallOrder}
+                                                        disabled={isSubmitted || !isPhoneValid || !isChecked || isLoading}
                                                     >
-                                                        {isLoading ? 'Отправка...' : 'Позвоните мне'}
+                                                        {isSubmitted ? 'Отправлено!' : (isLoading ? 'Отправка...' : 'Позвоните мне')}
                                                     </button>
                                                     <div className='flex items-baseline gap-3'>
                                                         <Checkbox variant="soft" checked={isChecked} onCheckedChange={(checked) => setIsChecked(checked === true)} />
