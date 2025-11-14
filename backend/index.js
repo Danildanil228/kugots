@@ -9,11 +9,32 @@ const cache = new Map();
 const CACHE_DURATION = 5 * 60 * 1000; 
 
 // Настройки CORS
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: function (origin, callback) {
+    // Разрешаем запросы без origin (например, из мобильных приложений)
+    if (!origin) return callback(null, true);
+    
+    // Разрешаем localhost и все IP-адреса локальной сети
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://127.0.0.1:5173'
+    ];
+    
+    // Добавляем динамически все IP-адреса на 5173 порту
+    if (origin.includes(':5173')) {
+      return callback(null, true);
+    }
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(compression());

@@ -5,6 +5,7 @@ import './App.css'
 // Components
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
+import { MobileNavigation } from './components/MobileNavigation'
 
 // Lazy loaded pages
 const MainPage = lazy(() => import('./components/pages/MainPage'));
@@ -35,7 +36,7 @@ function App() {
           <header>
             <Header/>
           </header>
-          <main className='grow'>
+          <main className='grow lg:mt-0 mt-28 lg:pb-0 pb-16'>
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route path='/' element={<Navigate to="/main" replace/>}/>
@@ -56,6 +57,9 @@ function App() {
           <footer>
             <Footer/>
           </footer>
+          
+          {/* Мобильная навигация */}
+          <MobileNavigation />
       </div>
     </>
   )

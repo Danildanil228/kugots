@@ -4,55 +4,164 @@
 @custom-variant dark (&:is(.dark *));  
 @import "@radix-ui/themes/styles.css";
 
-
 *{
   font-family: "Jost", sans-serif !important;
-  
 }
-
 
 body{
-  /* justify-content: center ;
-  display: flex;
-  text-decoration: none; */
   font-family: "Jost", sans-serif !important;
   font-size: 16px; 
+  margin: 0;
+  padding: 0;
 }
-header{
-  /* background: #6F73EE; */
+
+/* Mobile First подход */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Остальные существующие стили */
 button{
   font-size: 16px;
   font-family: "Jost", sans-serif !important;
   cursor: pointer;
   transition: 0.2s ease;
 }
+
 a,p{
   text-decoration: none;
-  
   font-family: "Jost", sans-serif !important;
   transition: 0.2s ease;
 }
+
 input{
   font-family: "Jost", sans-serif !important;
   font-size: 14px;
   border: none;
 }
+
 input:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+
 img{
-    transition: 0.2s ease;
+  transition: 0.2s ease;
 }
 
+/* Mobile Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  z-index: 50;
+  padding: 0.5rem 0;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
 
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.mobile-nav-item.active {
+  color: #6F73EE;
+}
+
+.mobile-nav-item img {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hide scrollbar for mobile menu */
+.mobile-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-menu {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Swiper styles */
 .swiper-slide {
   text-align: center; 
   font-size: 18px;
   background: #444;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,4 +172,70 @@ img{
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* Mobile First адаптация */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Скрытие элементов на мобильных */
+@media (max-width: 1023px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Скрытие элементов на десктопе */
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Плавная анимация для мобильного меню */
+.mobile-menu-transition {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Улучшение touch targets для мобильных */
+@media (max-width: 768px) {
+  button, 
+  a, 
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  input, 
+  select, 
+  textarea {
+    font-size: 16px; /* Предотвращает zoom в iOS */
+  }
 }
