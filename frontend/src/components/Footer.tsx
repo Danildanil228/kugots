@@ -5,6 +5,7 @@ import { PhoneNumber } from "./forms/PhoneNumber";
 import { Link } from "react-router-dom";
 import { Messengers } from "./buttons/Messengers";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 export function Footer(){
     const [email, setEmail] = useState('');
@@ -31,7 +32,7 @@ export function Footer(){
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/subscribe', {
+            const response = await fetch(`${API_BASE_URL}/api/subscribe`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ export function Footer(){
     const [data, setData] = useState([]);
     const fetchItems = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/submes");
+            const response = await axios.get(`${API_BASE_URL}/submes`);
             setData(response.data);
         } catch (error) {
             console.error("Error fetching data", error);
@@ -78,7 +79,7 @@ export function Footer(){
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/call-order', {
+            const response = await fetch(`${API_BASE_URL}/api/call-order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

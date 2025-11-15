@@ -10,6 +10,7 @@ import { PhoneNumber } from './forms/PhoneNumber';
 import { CartMenu } from './forms/CartMenu';
 import { LikeMenu } from "./forms/LikeMenu";
 import { CompareMenu } from "./forms/CompareMenu";
+import { API_BASE_URL } from "../config/api";
 
 export function Header(){
     const location = useLocation();
@@ -77,7 +78,7 @@ export function Header(){
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/call-order', {
+            const response = await fetch(`${API_BASE_URL}/api/call-order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

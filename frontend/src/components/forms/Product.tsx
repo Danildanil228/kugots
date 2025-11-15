@@ -5,6 +5,7 @@ import { WatchAll } from "../buttons/WatchAll";
 import { useState, useEffect, memo, useCallback } from 'react';
 import axios from 'axios';
 import { AlertOrderProduct } from "./AlertOrderProduct";
+import { API_BASE_URL } from "../../config/api";
 
 interface ProductItem {
   id: number;
@@ -46,9 +47,9 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
   }, []);
 
   return (
-    <div className="border-[#EAEBED] border rounded-xl">
+    <div className="border-[#EAEBED] border rounded-xl w-full">
       <div 
-        className="img w-full h-[230px] bg-cover bg-center"
+        className="img w-full h-[180px] lg:h-[230px] bg-cover bg-center"
         style={{ backgroundImage: `url(${product.img})` }}
       >
         <div className="flex items-center justify-between px-2.5 pt-1">
@@ -64,40 +65,40 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
         </div>
       </div>
       <div className="desc">
-        <div className="px-6 py-6 grid gap-5">
+        <div className="px-4 lg:px-6 py-4 lg:py-6 grid gap-4 lg:gap-5">
           <div>
-            <h3 className="text-[18px] font-semibold">{product.name}</h3>
+            <h3 className="text-[16px] lg:text-[18px] font-semibold leading-tight">{product.name}</h3>
           </div>
           <div className="flex justify-between">
-            <div className="grid gap-4">
-              <div className="flex gap-2.5">
-                <img className="w-5" src="./acum.svg" alt="" />
-                <p className="text-[#5D6C7B]">{product.acum} mAh</p>
+            <div className="grid gap-3 lg:gap-4">
+              <div className="flex gap-2 lg:gap-2.5 items-center">
+                <img className="w-4 lg:w-5" src="./acum.svg" alt="" />
+                <p className="text-[#5D6C7B] text-sm lg:text-base">{product.acum} mAh</p>
               </div>
-              <div className="flex gap-2.5">
-                <img className="w-5" src="./speed.svg" alt="" />
-                <p className="text-[#5D6C7B]">{product.speed} км/ч</p>
+              <div className="flex gap-2 lg:gap-2.5 items-center">
+                <img className="w-4 lg:w-5" src="./speed.svg" alt="" />
+                <p className="text-[#5D6C7B] text-sm lg:text-base">{product.speed} км/ч</p>
               </div>
             </div>
-            <div className="grid gap-4">
-              <div className="flex gap-2.5">
-                <img className="w-5" src="./power.svg" alt="" />
-                <p className="text-[#5D6C7B]">{product.power}кВт</p>
+            <div className="grid gap-3 lg:gap-4">
+              <div className="flex gap-2 lg:gap-2.5 items-center">
+                <img className="w-4 lg:w-5" src="./power.svg" alt="" />
+                <p className="text-[#5D6C7B] text-sm lg:text-base">{product.power}кВт</p>
               </div>
-              <div className="flex gap-2.5">
-                <img className="w-5" src="./time.svg" alt="" />
-                <p className="text-[#5D6C7B]">{product.time} ч</p>
+              <div className="flex gap-2 lg:gap-2.5 items-center">
+                <img className="w-4 lg:w-5" src="./time.svg" alt="" />
+                <p className="text-[#5D6C7B] text-sm lg:text-base">{product.time} ч</p>
               </div>
             </div>
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <p className="line-through text-[#5D6C7B] text-[12px]">
+              <p className="line-through text-[#5D6C7B] text-[10px] lg:text-[12px]">
                 {formatPrice(product.oldprice)} ₽
               </p>
-              <p className="text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
+              <p className="text-[16px] lg:text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
             </div>
-            <div className="flex gap-2.5">
+            <div className="flex gap-2 lg:gap-2.5">
               {product.count > 0 && (
                 <CartIcon product={{
                   id: product.id,
@@ -124,7 +125,7 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
                   img: product.img
                 }}/>
               ) : (
-                <button className="bg-[#6F73EE] w-full py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors">
+                <button className="bg-[#6F73EE] w-full py-2 lg:py-2.5 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors text-sm lg:text-base">
                   Купить в 1 клик
                 </button>
               )
@@ -144,7 +145,7 @@ export const Product = memo(({ activeFilter }: ProductProps) => {
   
   const fetchItems = useCallback(async (filter = '') => {
     try {
-      let url = "http://localhost:3000/product";
+      let url = `${API_BASE_URL}/product`;
       const filterType = getFilterType(filter);
       
       if (filterType) {
@@ -182,8 +183,8 @@ export const Product = memo(({ activeFilter }: ProductProps) => {
   const shouldShowWatchAll = data.length > 8;
 
   return(
-    <div className="grid gap-[30px]">
-      <div className="grid grid-cols-4 gap-[30px]">
+    <div className="grid gap-4 lg:gap-[30px]">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-[30px]">
         {visibleProducts.map((product) => (
           <ProductItem 
             key={product.id} 
@@ -192,7 +193,7 @@ export const Product = memo(({ activeFilter }: ProductProps) => {
         ))}
       </div>
       {shouldShowWatchAll && (
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-6 lg:mt-8">
           <button onClick={handleShowAll}>
             <WatchAll text={showAll ? "Скрыть" : "Смотреть все"} />
           </button>

@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { WatchAll } from '../buttons/WatchAll';
+import { API_BASE_URL } from '../../config/api';
 export function Category(){
     const [data, setData] = useState([]);
     const [showAll, setShowAll] = useState(false);
     
     const fetchItems = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/category");
+            const response = await axios.get(`${API_BASE_URL}/category`);
             setData(response.data);
         } catch (error) {
             console.error("Error fetching data", error);

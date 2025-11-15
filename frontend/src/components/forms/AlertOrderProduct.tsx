@@ -1,6 +1,7 @@
 import { AlertDialog, Checkbox } from "@radix-ui/themes";
 import { useState } from "react";
 import { PhoneNumber } from "./PhoneNumber";
+import { API_BASE_URL } from "../../config/api";
 
 interface Product {
   id: number;
@@ -51,7 +52,7 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/call-order', {
+            const response = await fetch(`${API_BASE_URL}/api/call-order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

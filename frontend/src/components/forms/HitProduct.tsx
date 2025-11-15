@@ -4,6 +4,7 @@ import { CompareIcon } from "../buttons/CompareIcon";
 import { CartIcon } from "../buttons/CartIcon";
 import { HeartAlt } from "../buttons/HeartAlt";
 import { AlertOrderProduct } from "./AlertOrderProduct";
+import { API_BASE_URL } from '../../config/api';
 
 interface Product {
     id: number;
@@ -138,7 +139,7 @@ export const HitProduct = memo(() => {
     
     const fetchItems = useCallback(async () => {
         try {
-            const response = await axios.get("http://localhost:3000/product/hit");
+            const response = await axios.get(`${API_BASE_URL}/product/hit`);
             setData(response.data);
         } catch (error) {
             console.error("Error fetching data", error);
