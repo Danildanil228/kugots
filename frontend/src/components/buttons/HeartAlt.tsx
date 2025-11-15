@@ -36,7 +36,7 @@ export function HeartAlt({ product }: HeartAltProps) {
             : 'border-[#EAEBED] hover:bg-[#F4F7FB] hover:border-none'
         }`}>
           <img 
-            src={liked ? "./heartblue.svg" : "./Heart.svg"} 
+            src={liked ? "./Heartblue.svg" : "./Heart.svg"} 
           />
         </div>
       </button>

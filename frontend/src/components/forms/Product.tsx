@@ -93,7 +93,7 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <p className="line-through text-[#5D6C7B] text-[10px] lg:text-[12px]">
+              <p className="line-through! text-[#5D6C7B] text-[10px] lg:text-[12px]">
                 {formatPrice(product.oldprice)} ₽
               </p>
               <p className="text-[16px] lg:text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>

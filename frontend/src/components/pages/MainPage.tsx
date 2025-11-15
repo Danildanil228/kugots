@@ -93,113 +93,193 @@ export default function MainPage(){
                     </div>
                 </div>
 
-                {/* Блоки подбора модели и сервиса */}
-                <div className="flex justify-center mt-6 lg:mt-[60px]">
-                    <div className="container">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-                            <div className="bg-[url('./model.svg')] bg-cover bg-no-repeat bg-center grid gap-3 p-6 lg:px-10 lg:py-8 rounded-[5px] min-h-[180px] lg:min-h-auto">
-                                <h1 className="uppercase font-semibold text-lg lg:text-2xl lg:w-[250px] leading-7 lg:leading-10">Подбор модели электросамоката</h1>
-                                <p className="text-sm lg:text-base lg:w-120">Пройдите тести выберите электросамокат по своим критериям</p>
-                                <button className="text-[#6F73EE] gap-2 flex items-center text-sm lg:text-base w-fit">
-                                    Подобрать модель
-                                    <img src="./arrow4.svg" alt="" className="w-3 h-3 lg:w-4 lg:h-4" />
-                                </button>
-                            </div>
-                            <div className="bg-[url('./servise.svg')] bg-cover bg-no-repeat bg-center grid gap-3 p-6 lg:px-10 lg:py-8 rounded-[5px] min-h-[180px] lg:min-h-auto">
-                                <h1 className="uppercase font-semibold text-lg lg:text-2xl lg:w-[250px] leading-7 lg:leading-10">Сервисное обслуживание</h1>
-                                <p className="text-sm lg:text-base lg:w-120">Крупнейший сервисный центр в России для продуктов Kugoo</p>
-                                <button className="text-[#6F73EE] gap-2 flex items-center text-sm lg:text-base w-fit">
-                                    Подобрать модель
-                                    <img src="./arrow4.svg" alt="" className="w-3 h-3 lg:w-4 lg:h-4" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Акционный баннер */}
-                <div className="flex justify-center pt-8 lg:pt-[110px]">
-                    <div className="container">
-                        <div className="bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] min-h-[180px] lg:min-h-auto">
-                            <div className="flex flex-col lg:justify-end lg:items-end gap-4 lg:gap-9 py-6 lg:py-[67px] px-4 lg:px-0">
-                                <p className="text-white bg-[#EE685F] w-fit px-3 py-1 rounded-[5px] text-sm lg:text-base">Акция</p>
-                                <h1 className="uppercase font-semibold text-xl lg:text-[35px] text-white text-center lg:text-left lg:w-100">
-                                    Бесплатная доставка Электросамокатов По России до 01.09
-                                </h1>
-                                <div className="flex justify-center lg:justify-start">
-                                    <button className="px-5 py-2 lg:px-[25px] lg:py-[15px] bg-white rounded-[5px] text-sm lg:text-base font-medium">
-                                        Подробнее
-                                    </button>
+                {/* 3. Блоки "Подбор модели" и "Сервисное обслуживание" */}
+                <div className="flex justify-center mt-8 lg:mt-[60px]">
+                    <div className="w-7xl">
+                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+                            {/* Подбор модели */}
+                            <div className="bg-[url('./model.svg')] bg-cover bg-no-repeat bg-center flex flex-col justify-between p-6 lg:p-8 rounded-[5px] min-h-[200px] lg:min-h-[280px] lg:w-1/2">
+                                <div className="grid gap-3">
+                                    <h1 className="uppercase font-semibold text-xl lg:text-2xl leading-7 lg:leading-8">
+                                        Подбор модели<br/>электросамоката
+                                    </h1>
+                                    <p className="text-sm lg:text-base">
+                                        Пройдите тест и выберите<br/>электросамокат по своим критериям
+                                    </p>
                                 </div>
+                                <button className="text-[#6F73EE] gap-2 flex items-center text-sm lg:text-base w-fit mt-4">
+                                    Подобрать модель
+                                    <img src="./arrow4.svg" alt="" className="w-3 h-3 lg:w-4 lg:h-4" />
+                                </button>
+                            </div>
+                            
+                            {/* Сервисное обслуживание */}
+                            <div className="bg-[url('./servise.svg')] bg-cover bg-no-repeat bg-center flex flex-col justify-between p-6 lg:p-8 rounded-[5px] min-h-[200px] lg:min-h-[280px] lg:w-1/2">
+                                <div className="grid gap-3">
+                                    <h1 className="uppercase font-semibold text-xl lg:text-2xl leading-7 lg:leading-8">
+                                        Сервисное<br/>обслуживание
+                                    </h1>
+                                    <p className="text-sm lg:text-base">
+                                        Крупнейший сервисный центр<br/>в России для продуктов Kugoo
+                                    </p>
+                                </div>
+                                <button className="text-[#6F73EE] gap-2 flex items-center text-sm lg:text-base w-fit mt-4">
+                                    Подобрать модель
+                                    <img src="./arrow4.svg" alt="" className="w-3 h-3 lg:w-4 lg:h-4" />
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                {/* 4. Акционный баннер */}
+                <div className="flex justify-center pt-8 lg:pt-[110px]">
+                    {/* Desktop версия - ТОЧНЫЙ ВАШ КОД */}
+                    <div className="hidden lg:block bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
+                        <div className="justify-end w-7xl grid gap-9 py-[67px]">
+                            <p className="text-white bg-[#EE685F] w-fit px-[11px] py-1 rounded-[5px]">Акция</p>
+                            <h1 className="uppercase font-semibold text-[35px] text-white w-110">Бесплатная доставка Электросамокатов По России до 01.09</h1>
+                            <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Подробнее</button>
+                        </div>
+                    </div>
+
+                    {/* Mobile версия */}
+                    <div className="lg:hidden bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
+                        <div className="flex flex-col justify-end items-end gap-4 py-6 px-4 h-full">
+                            <p className="text-white bg-[#EE685F] w-fit px-3 py-1 rounded-[5px] text-sm">Акция</p>
+                            <h1 className="uppercase font-semibold text-lg text-white text-right">
+                                Бесплатная доставка Электросамокатов<br/>По России до 01.09
+                            </h1>
+                            <button className="px-4 py-2 bg-white rounded-[5px] text-sm font-medium">
+                                Подробнее
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 {/* Популярные категории */}
                 <div className="justify-center grid pt-8 lg:pt-20">
                     <Category/>
                 </div>
 
-                {/* О компании */}
+                {/* 6. О компании Kugoo */}
                 <div className="flex justify-center my-8 lg:my-[100px]">
-                    <div className="container">
-                        <div className="bg-[#F4F7FB] rounded-[10px] p-4 lg:p-7 w-full">
-                            <div className="flex flex-col lg:flex-row lg:justify-between gap-6 lg:gap-0">
-                                <div className="bg-[url('./bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-full lg:w-[606px] h-[300px] lg:h-[565px] relative">
-                                    <div className="absolute bottom-4 lg:bottom-5 right-4 lg:right-5">
-                                        <div className="TEXT grid w-fit gap-3 lg:gap-4 rounded-2xl text-white backdrop-blur-[10px] p-4">
-                                            <div>
-                                                <h2 className="text-base lg:text-[18px] font-semibold">Тест-драйв в Москве</h2>
-                                                <p className="text-sm lg:text-base w-40 lg:w-50">Оцените все преимущества самокатов лично</p>
+                    {/* Desktop версия - по сетке 1440px */}
+                    <div className="hidden lg:block w-[1440px]">
+                        <div className="bg-[#F4F7FB] rounded-[10px] p-7 w-full">
+                            <div className="flex justify-between">
+                                {/* Левая часть - изображение */}
+                                <div className="bg-[url('./bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-[606px] h-[565px] relative">
+                                    <div className="absolute bottom-5 right-5">
+                                        <div className="TEXT grid w-fit gap-4 rounded-2xl text-white backdrop-blur-[10px]">
+                                            <div className="pt-[17px] px-5">
+                                                <h2 className="text-[18px] font-semibold">Тест-драйв в Москве</h2>
+                                                <p className="w-50">Оцените все преимущества самокатов лично</p>
                                             </div>
                                             <More/>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="grid gap-6 lg:gap-8">
-                                    <div className="grid gap-3 lg:gap-[18px]">
-                                        <p className="text-2xl lg:text-[35px] font-semibold uppercase lg:w-120">Kugoo-Russia — первый официальный дилер Kugoo Kirin в России</p>
-                                        <p className="text-sm lg:text-base lg:w-135">Наша цель предоставить полный ассортимент современной продукции Kugoo Kirin, которая улучшает и упрощает жизнь. Стремимся подарить комфорт и эмоции, поэтому помогаем с выбором и внимательно относимся к сервисному обслуживанию.</p>
+                                
+                                {/* Правая часть - текст */}
+                                <div className="w-[606px] grid gap-8">
+                                    <div className="grid gap-[18px]">
+                                        <p className="text-[35px] font-semibold uppercase w-120">Kugoo-Russia — первый официальный дилер Kugoo Kirin в России</p>
+                                        <p className="w-135">Наша цель предоставить полный ассортимент современной продукции Kugoo Kirin, которая улучшает и упрощает жизнь. Стремимся подарить комфорт и эмоции, поэтому помогаем с выбором и внимательно относимся к сервисному обслуживанию.</p>
                                     </div>
-                                    <div className="grid bg-white p-4 lg:p-5 rounded-2xl gap-3">
-                                        <p className="font-semibold text-sm lg:text-base">Специализируемся исключительно на бренде Kugoo, поэтому вы получите:</p>
-                                        <div className="grid gap-2">
-                                            <div className="flex gap-2 items-center">
-                                                <img src="./list.svg" className="w-3 h-3 lg:w-2.5 lg:h-2.5" alt="" />
-                                                <p className="text-sm lg:text-base">цены от завода-изготовителя Jilong;</p>
-                                            </div>
-                                            <div className="flex gap-2 items-center">
-                                                <img src="./list.svg" className="w-3 h-3 lg:w-2.5 lg:h-2.5" alt="" />
-                                                <p className="text-sm lg:text-base">бесплатный тест-драйв самокатов;</p>
-                                            </div>
-                                            <div className="flex gap-2 items-center">
-                                                <img src="./list.svg" className="w-3 h-3 lg:w-2.5 lg:h-2.5" alt="" />
-                                                <p className="text-sm lg:text-base">фирменную гарантию 1 год;</p>
-                                            </div>
-                                            <div className="flex gap-2 items-center">
-                                                <img src="./list.svg" className="w-3 h-3 lg:w-2.5 lg:h-2.5" alt="" />
-                                                <p className="text-sm lg:text-base">ремонт и обслуживание от 1 дня в собственном сервисном центре;</p>
-                                            </div>
-                                            <div className="flex gap-2 items-center">
-                                                <img src="./list.svg" className="w-3 h-3 lg:w-2.5 lg:h-2.5" alt="" />
-                                                <p className="text-sm lg:text-base">более 1 000 запчастей и аксессуаров в наличии</p>
-                                            </div>
+                                    <div className="grid bg-white p-5 rounded-2xl">
+                                        <p className="font-semibold">Специализируемся исключительно на бренде Kugoo, поэтому вы получите:</p>
+                                        <div>
+                                            <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>цены от завода-изготовителя Jilong;</p></div>
+                                            <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>бесплатный тест-драйв самокатов;</p></div>
+                                            <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>фирменную гарантию 1 год;</p></div>
+                                            <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>ремонт и обслуживание от 1 дня в собственном сервисном центре;</p></div>
+                                            <div className="flex gap-2.5 items-center"><img src="./list.svg" className="w-2.5" alt="" /><p>более 1 000 запчастей и аксессуаров в наличии</p></div>
                                         </div>
-                                        <button className="text-[#6F73EE] w-fit text-sm lg:text-base">Смотреть сертификат</button>
+                                        <button className="text-[#6F73EE] w-fit">Смотреть сертификат</button>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mobile версия */}
+                    <div className="lg:hidden w-full px-4">
+                        <div className="bg-[#F4F7FB] rounded-[10px] p-6 w-full">
+                            <div className="flex flex-col gap-6">
+                                {/* Текст */}
+                                <div className="grid gap-4">
+                                    <p className="text-2xl font-semibold uppercase leading-tight">Kugoo-Russia — первый официальный дилер Kugoo Kirin в России</p>
+                                    <p className="text-sm">Наша цель предоставить полный ассортимент современной продукции Kugoo Kirin, которая улучшает и упрощает жизнь. Стремимся подарить комфорт и эмоции, поэтому помогаем с выбором и внимательно относимся к сервисному обслуживанию.</p>
+                                </div>
+                                
+                                {/* Изображение */}
+                                <div className="bg-[url('./bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-full h-[200px] relative">
+                                    <div className="absolute bottom-4 right-4">
+                                        <div className="TEXT grid w-fit gap-3 rounded-2xl text-white backdrop-blur-[10px] p-3 bg-black/30">
+                                            <div>
+                                                <h2 className="text-base font-semibold">Тест-драйв в Москве</h2>
+                                                <p className="text-sm w-40">Оцените все преимущества самокатов лично</p>
+                                            </div>
+                                            <More/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Список преимуществ */}
+                                <div className="grid bg-white p-4 rounded-2xl gap-4">
+                                    <p className="font-semibold text-sm">Специализируемся исключительно на бренде Kugoo, поэтому вы получите:</p>
+                                    <div className="grid gap-2">
+                                        <div className="flex gap-2.5 items-center">
+                                            <img src="./list.svg" className="w-3 h-3" alt="" />
+                                            <p className="text-sm">цены от завода-изготовителя Jilong;</p>
+                                        </div>
+                                        <div className="flex gap-2.5 items-center">
+                                            <img src="./list.svg" className="w-3 h-3" alt="" />
+                                            <p className="text-sm">бесплатный тест-драйв самокатов;</p>
+                                        </div>
+                                        <div className="flex gap-2.5 items-center">
+                                            <img src="./list.svg" className="w-3 h-3" alt="" />
+                                            <p className="text-sm">фирменную гарантию 1 год;</p>
+                                        </div>
+                                        <div className="flex gap-2.5 items-center">
+                                            <img src="./list.svg" className="w-3 h-3" alt="" />
+                                            <p className="text-sm">ремонт и обслуживание от 1 дня в собственном сервисном центре;</p>
+                                        </div>
+                                        <div className="flex gap-2.5 items-center">
+                                            <img src="./list.svg" className="w-3 h-3" alt="" />
+                                            <p className="text-sm">более 1 000 запчастей и аксессуаров в наличии</p>
+                                        </div>
+                                    </div>
+                                    <button className="text-[#6F73EE] w-fit text-sm">Смотреть сертификат</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Преимущества магазина */}
-                <div className="grid justify-center text-center gap-4 lg:gap-[18px] mb-8 lg:mb-0">
-                    <h1 className="text-2xl lg:text-[35px] uppercase font-semibold text-center">Предлагаем самые выгодные цены на продукты Kugoo за счет прямых поставок</h1>
-                    <p className="text-sm lg:text-base">и заботимся об удобстве покупателей</p>
-                    <SelectSection/>
+                {/* 7. Преимущества магазина */}
+                <div className="flex justify-center mb-8 lg:mb-0">
+                    {/* Desktop версия - по сетке 1440px */}
+                    <div className="hidden lg:block w-[1440px]">
+                        <div className="grid justify-center text-center gap-[18px]">
+                            <h1 className="text-[35px] uppercase font-semibold text-center">Предлагаем самые выгодные цены<br/>на продукты Kugoo за счет прямых поставок</h1>
+                            <p>и заботимся об удобстве покупателей</p>
+                            <SelectSection/>
+                        </div>
+                    </div>
+
+                    {/* Mobile версия */}
+                    <div className="lg:hidden w-full px-4">
+                        <div className="grid justify-center text-center gap-4">
+                            <h1 className="text-lg uppercase font-semibold text-center leading-tight">
+                                Предлагаем самые<br/>выгодные цены<br/>на продукты Kugoo<br/>за счет прямых поставок
+                            </h1>
+                            <p className="text-sm">и заботимся об удобстве покупателей</p>
+                            <SelectSection/>
+                        </div>
+                    </div>
                 </div>
+
 
                 {/* Видео */}
                 <div className="justify-center flex my-8 lg:my-[100px]">

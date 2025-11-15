@@ -18,13 +18,14 @@ export function SelectSection(){
     useEffect(() => {
         fetchProducts();
     }, []);
+
     return(
         <>
             <div className="justify-center grid gap-13">
                 <div className="flex gap-5 justify-center">
                     <button 
                         onClick={() => setActiveTab('shop')}
-                        className={`py-4 px-6 rounded-[5px] transition-colors  ${
+                        className={`py-4 px-6 rounded-[5px] transition-colors ${
                             activeTab === 'shop' ? activeStyles : inactiveStyles
                         }`}
                     >
@@ -47,7 +48,7 @@ export function SelectSection(){
                                 <div className="grid gap-2 text-start py-[27px] px-5 border rounded-[5px] border-[#EAEBED]">
                                     <img src="./cart.svg" alt="" />
                                     <h2 className="mt-1 font-semibold text-[18px]">{product.length} товаров в каталоге</h2>
-                                    <p className="w-85">Выбирайте товар, который подходит по цене и характеристикам. Если товара нет в наличии — мы сообщим вам о его поступлении. </p>
+                                    <p className="w-85">Выбирайте товар, который подходит по цене и характеристикам. Если товара нет в наличии — мы сообщим вам о его поступлении.</p>
                                 </div>
                                 <div className="grid gap-2 text-start py-[27px] px-5 border rounded-[5px] border-[#EAEBED]">
                                     <img src="./wallet.svg" alt="" />
@@ -59,7 +60,6 @@ export function SelectSection(){
                                     <h2 className="mt-1 font-semibold text-[18px] w-50">Полная документация и гарантия 1 год</h2>
                                     <p className="w-85">При покупке вам выдается кассовый чек, товарный чек и гарантийный талон – эти документы дают право на гарантийное обслуживание.</p>
                                 </div>
-                                
                             </div>
                             <div className="flex justify-between w-7xl">
                                 <div className="grid gap-2 text-start py-[27px] px-5 border rounded-[5px] border-[#EAEBED]">
@@ -82,7 +82,6 @@ export function SelectSection(){
                                         <img src="./arrow6.svg" className="w-[11px]" alt="" />
                                     </button>
                                 </div>
-                                
                             </div>
                         </div>
                     )}
@@ -104,7 +103,6 @@ export function SelectSection(){
                                     <h2 className="mt-1 font-semibold text-[18px]">Ремонтируем только то, что сломалось</h2>
                                     <p className="w-85">Не навязываем услуги, диагностируем и заранее обговариваем стоимость ремонта.</p>
                                 </div>
-                                
                             </div>
                             <div className="flex justify-between w-7xl">
                                 <div className=" gap text-start py-[27px] px-5 border rounded-[5px] border-[#EAEBED] w-[382px]">
@@ -123,7 +121,6 @@ export function SelectSection(){
                                         <img src="./arrow6.svg" className="w-[11px]" alt="" />
                                     </button>
                                 </div>
-                                
                             </div>
                         </div>
                     )}
