@@ -33,8 +33,13 @@ export function Header(){
                 <div>Акции</div>
                 <div className='bg-[#6F73EE] w-[25px] h-[25px] rounded-full items-center justify-center flex text-white'>%</div>
             </div>
-        ) }
+        ) },
     ];
+    const Items = [
+        {patch: '/service', label: (
+            <p className="text-[#5D6C7B]! hover:text-black! transition-colors">Сервис</p>
+        )}
+    ]
 
     const mobileMenuItems = [
         { path: '/about', label: 'О магазине' },
@@ -287,7 +292,7 @@ export function Header(){
                                     Заказать звонок
                                 </button>
                             </AlertDialog.Trigger>
-                            <AlertDialog.Content maxWidth="800px" height="500px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
+                            <AlertDialog.Content maxWidth="100px" height="300px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
                                 <div>
                                     <div className='justify-end flex'>
                                         <AlertDialog.Action>
@@ -360,7 +365,15 @@ export function Header(){
                     <div className="justify-center flex my-4">
                         <div className="flex justify-between w-7xl">
                             <div className="flex gap-7 items-center">
-                                <a href="" className="text-[#5D6C7B]! hover:text-black! transition-colors">Сервис</a>
+                                {Items.map((item) => (
+                                    <Link
+                                        key={item.patch}
+                                        to={item.patch}
+                                        className=""
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
                                 <a href="" className="text-[#5D6C7B]! hover:text-black! transition-colors">Сотрудничество</a>
                                 
                                 <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>

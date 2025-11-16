@@ -265,10 +265,10 @@ export function Footer(){
 
             {/* Main Footer Content - Desktop */}
             <div className="hidden lg:block bg-[#F4F7FB]">
-                <div className="container py-12">
+                <div className="container py-12!">
                     <div className="flex justify-between">
                         <div className="flex gap-[125px]">
-                            <div>
+                            <div className="">
                                 <div className="grid gap-4">
                                     <h1 className="font-semibold">Каталог товаров</h1>
                                     <div className="grid gap-3">
@@ -408,7 +408,7 @@ export function Footer(){
                 <div className="bg-[#5D6C7B] w-full h-px opacity-15 mt-10"></div>
                 <div className="container py-10">
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-[60px]">
+                        <div className="flex items-center gap-[60px] py-12">
                             <Link to="/main" className="">
                                 <h1 className="font-bold text-3xl cursor-pointer">KUGOO</h1>
                             </Link>
@@ -434,7 +434,7 @@ export function Footer(){
                 </div>
                 <div className="bg-[#5D6C7B] w-full h-px opacity-15"></div>
                 <div className="container py-8">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between py-7">
                         <div className="flex gap-10">
                             <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Реквизиты</a>
                             <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Политика конфиденциальности</a>

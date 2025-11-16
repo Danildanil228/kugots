@@ -6,6 +6,7 @@ import './App.css'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { MobileNavigation } from './components/MobileNavigation'
+import Service from './components/pages/Service';
 
 // Lazy loaded pages
 const MainPage = lazy(() => import('./components/pages/MainPage'));
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/like" element={<Like />} />
                 <Route path="/compare" element={<Compare />} />
+                <Route path="/service" element={<Service />} />
               </Routes>
             </Suspense>
           </main>
