@@ -134,6 +134,120 @@ const HitProductItem = memo(({ product }: { product: Product }) => {
 
 HitProductItem.displayName = 'HitProductItem';
 
+// Мобильная версия HitProductItem с адаптацией
+const MobileHitProductItem = memo(({ product }: { product: Product }) => {
+    const formatPrice = useCallback((price: number) => {
+        if (!price) return '';
+        
+        let cleanPrice = price.toString()
+            .replace(/[,.]00$/, '')
+            .replace(/[^\d,.]/g, '');
+        
+        cleanPrice = cleanPrice.replace(/[,.]/, '');
+        
+        return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }, []);
+
+    const getTagColor = useCallback((descr: string) => {
+        if (!descr) return 'opacity-0';
+        if (descr === 'Хит') return 'bg-[#EE685F]';
+        if (descr === 'Новинка') return 'bg-[#75D14A]';
+        return 'bg-[#EE685F]';
+    }, []);
+
+    return (
+        <div className="border-[#EAEBED] border rounded-xl w-full">
+            <div 
+                className="img w-full h-[180px] bg-cover bg-center"
+                style={{ backgroundImage: `url(${product.img})` }}
+            >
+                <div className="flex items-center justify-between px-2.5 pt-1">
+                    <div className={`py-1 px-2 rounded-[5px] text-white gap-[30px] text-[10px] ${getTagColor(product.descr)}`}>
+                        {product.descr}
+                    </div>
+                    <CompareIcon product={{
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        img: product.img
+                    }}/>
+                </div>
+            </div>
+            <div className="desc">
+                <div className="px-4 py-4 grid gap-3">
+                    <div>
+                        <h3 className="text-base font-semibold leading-tight">{product.name}</h3>
+                    </div>
+                    <div className="flex justify-between">
+                        <div className="grid gap-2">
+                            <div className="flex gap-2 items-center">
+                                <img className="w-4" src="./acum.svg" alt="" />
+                                <p className="text-[#5D6C7B] text-sm">{product.acum} mAh</p>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                                <img className="w-4" src="./speed.svg" alt="" />
+                                <p className="text-[#5D6C7B] text-sm">{product.speed} км/ч</p>
+                            </div>
+                        </div>
+                        <div className="grid gap-2">
+                            <div className="flex gap-2 items-center">
+                                <img className="w-4" src="./power.svg" alt="" />
+                                <p className="text-[#5D6C7B] text-sm">{product.power}кВт</p>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                                <img className="w-4" src="./time.svg" alt="" />
+                                <p className="text-[#5D6C7B] text-sm">{product.time} ч</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="line-through! text-[#5D6C7B] text-[10px]">
+                                {formatPrice(product.oldprice)} ₽
+                            </p>
+                            <p className="text-[16px] font-semibold">{formatPrice(product.price)} ₽</p>
+                        </div>
+                        <div className="flex gap-2">
+                            {product.count > 0 && (
+                                <CartIcon product={{
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    img: product.img
+                                }}/>
+                            )}
+                            <HeartAlt product={{
+                                id: product.id,
+                                name: product.name,
+                                price: product.price,
+                                img: product.img
+                            }}/>
+                        </div>
+                    </div>
+                    <div className="justify-center flex">
+                        {
+                            product.count === 0 ? (
+                                <AlertOrderProduct product={{
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    img: product.img
+                                }}/>
+                            ) : (
+                                <button className="bg-[#6F73EE] w-full py-2 text-white rounded-[5px] hover:bg-white hover:text-[#6F73EE] border hover:border-[#6F73EE] transition-colors text-sm">
+                                    Купить в 1 клик
+                                </button>
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+});
+
+MobileHitProductItem.displayName = 'MobileHitProductItem';
+
 export const HitProduct = memo(() => {
     const [data, setData] = useState<Product[]>([]);
     
@@ -152,7 +266,18 @@ export const HitProduct = memo(() => {
 
     return (
         <>
-            <div className="flex justify-between w-7xl">
+            {/* Мобильная версия - 2 товара в 2 колонки */}
+            <div className="lg:hidden grid grid-cols-2 gap-4 w-full px-4">
+                {data.slice(0, 2).map((product) => (
+                    <MobileHitProductItem 
+                        key={product.id} 
+                        product={product}
+                    />
+                ))}
+            </div>
+
+            {/* Десктоп версия - ОРИГИНАЛЬНЫЙ КОД без изменений */}
+            <div className="hidden lg:flex justify-between w-7xl">
                 {data.map((product) => (
                     <HitProductItem 
                         key={product.id} 

@@ -198,23 +198,23 @@ export function Footer(){
                     </div>
 
                     {/* Mobile Version */}
-                    <div className="lg:hidden flex flex-col items-center gap-6 text-center">
-                        <div className="text-white font-semibold text-lg uppercase">
+                    <div className="lg:hidden flex flex-col items-center gap-6 text-center px-4">
+                        <div className="text-white font-semibold text-lg uppercase leading-tight">
                             Оставьте свою почту и станьте первым, кто получит скидку на новые самокаты
                         </div>
-                        <div className="w-full max-w-[450px]">
+                        <div className="w-full max-w-[400px]">
                             <InputEmail onEmailChange={handleEmailChange}/>
                         </div>
                         {error && (
-                            <div className="text-red-200 text-sm">
+                            <div className="text-red-200 text-sm -mt-2">
                                 {error}
                             </div>
                         )}
-                        <div className="w-full max-w-[450px]">
+                        <div className="w-full max-w-[400px]">
                             <AlertDialog.Root open={isSubscribeDialogOpen} onOpenChange={setIsSubscribeDialogOpen}>
                                 <AlertDialog.Trigger className='w-full'>
                                     <Button 
-                                        className={`bg-white! text-[#6F73EE]! font-normal! text-[16px]! items-center! py-4! w-full! transition-colors duration-200! ${
+                                        className={`bg-white! text-[#6F73EE]! font-normal! text-[16px]! items-center! py-3! w-full! transition-colors duration-200! rounded-[5px]! ${
                                             !isEmailValid || isLoading ? 'opacity-50 cursor-not-allowed!' : 'cursor-pointer!'
                                         }`}
                                         onClick={handleSubscribe}
@@ -223,27 +223,38 @@ export function Footer(){
                                         {isLoading ? 'Отправка...' : 'Подписаться'}
                                     </Button>
                                 </AlertDialog.Trigger>
-                                <AlertDialog.Content maxWidth="800px" height="440px" className='max-w-[90vw]'>
-                                    <div className='justify-end flex'>
-                                        <AlertDialog.Action>
-                                            <img 
-                                                src='./crest.svg' 
-                                                className='rotate-45 cursor-pointer'
-                                                onClick={handleCloseSubscribeDialog}
-                                            />
-                                        </AlertDialog.Action>
-                                    </div>
-                                    <div className="grid gap-7 justify-center text-center px-4">
-                                        <h1 className="text-[20px] lg:text-[25px] font-semibold uppercase">Благодарим за подписку<br/>на рассылку</h1>
-                                        <p className="text-sm lg:text-base">Перейдите в свою почту, чтобы подтвердить подписку и получить<br/>видеообзор «Топ-3 электросамоката 2021г.»</p>
-                                        <p className="text-[#5D6C7B] text-sm lg:text-base">Выберите свой почтовый сервис</p>
-                                        <div className="flex gap-4 justify-center flex-wrap">
-                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./searchIc.svg" alt="" /></a>
-                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yandexIc.svg" alt="" /></a>
-                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./out.svg" alt="" /></a>
-                                            <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yahoo.svg" alt="" /></a>
+                                <AlertDialog.Content maxWidth="800px" className='max-w-[95vw] mx-auto'>
+                                    <div className='p-6'>
+                                        <div className='justify-end flex mb-4'>
+                                            <AlertDialog.Action>
+                                                <img 
+                                                    src='./crest.svg' 
+                                                    className='rotate-45 cursor-pointer w-6 h-6'
+                                                    onClick={handleCloseSubscribeDialog}
+                                                    alt="Закрыть"
+                                                />
+                                            </AlertDialog.Action>
                                         </div>
-                                        <p className="text-[#5D6C7B] text-sm lg:text-base">Если письма не во входящих, проверьте папку «Промоакции»<br/>или «Спам».  Письмо могло попасть туда по ошибке.</p>
+                                        <div className="grid gap-6 justify-center text-center">
+                                            <h1 className="text-xl font-semibold uppercase">Благодарим за подписку на рассылку</h1>
+                                            <p className="text-sm">Перейдите в свою почту, чтобы подтвердить подписку и получить видеообзор «Топ-3 электросамоката 2021г.»</p>
+                                            <p className="text-[#5D6C7B] text-sm">Выберите свой почтовый сервис</p>
+                                            <div className="flex gap-3 justify-center flex-wrap">
+                                                <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
+                                                    <img src="./searchIc.svg" alt="Gmail" className="w-6 h-6" />
+                                                </a>
+                                                <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
+                                                    <img src="./yandexIc.svg" alt="Yandex" className="w-6 h-6" />
+                                                </a>
+                                                <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
+                                                    <img src="./out.svg" alt="Outlook" className="w-6 h-6" />
+                                                </a>
+                                                <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
+                                                    <img src="./yahoo.svg" alt="Yahoo" className="w-6 h-6" />
+                                                </a>
+                                            </div>
+                                            <p className="text-[#5D6C7B] text-sm">Если письма не во входящих, проверьте папку «Промоакции» или «Спам». Письмо могло попасть туда по ошибке.</p>
+                                        </div>
                                     </div>
                                 </AlertDialog.Content>
                             </AlertDialog.Root>
@@ -469,7 +480,7 @@ export function Footer(){
                     <div className="bg-[#5D6C7B] w-full h-px opacity-15 my-6"></div>
 
                     {/* Links - Centered */}
-                    <div className="flex flex-col gap-4 items-center text-center">
+                    <div className="flex flex-col gap-4 items-center text-center mb-10">
                         <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Реквизиты</a>
                         <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Политика конфиденциальности</a>
                     </div>
