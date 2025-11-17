@@ -1,3 +1,5 @@
+import SelectSectionService from "../forms/SelectSectionService";
+
 export default function Service(){
     return(
         <>
@@ -10,40 +12,46 @@ export default function Service(){
                     </div>
                     <div className="sm:flex py-20 grid gap-10">
                         <div className="grid sm:text-right text-center gap-10">
-                            <div className="gap-4 grid">
+                            <div className="gap-4 grid sm:w-80">
                                 <h1 className="text-2xl sm:text-[20px] font-semibold ">Ремонт от 1 дня</h1>
-                                <p className="text-xl sm:text-[16px] sm:w-80">Устраним любую неисправность. Обычно делаем это за 1-3 дня, если ремонт сложный — предупредим заранее.</p>
+                                <p className="text-xl sm:text-[16px]">Устраним любую неисправность. Обычно делаем это за 1-3 дня, если ремонт сложный — предупредим заранее.</p>
                             </div>
-                            <div className="gap-4 grid">
+                            <div className="gap-4 grid sm:w-80">
                                 <h1 className="sm:text-[20px] text-2xl font-semibold">Ремонтируем только то, что сломалось</h1>
-                                <p className="text-xl sm:text-[16px] sm:w-80">Не навязываем услуги, диагностируем и заранее обговариваем стоимость ремонта.</p>
+                                <p className="text-xl sm:text-[16px]">Не навязываем услуги, диагностируем и заранее обговариваем стоимость ремонта.</p>
                             </div>
-                            <div className="gap-4 grid">
+                            <div className="gap-4 grid sm:w-80">
                                 <h1 className="sm:text-[20px] text-2xl font-semibold">Оригинальные запчасти</h1>
-                                <p className="text-xl sm:text-[16px] sm:w-80">Благодаря прямой связи с производителем имеем в наличии все необходимые новые комплектующие для ремонта.</p>
+                                <p className="text-xl sm:text-[16px]">Благодаря прямой связи с производителем имеем в наличии все необходимые новые комплектующие для ремонта.</p>
                             </div>
                         </div>
                         <div className="hidden md:block"><img src="./pr.svg" alt="" /></div>
                         <div className="grid sm:text-left text-center gap-10">
                             <div className="gap-4 grid">
                                  <h1 className="sm:text-[20px] text-2xl font-semibold ">Гарантия</h1>
-                                 <p className="text-xl sm:text-[16px] sm:w-80">14 дней на ремонт</p>
+                                 <p className="text-xl sm:text-[16px] ">14 дней на ремонт</p>
                             </div>
                             <div className="gap-4 grid">
                                  <h1 className="sm:text-[20px] text-2xl font-semibold ">Бесплатный ремонт</h1>
-                                 <p className="text-xl sm:text-[16px] sm:w-80">в течение 1 года после покупки</p>
+                                 <p className="text-xl sm:text-[16px]">в течение 1 года после покупки</p>
                             </div>
                             <div className="gap-4 grid">
                                  <h1 className="sm:text-[20px] text-2xl font-semibold ">Расширенная гарантия</h1>
-                                 <p className="text-xl sm:text-[16px] sm:w-80">до 36 месяцев</p>
+                                 <p className="text-xl sm:text-[16px] ">до 36 месяцев</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Стоимость ремонта */}
-                <div>
-
+                <div className="justify-center grid">
+                    <div className="sm:w-170 grid gap-4">
+                        <h1 className="text-2xl sm:text-[35px] font-semibold text-center">Стоимость ремонта</h1>
+                        <p className="text-center">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>
+                    </div>
+                    <div>
+                        <SelectSectionService/>
+                    </div>
                 </div>
             </div>
         </>
