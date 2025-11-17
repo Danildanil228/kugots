@@ -16,14 +16,14 @@ export function SwiperHeader(){
         <>
             <div className="relative py-[30px]">
                 {/* Десктоп версия слайдера */}
-                <div className="hidden lg:block">
+                <div className="hidden lg:block relative">
                     <Swiper
                         navigation={{
                             nextEl: '.custom-next',
                             prevEl: '.custom-prev',
                         }}
                         modules={[Navigation]}
-                        className="w-[1441px] h-105 rounded-[5px] bg-[#6F73EE]"
+                        className="w-full max-w-[1441px] h-105 rounded-[5px] bg-[#6F73EE] mx-auto"
                         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                     >
                         <SwiperSlide className='bg-[url("./bgswiper.svg")]! bg-cover! bg-no-repeat! bg-center! '>
@@ -46,7 +46,27 @@ export function SwiperHeader(){
                         <SwiperSlide>Slide 3</SwiperSlide>
                         <SwiperSlide>Slide 4</SwiperSlide>
                         <SwiperSlide>Slide 5</SwiperSlide>
+                    <div className="absolute bottom-4 left-20 z-10 flex items-center gap-2">
+                        <button className="custom-prev">
+                            <img src="./arrowslide.svg" alt="Назад" />
+                        </button>
+                        <span className="text-white">{activeIndex + 1}</span>
+                        
+                        <div className="w-[35px] h-1 bg-gray-200 rounded overflow-hidden">
+                            <div 
+                                className="h-full bg-[#6F73EE] transition-all duration-300"
+                                style={{ width: `${progressWidth}%` }}
+                            ></div>
+                        </div>
+                        
+                        <span className="text-white">{totalSlides}</span>
+                        <button className="custom-next rotate-180">
+                            <img src="./arrowslide.svg" alt="Вперед" />
+                        </button>
+                    </div>
                     </Swiper>
+
+                    {/* Десктоп навигация слева */}
                 </div>
 
                 {/* Мобильная версия слайдера */}
@@ -68,7 +88,6 @@ export function SwiperHeader(){
                                         </h1>
                                         <p className='text-base'>с бесплатной доставкой по РФ от 1 дня</p>
                                     </div>
-                                    {/* Кнопка "Перейти в каталог" УБРАНА на мобильных */}
                                 </div>
                             </div>
                         </SwiperSlide>
@@ -99,27 +118,7 @@ export function SwiperHeader(){
                     </Swiper>
                 </div>
                 
-                {/* Десктоп навигация */}
-                <div className="hidden lg:flex absolute bottom-15 left-48 transform -translate-x-1/2 z-10 items-center gap-2">
-                    <button className="custom-prev">
-                        <img src="./arrowslide.svg" alt="Назад" />
-                    </button>
-                    <span className="text-white">{activeIndex + 1}</span>
-                    
-                    <div className="w-[35px] h-1 bg-gray-200 rounded overflow-hidden">
-                        <div 
-                            className="h-full bg-[#6F73EE] transition-all duration-300"
-                            style={{ width: `${progressWidth}%` }}
-                        ></div>
-                    </div>
-                    
-                    <span className="text-white">{totalSlides}</span>
-                    <button className="custom-next rotate-180">
-                        <img src="./arrowslide.svg" alt="Вперед" />
-                    </button>
-                </div>
-
-                {/* Мобильная навигация - индикаторы с правильными цветами */}
+                {/* Мобильная навигация */}
                 <div className="lg:hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 flex items-center gap-2">
                     <div className="flex gap-2">
                         {[...Array(totalSlides)].map((_, index) => (
@@ -127,8 +126,8 @@ export function SwiperHeader(){
                                 key={index}
                                 className={`w-16 h-1 rounded-full transition-all ${
                                     index === activeIndex 
-                                        ? 'bg-[#6F73EE]'  // Активный слайд
-                                        : 'bg-[#5D6C7B]'  // Неактивные слайды
+                                        ? 'bg-[#6F73EE]'
+                                        : 'bg-[#5D6C7B]'
                                 }`}
                             ></div>
                         ))}

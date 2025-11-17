@@ -284,7 +284,7 @@ export function Footer(){
                                     <h1 className="font-semibold">Покупателям</h1>
                                     <div className="flex gap-10">
                                         <div className="grid gap-3">
-                                            <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Сервисный центр</a>
+                                            <Link to='/service' className="text-[#5D6C7B] hover:text-black transition-colors">Сервисный центр</Link>
                                             <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Доставка и оплата</a>
                                             <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Рассрочка</a>
                                             <a href="" className="text-[#5D6C7B] hover:text-black transition-colors">Тест-драйв</a>

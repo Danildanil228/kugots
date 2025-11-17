@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../config/api";
+import { Link } from "react-router-dom";
 
 export function SelectSection(){
     const [product, setProducts] = useState([]);
@@ -126,10 +127,10 @@ export function SelectSection(){
                                 </div>
                                 <div className="p-4 lg:p-8 border rounded-[5px] border-[#EAEBED] bg-[url('./maskshur.svg')] bg-no-repeat bg-cover bg-center flex flex-col justify-center items-start min-h-[120px] lg:min-h-auto">
                                     <p className="text-left font-semibold text-base lg:text-[18px]">Больше в сервисе</p>
-                                    <button className="flex items-center gap-2 text-[#6F73EE] text-sm lg:text-base mt-1">
+                                    <Link to='/service' className="flex items-center gap-2 text-[#6F73EE] text-sm lg:text-base mt-1">
                                         <p>Перейти</p>
                                         <img src="./arrow6.svg" className="w-[11px]" alt="" />
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

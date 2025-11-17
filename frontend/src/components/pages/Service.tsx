@@ -3,12 +3,11 @@ import SelectSectionService from "../forms/SelectSectionService";
 export default function Service(){
     return(
         <>
-            <div className="grid justify-center container">
-
+            <div className="grid justify-center container min-h-screen">
                 {/* Проведем диагностику и отремонтируем любую неисправность */}
                 <div className="my-20 grid">
                     <div className="justify-center">
-                        <h1 className="uppercase font-semibold text-[20px] sm:text-[35px] text-center">Проведем диагностику и отремонтируем любую неисправность</h1>
+                        <h1 className="uppercase font-semibold text-2xl sm:text-[35px] text-center">Проведем диагностику и отремонтируем любую неисправность</h1>
                     </div>
                     <div className="sm:flex py-20 grid gap-10">
                         <div className="grid sm:text-right text-center gap-10">
@@ -44,13 +43,72 @@ export default function Service(){
                 </div>
 
                 {/* Стоимость ремонта */}
-                <div className="justify-center grid">
-                    <div className="sm:w-170 grid gap-4">
-                        <h1 className="text-2xl sm:text-[35px] font-semibold text-center">Стоимость ремонта</h1>
-                        <p className="text-center">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>
+                <div className="grid gap-4 justify-center">
+                    <h1 className="text-2xl sm:text-[35px] font-semibold text-center">Стоимость ремонта</h1>
+                    <p className="text-center justify-center sm:w-170">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>                
+                </div>
+                <SelectSectionService/>
+
+                
+            </div>
+
+                {/* Определим причину неисправности удаленно или на диагностике! */}
+            <div className="flex justify-center pt-8 lg:pt-[110px]">
+                <div className="hidden lg:block bg-[url('./bgservice.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
+                    <div className="justify-end w-7xl grid gap-9 py-[67px]">
+                        <p className="text-white bg-[#75D14A] w-fit px-[11px] py-1 rounded-[5px]">Услуга</p>
+                        <h1 className="uppercase font-semibold text-[35px] text-white w-110">Определим причину неисправности удаленно или на диагностике!</h1>
+                        <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Записаться на диагностику</button>
                     </div>
-                    <div>
-                        <SelectSectionService/>
+                </div>
+
+                <div className="lg:hidden bg-[url('./bgservice.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
+                    <div className="flex flex-col justify-end items-end gap-4 py-6 px-4 h-full">
+                        <p className="text-white bg-[#EE685F] w-fit px-3 py-1 rounded-[5px] text-sm">Акция</p>
+                        <h1 className="uppercase font-semibold text-lg text-white text-right">
+                            Определим причину неисправности<br/>удаленно<br/>или на диагностике!
+                        </h1>
+                        <button className="px-4 py-2 bg-white rounded-[5px] text-[14px]! font-medium text-[#3C89FD]">
+                            Записаться на диагностику
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Заберем ваш самокат для ремонта и вернем обратно */}
+            <div className="flex justify-center pt-8 lg:pt-[110px]">
+                <div className="hidden lg:block bg-[url('./bgservice2.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
+                    <div className="justify-start px-9 w-7xl grid gap-9 py-[67px]">
+                        <div>
+                            <h1 className="uppercase font-semibold text-[35px] text-black w-110">Заберем ваш самокат для ремонта и вернем обратно</h1>
+                            <p className="text-black">Доставка электросамокатов в/из сервисного центра курьером в Москве.</p>
+                        </div>
+                        <div className="grid gap-4">
+                            <h1 className="font-semibold">Что дает гидроизоляция:</h1>
+                            <div className="flex gap-10">
+                                <div className="flex gap-2.5">
+                                    <img src="./CheckCircle.svg" alt="" />
+                                    <p className="w-50">600 руб. в одну сторону</p>
+                                </div>
+                                <div className="flex gap-2.5">
+                                    <img src="./CheckCircle.svg" alt="" />
+                                    <p className="w-50">1000 руб. туда-обратно</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button className="w-fit px-[25px] py-[15px] bg-[#6F73EE] text-white rounded-[5px]">Заказать доставку</button>
+                    </div>
+                </div>
+
+                <div className="lg:hidden bg-[url('./bgservice2.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
+                    <div className="flex flex-col justify-start text-left items-start gap-4 py-6 px-4 h-full">
+                        <div>
+                            <h1 className="uppercase font-semibold text-lg text-black">Заберем ваш самокат<br/>для ремонта<br/>и вернем обратно</h1>
+                            <p>Доставка электросамокатов в/из сервисного центра курьером в Москве.</p>
+                        </div>
+                        <button className="px-4 py-2 bg-[#6F73EE] rounded-[5px] text-[14px]! font-medium text-white">
+                            Заказать доставку
+                        </button>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ import { VideoSwiper } from '../forms/VideoSwiper';
 import { BlogSwiper } from '../forms/BlogSwiper';
 import { HitProduct } from '../forms/HitProduct';
 import { ScrollToTop } from '../ScrollToTop';
+import { Link } from 'react-router-dom';
 
 export default function MainPage(){
    
@@ -94,7 +95,7 @@ export default function MainPage(){
                 </div>
 
                 {/* 3. Блоки "Подбор модели" и "Сервисное обслуживание" */}
-                <div className="flex justify-center mt-8 lg:mt-[60px]">
+                <div className="flex justify-center">
                     <div className="w-7xl">
                         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
                             {/* Подбор модели */}
@@ -123,10 +124,10 @@ export default function MainPage(){
                                         Крупнейший сервисный центр<br/>в России для продуктов Kugoo
                                     </p>
                                 </div>
-                                <button className="text-[#6F73EE] gap-2 flex items-center text-sm lg:text-base w-fit mt-4">
-                                    Подобрать модель
+                                <Link to='/service' className="text-[#6F73EE] gap-2 flex items-center text-sm lg:text-base w-fit mt-4">
+                                    Перейти в сервис
                                     <img src="./arrow4.svg" alt="" className="w-3 h-3 lg:w-4 lg:h-4" />
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
