@@ -1,15 +1,55 @@
 import SelectSectionService from "../forms/SelectSectionService";
+import SelectSectionServicePrice from "../forms/SelectSectionServicePrice";
+import { ScrollToTop } from "../ScrollToTop";
 
 export default function Service(){
     return(
         <>
+            <ScrollToTop/>
+            <div className="flex justify-center pt-8 ">
+                <div className="hidden lg:block bg-[url('./bgservicehead.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
+                    <div className="justify-start px-9 w-7xl grid gap-9 py-[67px]">
+                        <div>
+                            <h1 className="uppercase font-semibold text-[35px] text-white w-130">Ремонт и обслуживание товаров Kugoo Kirin</h1>
+                            <p className="text-white">в фирменных сервисых центрах</p>
+                        </div>
+                        <div className="flex gap-10 text-white items-center">
+                            <div className="flex gap-3 w-70">
+                                <img className="w-10" src="./rec3.svg" alt="" />
+                                <p>Сервисные центры в Москве, Санкт-Петербурге и Краснодаре</p>
+                            </div>
+                            <div className="flex gap-3 w-50">
+                                <img className="w-10" src="./rec2.svg" alt="" />
+                                <p>Гарантия 14 дней на ремонт</p>
+                            </div>
+                            <div className="flex gap-3 w-75">
+                                <img className="w-10" src="./rec1.svg" alt="" />
+                                <p>Всегда в наличии оригинальные запчасти от производителя</p>
+                            </div>
+                        </div>
+                        <button className="w-fit px-[25px] py-[15px] bg-white text-[#F3A712] rounded-[5px]">Записаться</button>
+                    </div>
+                </div>
+
+                <div className="lg:hidden bg-[url('./bgservicehead.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
+                    <div className="flex flex-col justify-start text-left items-start gap-4 py-6 px-4 h-full">
+                        <div>
+                            <h1 className="uppercase font-semibold text-lg text-black">Ремонт и обслуживание товаров Kugoo Kirin</h1>
+                            <p>в фирменных сервисых центрах</p>
+                        </div>
+                        <button className="px-4 py-2 bg-white text-[#F3A712] rounded-[5px] text-[14px]! font-medium ">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div className="grid justify-center container min-h-screen">
                 {/* Проведем диагностику и отремонтируем любую неисправность */}
                 <div className="my-20 grid">
                     <div className="justify-center">
                         <h1 className="uppercase font-semibold text-2xl sm:text-[35px] text-center">Проведем диагностику и отремонтируем любую неисправность</h1>
                     </div>
-                    <div className="sm:flex py-20 grid gap-10">
+                    <div className="sm:flex py-20 grid gap-20">
                         <div className="grid sm:text-right text-center gap-10">
                             <div className="gap-4 grid sm:w-80">
                                 <h1 className="text-2xl sm:text-[20px] font-semibold ">Ремонт от 1 дня</h1>
@@ -24,7 +64,7 @@ export default function Service(){
                                 <p className="text-xl sm:text-[16px]">Благодаря прямой связи с производителем имеем в наличии все необходимые новые комплектующие для ремонта.</p>
                             </div>
                         </div>
-                        <div className="hidden md:block"><img src="./pr.svg" alt="" /></div>
+                        <div className="hidden md:block "><img src="./pr.svg" alt="" /></div>
                         <div className="grid sm:text-left text-center gap-10">
                             <div className="gap-4 grid">
                                  <h1 className="sm:text-[20px] text-2xl font-semibold ">Гарантия</h1>
@@ -44,13 +84,14 @@ export default function Service(){
 
                 {/* Стоимость ремонта */}
                 <div className="grid gap-4 justify-center">
-                    <h1 className="text-2xl sm:text-[35px] font-semibold text-center">Стоимость ремонта</h1>
+                    <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость ремонта</h1>
                     <p className="text-center justify-center sm:w-170">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>                
                 </div>
                 <SelectSectionService/>
 
                 
             </div>
+            
 
                 {/* Определим причину неисправности удаленно или на диагностике! */}
             <div className="flex justify-center pt-8 lg:pt-[110px]">
@@ -74,45 +115,8 @@ export default function Service(){
                     </div>
                 </div>
             </div>
-
-            {/* Заберем ваш самокат для ремонта и вернем обратно */}
-            <div className="flex justify-center pt-8 lg:pt-[110px]">
-                <div className="hidden lg:block bg-[url('./bgservice2.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
-                    <div className="justify-start px-9 w-7xl grid gap-9 py-[67px]">
-                        <div>
-                            <h1 className="uppercase font-semibold text-[35px] text-black w-110">Заберем ваш самокат для ремонта и вернем обратно</h1>
-                            <p className="text-black">Доставка электросамокатов в/из сервисного центра курьером в Москве.</p>
-                        </div>
-                        <div className="grid gap-4">
-                            <h1 className="font-semibold">Что дает гидроизоляция:</h1>
-                            <div className="flex gap-10">
-                                <div className="flex gap-2.5">
-                                    <img src="./CheckCircle.svg" alt="" />
-                                    <p className="w-50">600 руб. в одну сторону</p>
-                                </div>
-                                <div className="flex gap-2.5">
-                                    <img src="./CheckCircle.svg" alt="" />
-                                    <p className="w-50">1000 руб. туда-обратно</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button className="w-fit px-[25px] py-[15px] bg-[#6F73EE] text-white rounded-[5px]">Заказать доставку</button>
-                    </div>
-                </div>
-
-                <div className="lg:hidden bg-[url('./bgservice2.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
-                    <div className="flex flex-col justify-start text-left items-start gap-4 py-6 px-4 h-full">
-                        <div>
-                            <h1 className="uppercase font-semibold text-lg text-black">Заберем ваш самокат<br/>для ремонта<br/>и вернем обратно</h1>
-                            <p>Доставка электросамокатов в/из сервисного центра курьером в Москве.</p>
-                        </div>
-                        <button className="px-4 py-2 bg-[#6F73EE] rounded-[5px] text-[14px]! font-medium text-white">
-                            Заказать доставку
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="flex justify-center pl-5 sm:p-0">
+            {/* {Сделаем гидроизоляцию электросамоката} */}
+            <div className="flex justify-center pl-5 sm:p-0 lg:pt-25">
                 <div className="sm:grid-cols-2 grid justify-between w-7xl"> 
                     <div className="hidden md:block"><img className="w-[600px]" src="./ser.svg" alt="" /></div>
                     <div className="grid gap-3 max-w-125">
@@ -168,17 +172,50 @@ export default function Service(){
                     <div className="hidden md:block"><img src="./sam.svg" alt="" /></div>
                 </div>
             </div>
-
-            {/* {Стоимость гидроизоляции и настройки} */}
-            <div className="justify-center grid mt-20">
-                <div className="sm:text-center">
-                    <h1 className="sm:text-[35px] text-2xl font-semibold text-center">Стоимость гидроизоляции и настройки</h1>
-                    <p>Для версии MAX и VIP гидроизоляция и настройка — бесплатно</p>
+            {/* Заберем ваш самокат для ремонта и вернем обратно */}
+            <div className="flex justify-center pt-8 lg:pt-[110px]">
+                <div className="hidden lg:block bg-[url('./bgservice2.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
+                    <div className="justify-start px-9 w-7xl grid gap-9 py-[67px]">
+                        <div>
+                            <h1 className="uppercase font-semibold text-[35px] text-black w-110">Заберем ваш самокат для ремонта и вернем обратно</h1>
+                            <p className="text-black">Доставка электросамокатов в/из сервисного центра курьером в Москве.</p>
+                        </div>
+                        <div className="grid gap-4">
+                            <h1 className="font-semibold">Что дает гидроизоляция:</h1>
+                            <div className="flex gap-10">
+                                <div className="flex gap-2.5">
+                                    <img src="./CheckCircle.svg" alt="" />
+                                    <p className="w-50">600 руб. в одну сторону</p>
+                                </div>
+                                <div className="flex gap-2.5">
+                                    <img src="./CheckCircle.svg" alt="" />
+                                    <p className="w-50">1000 руб. туда-обратно</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button className="w-fit px-[25px] py-[15px] bg-[#6F73EE] text-white rounded-[5px]">Заказать доставку</button>
+                    </div>
                 </div>
-                <div>
-                    
+
+                <div className="lg:hidden bg-[url('./bgservice2.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
+                    <div className="flex flex-col justify-start text-left items-start gap-4 py-6 px-4 h-full">
+                        <div>
+                            <h1 className="uppercase font-semibold text-lg text-black">Заберем ваш самокат<br/>для ремонта<br/>и вернем обратно</h1>
+                            <p>Доставка электросамокатов в/из сервисного центра курьером в Москве.</p>
+                        </div>
+                        <button className="px-4 py-2 bg-[#6F73EE] rounded-[5px] text-[14px]! font-medium text-white">
+                            Заказать доставку
+                        </button>
+                    </div>
                 </div>
             </div>
+            
+            {/* {Стоимость гидроизоляции и настройки} */}
+            <div className="grid gap-4 justify-center">
+                    <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость ремонта</h1>
+                    <p className="text-center justify-center sm:w-170">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>                
+                </div>
+                <SelectSectionServicePrice/>
         </>
     )
 }
