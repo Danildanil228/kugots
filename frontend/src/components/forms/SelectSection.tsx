@@ -24,7 +24,6 @@ export function SelectSection(){
     return(
         <>
             <div className="justify-center grid gap-8 lg:gap-13">
-                {/* Переключатели табов - адаптированные для мобильных */}
                 <div className="flex gap-3 lg:gap-5 justify-center">
                     <button 
                         onClick={() => setActiveTab('shop')}
@@ -44,11 +43,9 @@ export function SelectSection(){
                     </button>
                 </div>
                 
-                {/* Контент табов */}
                 <div className="flex justify-center">
                     {activeTab === 'shop' && (
                         <div className="grid gap-6 lg:gap-10 w-full max-w-7xl px-4 lg:px-0">
-                            {/* Первая строка - 3 колонки на десктопе, 1 на мобильном */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
                                 <div className="grid gap-2 text-start p-4 lg:p-5 border rounded-[5px] border-[#EAEBED]">
                                     <img src="./cart.svg" alt="" className="w-6 h-6 lg:w-auto lg:h-auto" />
@@ -67,7 +64,6 @@ export function SelectSection(){
                                 </div>
                             </div>
                             
-                            {/* Вторая строка */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
                                 <div className="grid gap-2 text-start p-4 lg:p-5 border rounded-[5px] border-[#EAEBED]">
                                     <img src="./delivery.svg" alt="" className="w-6 h-6 lg:w-auto lg:h-auto" />
@@ -95,7 +91,6 @@ export function SelectSection(){
                     
                     {activeTab === 'service' && (
                         <div className="grid gap-6 lg:gap-10 w-full max-w-7xl px-4 lg:px-0">
-                            {/* Первая строка для сервиса */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
                                 <div className="grid gap-2 text-start p-4 lg:p-5 border rounded-[5px] border-[#EAEBED]">
                                     <img src="./cart.svg" alt="" className="w-6 h-6 lg:w-auto lg:h-auto" />
@@ -114,7 +109,6 @@ export function SelectSection(){
                                 </div>
                             </div>
                             
-                            {/* Вторая строка для сервиса */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
                                 <div className="text-start p-4 lg:p-5 border rounded-[5px] border-[#EAEBED]">
                                     <img src="./delivery.svg" alt="" className="w-6 h-6 lg:w-auto lg:h-auto" />

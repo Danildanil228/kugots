@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Popover } from "@mui/material";
 import { Link, useLocation } from 'react-router-dom';
 import { CatalogDropdown } from "./buttons/CatalogDropdown";
-import { CompareIcon } from "./buttons/CompareIcon";
 import { Messengers } from "./buttons/Messengers";
 import { Search } from "./forms/Search";
 import { AlertDialog, Button, Checkbox } from '@radix-ui/themes';
@@ -10,7 +9,7 @@ import { PhoneNumber } from './forms/PhoneNumber';
 import { CartMenu } from './forms/CartMenu';
 import { LikeMenu } from "./forms/LikeMenu";
 import { CompareMenu } from "./forms/CompareMenu";
-import { API_BASE_URL } from "../config/api";
+import { useFormSubmit } from "./forms/useFormSubmit";
 
 export function Header(){
     const location = useLocation();
@@ -77,53 +76,22 @@ export function Header(){
         setError('');
     };
 
+    const { submit: submitCallOrder, isLoading: isCallLoading, error: callError } = useFormSubmit({
+    endpoint: '/api/call-order',
+    onSuccess: () => {
+        setIsSubmitted(true);
+        setPhone('');
+        setIsPhoneValid(false);
+        setIsChecked(true);
+    }
+    });
+
     const handleCallOrder = async () => {
-        if (!isPhoneValid || !isChecked) return;
-        setIsLoading(true);
-        setError('');
-
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/call-order`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                    phone: phone,
-                    type: 'callback-consult'
-                }),
-            });
-
-            if (!response.ok) {
-                let errorMessage = 'Ошибка при отправке';
-                
-                try {
-                    const errorData = await response.json();
-                    errorMessage = errorData.message || errorMessage;
-                } catch (jsonError) {
-                    const textError = await response.text();
-                    errorMessage = textError || errorMessage;
-                }
-                
-                throw new Error(errorMessage);
-            }
-            const result = await response.json();
-
-            if (result.success) {
-                setIsSubmitted(true); 
-                setPhone('');
-                setIsPhoneValid(false);
-                setIsChecked(true);
-            } else {
-                throw new Error(result.message || 'Произошла ошибка');
-            }
-
-        } catch (err) {
-            console.error('Ошибка:', err);
-            setError(err instanceof Error ? err.message : 'Произошла ошибка при отправке заявки');
-        } finally {
-            setIsLoading(false);
-        }
+    if (!isPhoneValid || !isChecked) return;
+    await submitCallOrder({ 
+        phone: phone,
+        type: 'callback-consult'
+    });
     };
 
     const handleCloseDialog = () => {
@@ -135,24 +103,18 @@ export function Header(){
 
     return(
         <>
-            {/* Mobile Header */}
             <div className="lg:hidden fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-200 shadow-sm">
-                {/* Верхняя строка с логотипом, кнопкой звонка и меню */}
                 <div className="flex items-center justify-between p-4">
                     <Link to="/main" className="flex-shrink-0">
                         <h1 className="font-bold text-2xl">KUGOO</h1>
                     </Link>
-                    
-                    <div className="flex items-center gap-4">
-                        {/* Кнопка звонка вместо номера телефона */}
+                    <div className="flex items-center gap-4">   
                         <button 
                             onClick={() => setIsMobileCallModalOpen(true)}
                             className="p-2"
                         >
                             <img src="./call.svg" alt="Позвонить" className="w-6 h-6" />
                         </button>
-                        
-                        {/* Кнопка меню */}
                         <button 
                             onClick={() => setIsMobileMenuOpen(true)}
                             className="p-2"
@@ -161,8 +123,6 @@ export function Header(){
                         </button>
                     </div>
                 </div>
-                
-                {/* Поисковая строка */}
                 {!isMobileMenuOpen && (
                     <div className="px-4 pb-4">
                         <div className="search flex border border-[#6F73EE] rounded-[5px] justify-between">
@@ -182,16 +142,12 @@ export function Header(){
                     </div>
                 )}
             </div>
-
-            {/* Mobile Call Modal */}
             <div 
                 className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
                     isMobileCallModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                 }`}
                 onClick={() => setIsMobileCallModalOpen(false)}
             />
-            
-            {/* Mobile Call Modal Content */}
             <div 
                 className={`lg:hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 bg-white rounded-lg z-50 transition-all duration-300 ${
                     isMobileCallModalOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
@@ -232,7 +188,6 @@ export function Header(){
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
             <div 
                 className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
                     isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -240,14 +195,13 @@ export function Header(){
                 onClick={() => setIsMobileMenuOpen(false)}
             />
             
-            {/* Mobile Menu */}
             <div 
                 className={`lg:hidden fixed top-0 left-0 bottom-0 w-80 bg-white z-50 transform transition-transform duration-300 ${
                     isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >
                 <div className="h-full flex flex-col">
-                    {/* Заголовок меню */}
+                    
                     <div className="border-b border-gray-200 p-4">
                         <div className="flex items-center justify-between">
                             <h2 className="text-xl font-semibold">Меню</h2>
@@ -260,7 +214,7 @@ export function Header(){
                         </div>
                     </div>
                     
-                    {/* Пункты меню */}
+                  
                     <div className="flex-1 overflow-y-auto">
                         {mobileMenuItems.map((item) => (
                             <Link
@@ -284,7 +238,6 @@ export function Header(){
                         ))}
                     </div>
                     
-                    {/* Кнопка заказа звонка в меню */}
                     <div className="p-4 border-t border-gray-200">
                         <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                             <AlertDialog.Trigger className="w-full">
@@ -321,7 +274,7 @@ export function Header(){
                                                 />
                                                 {error && (
                                                     <div className="text-red-500 text-sm mt-1 text-center">
-                                                        {error}
+                                                        {callError}
                                                     </div>
                                                 )}
                                                 
@@ -334,9 +287,9 @@ export function Header(){
                                                                 : 'bg-[#6F73EE] hover:bg-[#5a5fc9]'
                                                     }`}
                                                     onClick={isSubmitted ? undefined : handleCallOrder}
-                                                    disabled={isSubmitted || !isPhoneValid || !isChecked || isLoading}
+                                                    disabled={isSubmitted || !isPhoneValid || !isChecked || isCallLoading}
                                                 >
-                                                    {isSubmitted ? 'Отправлено!' : (isLoading ? 'Отправка...' : 'Позвоните мне')}
+                                                    {isSubmitted ? 'Отправлено!' : (isCallLoading  ? 'Отправка...' : 'Позвоните мне')}
                                                 </button>
                                                 
                                                 <div className='flex items-baseline gap-3'>
@@ -359,7 +312,6 @@ export function Header(){
                 </div>
             </div>
 
-            {/* Desktop Header */}
             <div className="hidden lg:block">
                 <div className=''>
                     <div className="justify-center flex my-4">

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { More } from "../buttons/More";
 import { AccordionDemo } from "../forms/AccordionDemo";
 import { Category } from "../forms/Category";
@@ -22,8 +22,6 @@ export default function MainPage(){
         <>
             <div className="min-h-screen">
                 <ScrollToTop/>
-                
-                {/* Слайдер */}
                 <div className="">
                     <SwiperHeader/>
                 </div>
@@ -135,7 +133,6 @@ export default function MainPage(){
 
                 {/* 4. Акционный баннер */}
                 <div className="flex justify-center pt-8 lg:pt-[110px]">
-                    {/* Desktop версия - ТОЧНЫЙ ВАШ КОД */}
                     <div className="hidden lg:block bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
                         <div className="justify-end w-7xl grid gap-9 py-[67px]">
                             <p className="text-white bg-[#EE685F] w-fit px-[11px] py-1 rounded-[5px]">Акция</p>
@@ -143,8 +140,6 @@ export default function MainPage(){
                             <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Подробнее</button>
                         </div>
                     </div>
-
-                    {/* Mobile версия */}
                     <div className="lg:hidden bg-[url('./bgmain2.svg')] bg-center bg-cover bg-no-repeat rounded-[5px] w-full max-w-[95vw] min-h-[200px]">
                         <div className="flex flex-col justify-end items-end gap-4 py-6 px-4 h-full">
                             <p className="text-white bg-[#EE685F] w-fit px-3 py-1 rounded-[5px] text-sm">Акция</p>
@@ -164,11 +159,9 @@ export default function MainPage(){
 
                 {/* 6. О компании Kugoo */}
                 <div className="flex justify-center my-8 lg:my-[100px]">
-                    {/* Desktop версия - по сетке 1440px */}
                     <div className="hidden lg:block w-[1440px]">
                         <div className="bg-[#F4F7FB] rounded-[10px] p-7 w-full">
                             <div className="flex justify-between">
-                                {/* Левая часть - изображение */}
                                 <div className="bg-[url('./bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-[606px] h-[565px] relative">
                                     <div className="absolute bottom-5 right-5">
                                         <div className="TEXT grid w-fit gap-4 rounded-2xl text-white backdrop-blur-[10px]">
@@ -294,8 +287,6 @@ export default function MainPage(){
                                             className="w-12 h-12 lg:w-20 lg:h-20 transition-transform hover:scale-110" 
                                         />
                                     </button>
-                                    
-                                    {/* Overlay для лучшей видимости кнопки play */}
                                     <div className="absolute inset-0 bg-black/20 hover:bg-black/30 transition-colors rounded-[5px]"></div>
                                 </div>
                             )}
@@ -330,7 +321,7 @@ export default function MainPage(){
                 </div>
                 <CaruselSlider/>
 
-         {/* Заголовок секции Видеообзоры - отдельная секция */}
+         {/* Заголовок секции Видеообзоры */}
                 <div className='justify-center my-8 lg:my-14'>
                     <div className='w-full max-w-7xl mx-auto px-4 lg:px-0'>
                         <div className='flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 lg:gap-0'>
@@ -350,7 +341,6 @@ export default function MainPage(){
                     </div>
                 </div>
 
-                {/* VideoSwiper компонент - отдельная секция */}
                 <div className='justify-center flex mb-8 lg:mb-20'>
                     <VideoSwiper/>
                 </div>

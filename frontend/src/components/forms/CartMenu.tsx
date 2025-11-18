@@ -4,6 +4,7 @@ import { ScrollArea } from "@radix-ui/themes";
 import IconButton from '@mui/material/IconButton';
 import { useCart } from "../../contexts/CartContext";
 import { Link, useLocation } from 'react-router-dom';
+import { formatPrice } from '../format';
 
 export function CartMenu(){
     const navItems =[
@@ -31,18 +32,6 @@ export function CartMenu(){
             event?.preventDefault?.();
         }
         setAnchorEl(null);
-    };
-
-    const formatPrice = (price: number) => {
-        if (!price) return '';
-        
-        let cleanPrice = price.toString()
-            .replace(/[,.]00$/, '')
-            .replace(/[^\d,.]/g, '');
-        
-        cleanPrice = cleanPrice.replace(/[,.]/, '');
-        
-        return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     };
 
     return(

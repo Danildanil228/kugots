@@ -15,17 +15,14 @@ export function BlogSwiper(){
                     modules={[FreeMode]}
                     className="w-full lg:w-7xl px-4 lg:px-0"
                     breakpoints={{
-                        // Mobile
                         320: {
                             slidesPerView: 1.1,
                             spaceBetween: 16
                         },
-                        // Tablet
                         768: {
                             slidesPerView: 2.1,
                             spaceBetween: 20
                         },
-                        // Desktop
                         1024: {
                             slidesPerView: 'auto',
                             spaceBetween: 30

@@ -3,7 +3,6 @@ import { Navigation } from 'swiper/modules';
 import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { BackCatalog } from '../buttons/BackCatalog';
 import { Catologist } from '../buttons/Catologist';
 
 export function SwiperHeader(){
@@ -15,7 +14,6 @@ export function SwiperHeader(){
     return(
         <>
             <div className="relative py-[30px]">
-                {/* Десктоп версия слайдера */}
                 <div className="hidden lg:block relative">
                     <Swiper
                         navigation={{
@@ -65,11 +63,7 @@ export function SwiperHeader(){
                         </button>
                     </div>
                     </Swiper>
-
-                    {/* Десктоп навигация слева */}
                 </div>
-
-                {/* Мобильная версия слайдера */}
                 <div className="lg:hidden w-full px-4">
                     <Swiper
                         modules={[Navigation]}
@@ -118,7 +112,6 @@ export function SwiperHeader(){
                     </Swiper>
                 </div>
                 
-                {/* Мобильная навигация */}
                 <div className="lg:hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 flex items-center gap-2">
                     <div className="flex gap-2">
                         {[...Array(totalSlides)].map((_, index) => (

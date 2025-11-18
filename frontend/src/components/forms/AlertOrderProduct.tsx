@@ -1,7 +1,9 @@
 import { AlertDialog, Checkbox } from "@radix-ui/themes";
 import { useState } from "react";
 import { PhoneNumber } from "./PhoneNumber";
-import { API_BASE_URL } from "../../config/api";
+import { Modal, ModalClose } from "../ui/Modal";
+import { formatPrice } from "../format";
+import { useFormSubmit } from "./useFormSubmit";
 
 interface Product {
   id: number;
@@ -18,82 +20,40 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
     const [phone, setPhone] = useState('');
     const [isPhoneValid, setIsPhoneValid] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
     const [isChecked, setIsChecked] = useState(true);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const formatPrice = (price: number) => {
-        if (!price) return '';
-        let cleanPrice = price.toString()
-            .replace(/[,.]00$/, '')
-            .replace(/[^\d,.]/g, '');
-        cleanPrice = cleanPrice.replace(/[,.]/, '');
-        return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    };
+    const { submit, isLoading, error } = useFormSubmit({
+      endpoint: '/api/call-order',
+      onSuccess: () => {
+        setIsSubmitted(true);
+        setPhone('');
+        setIsPhoneValid(false);
+        setIsChecked(true);
+      }
+    });
 
     const handlePhoneChange = (value: string, isValid: boolean) => {
         setPhone(value);
         setIsPhoneValid(isValid);
-        setError('');
     };
 
     const handleCloseDialog = () => {
         setIsDialogOpen(false);
         setPhone('');
         setIsPhoneValid(false);
-        setError('');
         setIsSubmitted(false);
     };
 
     const handleCallOrder = async () => {
         if (!isPhoneValid || !isChecked) return;
-        setIsLoading(true);
-        setError('');
-
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/call-order`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                    phone: phone,
-                    type: 'orderProduct',
-                    productId: product.id,
-                    productName: product.name
-                }),
-            });
-
-            if (!response.ok) {
-                let errorMessage = 'Ошибка при отправке';
-                try {
-                    const errorData = await response.json();
-                    errorMessage = errorData.message || errorMessage;
-                } catch (jsonError) {
-                    const textError = await response.text();
-                    errorMessage = textError || errorMessage;
-                }
-                throw new Error(errorMessage);
-            }
-
-            const result = await response.json();
-
-            if (result.success) {
-                setIsSubmitted(true); 
-                setPhone('');
-                setIsPhoneValid(false);
-                setIsChecked(true);
-            } else {
-                throw new Error(result.message || 'Произошла ошибка');
-            }
-
-        } catch (err) {
-            console.error('Ошибка:', err);
-            setError(err instanceof Error ? err.message : 'Произошла ошибка при отправке заявки');
-        } finally {
-            setIsLoading(false);
-        }
+        
+        await submit({ 
+          phone: phone,
+          type: 'orderProduct',
+          productId: product.id,
+          productName: product.name
+        });
     };
 
     return(
@@ -107,18 +67,9 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
                         Оформить предзаказ
                     </button>
                 </AlertDialog.Trigger>
-                <AlertDialog.Content maxWidth="600px">
+                <Modal open={isDialogOpen} onOpenChange={setIsDialogOpen} maxWidth="600px">
                     <div className="p-6">
-                        <div className="justify-end flex mb-4">
-                            <AlertDialog.Action>
-                                <img 
-                                    src='./crest.svg' 
-                                    className='rotate-45 cursor-pointer'
-                                    alt="Закрыть"
-                                    onClick={handleCloseDialog}
-                                />
-                            </AlertDialog.Action>
-                        </div>
+                        <ModalClose onClick={handleCloseDialog} />
                         <div className="flex gap-6">
                             <div className="flex-1 grid gap-4">
                                 <h1 className="text-[25px] font-semibold">
@@ -172,7 +123,7 @@ export function AlertOrderProduct({ product }: AlertOrderProductProps) {
                             </div>
                         </div>
                     </div>
-                </AlertDialog.Content>
+                </Modal>
             </AlertDialog.Root>
         </>
     );

@@ -14,15 +14,14 @@ export function VideoSwiper(){
         setActiveVideo(index);
     };
 
-    // Адаптивные размеры для разных устройств
     const getVideoSize = (index: number) => {
-        if (window.innerWidth < 1024) { // mobile
+        if (window.innerWidth < 1024) { 
             return "w-full h-[200px]";
-        } else if (window.innerWidth < 1280) { // tablet
+        } else if (window.innerWidth < 1280) { 
             return activeVideo === index 
                 ? "w-full h-[250px]" 
                 : "w-full h-[180px]";
-        } else { // desktop
+        } else { 
             return activeVideo === index 
                 ? "w-[530px] h-[300px]" 
                 : "w-[350px] h-[200px]";
@@ -39,7 +38,6 @@ export function VideoSwiper(){
 
     return(
         <>
-            {/* Desktop версия - горизонтальная с анимацией ТОЛЬКО видео */}
             <div className="hidden lg:flex justify-between w-full max-w-7xl gap-6 items-start h-100 mb-20 mt-14 mx-auto"
                 onMouseLeave={() => setActiveVideo(0)}
             >
@@ -49,7 +47,6 @@ export function VideoSwiper(){
                         className={`${getTransitionClass} cursor-pointer flex flex-col flex-1`}
                         onMouseEnter={() => handleMouseEnter(index)}
                     >
-                        {/* Блок видео с анимацией */}
                         <div className={`${getTransitionClass} min-h-0`}>
                             {!playingStates[index] && (
                                 <div 
@@ -78,7 +75,6 @@ export function VideoSwiper(){
                             )}
                         </div>
                         
-                        {/* Заголовок БЕЗ анимации */}
                         <div className="mt-4 lg:mt-5">
                             <p className="font-semibold text-sm lg:text-base text-center lg:text-left">
                                 {video.title}
@@ -88,7 +84,6 @@ export function VideoSwiper(){
                 ))}
             </div>
 
-            {/* Mobile & Tablet версия - вертикальная карусель БЕЗ пагинации */}
             <div className="lg:hidden w-full px-4">
                 <div className="grid gap-6 md:gap-8">
                     {videos.map((video, index) => (
@@ -131,8 +126,6 @@ export function VideoSwiper(){
                         </div>
                     ))}
                 </div>
-                
-                {/* Пагинация УБРАНА */}
             </div>
         </>
     )

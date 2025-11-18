@@ -1,17 +1,9 @@
 import { Breadcrumbs } from "../Breadcrumbs";
+import { formatPrice } from '../format';
 import { useCompare } from "../../contexts/CompareContext";
 
 export default function Compare() {
     const { compareItems, removeFromCompare } = useCompare();
-
-    const formatPrice = (price: number) => {
-        if (!price) return '';
-        let cleanPrice = price.toString()
-            .replace(/[,.]00$/, '')
-            .replace(/[^\d,.]/g, '');
-        cleanPrice = cleanPrice.replace(/[,.]/, '');
-        return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    };
 
     return (
         <>

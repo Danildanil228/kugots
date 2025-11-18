@@ -1,11 +1,9 @@
-import { CartIcon } from "../buttons/CartIcon";
-import { CompareIcon } from "../buttons/CompareIcon";
-import { HeartAlt } from "../buttons/HeartAlt";
 import { WatchAll } from "../buttons/WatchAll";
-import { useState, useEffect, memo, useCallback } from 'react';
-import axios from 'axios';
+import { useState, memo, useCallback } from 'react';
 import { AlertOrderProduct } from "./AlertOrderProduct";
-import { API_BASE_URL } from "../../config/api";
+import { ActionIcon } from "../buttons/ActionIcon";
+import { useApiData } from "../useApiData";
+import { formatPrice, getTagColor } from '../format';
 
 interface ProductItem {
   id: number;
@@ -27,25 +25,6 @@ interface ProductProps {
 }
 
 const ProductItem = memo(({ product }: { product: ProductItem }) => {
-  const formatPrice = useCallback((price: number) => {
-    if (!price) return '';
-    
-    let cleanPrice = price.toString()
-      .replace(/[,.]00$/, '')
-      .replace(/[^\d,.]/g, '');
-    
-    cleanPrice = cleanPrice.replace(/[,.]/, '');
-    
-    return cleanPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  }, []);
-
-  const getTagColor = useCallback((descr: string) => {
-    if (!descr) return 'opacity-0';
-    if (descr === 'Хит') return 'bg-[#EE685F]';
-    if (descr === 'Новинка') return 'bg-[#75D14A]';
-    return 'bg-[#EE685F]';
-  }, []);
-
   return (
     <div className="border-[#EAEBED] border rounded-xl w-full">
       <div 
@@ -56,7 +35,7 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
           <div className={`py-1 px-2 rounded-[5px] text-white gap-[30px] text-[12px] ${getTagColor(product.descr)}`}>
             {product.descr}
           </div>
-          <CompareIcon product={{
+          <ActionIcon type="compare" product={{
             id: product.id,
             name: product.name,
             price: product.price,
@@ -100,14 +79,14 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
             </div>
             <div className="flex gap-2 lg:gap-2.5">
               {product.count > 0 && (
-                <CartIcon product={{
+                <ActionIcon type="cart" product={{
                   id: product.id,
                   name: product.name,
                   price: product.price,
                   img: product.img
                 }}/>
               )}
-              <HeartAlt product={{
+              <ActionIcon type="like" product={{
                 id: product.id,
                 name: product.name,
                 price: product.price,
@@ -140,25 +119,9 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
 ProductItem.displayName = 'ProductItem';
 
 export const Product = memo(({ activeFilter }: ProductProps) => {
-  const [data, setData] = useState<ProductItem[]>([]);
+  
   const [showAll, setShowAll] = useState(false);
   
-  const fetchItems = useCallback(async (filter = '') => {
-    try {
-      let url = `${API_BASE_URL}/product`;
-      const filterType = getFilterType(filter);
-      
-      if (filterType) {
-        url += `?type=${filterType}`;
-      }
-      
-      console.log('Fetching from:', url, 'Filter:', filter, 'FilterType:', filterType);
-      const response = await axios.get(url);
-      setData(response.data.products || response.data);
-    } catch (error) {
-      console.error("Error fetching data", error);
-    }
-  }, []);
   
   const getFilterType = useCallback((buttonText: string) => {
     switch(buttonText) {
@@ -169,15 +132,15 @@ export const Product = memo(({ activeFilter }: ProductProps) => {
       default: return '';
     }
   }, []);
-
+  
   const handleShowAll = useCallback(() => {
     setShowAll(prev => !prev);
   }, []);
-
-  useEffect(() => {
-    console.log('Active filter changed:', activeFilter);
-    fetchItems(activeFilter);
-  }, [activeFilter, fetchItems]);
+  
+  const filterType = getFilterType(activeFilter);
+  const endpoint = filterType ? `/product?type=${filterType}` : '/product';
+  const { data, loading } = useApiData<ProductItem>(endpoint, [activeFilter]);
+  
 
   const visibleProducts = showAll ? data : data.slice(0, 8);
   const shouldShowWatchAll = data.length > 8;
