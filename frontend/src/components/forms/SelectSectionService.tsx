@@ -82,7 +82,6 @@ export default function SelectSectionService(){
                             </div>
                             <div className="flex">
                                 <p>fsdfsd</p>
-                                <p>fdfsdf</p>
                             </div>
                         </div>
                        

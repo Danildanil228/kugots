@@ -7,9 +7,10 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { MobileNavigation } from './components/MobileNavigation'
 import Service from './components/pages/Service';
+import MainPage from './components/pages/MainPage';
 
 // Lazy loaded pages
-const MainPage = lazy(() => import('./components/pages/MainPage'));
+
 const AboutPage = lazy(() => import('./components/pages/AboutPage'));
 const Delivery = lazy(() => import('./components/pages/Delivery'));
 const TestDrive = lazy(() => import('./components/pages/TestDrive'));
