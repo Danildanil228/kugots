@@ -119,7 +119,7 @@ export default function SelectSectionServicePrice() {
                 </div>
             </div>
 
-            <div className="flex justify-center mt-6 lg:mt-8">
+            <div className="flex justify-center mt-6 lg:mt-8 mb-20">
                 <button className="bg-[#6F73EE] text-white py-3 lg:py-4 px-8 lg:px-12 rounded-[5px] hover:bg-[#5a5fd8] transition-colors text-sm lg:text-base font-medium">
                     {getButtonText()}
                 </button>

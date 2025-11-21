@@ -1,5 +1,7 @@
+import { AccordionDemo } from "../forms/AccordionDemo";
 import SelectSectionService from "../forms/SelectSectionService";
 import SelectSectionServicePrice from "../forms/SelectSectionServicePrice";
+import TeamSwiper from "../forms/TeamSwiper";
 import { ScrollToTop } from "../ScrollToTop";
 
 export default function Service(){
@@ -83,7 +85,7 @@ export default function Service(){
                 </div>
 
                 {/* Стоимость ремонта */}
-                <div className="grid gap-4 justify-center">
+                <div className="grid gap-4 justify-center mb-10">
                     <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость ремонта</h1>
                     <p className="text-center justify-center sm:w-170">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>                
                 </div>
@@ -117,7 +119,7 @@ export default function Service(){
             </div>
             {/* {Сделаем гидроизоляцию электросамоката} */}
             <div className="flex justify-center pl-5 sm:p-0 lg:pt-25">
-                <div className="sm:grid-cols-2 grid justify-between w-7xl"> 
+                <div className="grid sm:grid-cols-2 justify-between w-7xl gap-8"> 
                     <div className="hidden md:block"><img className="w-[600px]" src="./ser.svg" alt="" /></div>
                     <div className="grid gap-3 max-w-125">
                         <h1 className="text-[25px] font-semibold">Сделаем гидроизоляцию электросамоката</h1>
@@ -211,11 +213,133 @@ export default function Service(){
             </div>
             
             {/* {Стоимость гидроизоляции и настройки} */}
-            <div className="grid gap-4 justify-center">
-                    <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость ремонта</h1>
-                    <p className="text-center justify-center sm:w-170">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>                
+            <div className="grid gap-4 justify-center mb-10">
+                <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость гидроизоляции и настройки</h1>
+                <p className="text-center justify-center">Для версии MAX и VIP гидроизоляция и настройка — бесплатно</p>                
+            </div>
+            <SelectSectionServicePrice/>
+
+            {/* {Команда сервисного центра} */}
+            <div className="flex justify-center container">
+                <div>
+                    <div>
+                        <h1 className="font-semibold uppercase text-2xl sm:text-[35px] text-center mb-10">Команда сервисного центра</h1>
+                    </div>
+                    <div className="sm:w-7xl  sm:justify-between flex! flex-wrap gap-10">
+                        <div className="flex gap-8 pl-8 pr-4 py-4 border rounded-xl border-[#EAEBED]">
+                            <img src="./com.svg" alt="" />
+                            <p className="sm:w-91 text-[14px]">Специалисты сервисного центра подготавливают самокаты к отправке вам, проводят техническое обслуживание, тюнингуют и при необходимости ремонтируют их</p>
+                        </div>
+                        <div className="flex gap-8 pl-8 pr-4 py-4 border rounded-xl border-[#EAEBED]">
+                            <img src="./samk.svg" alt="" />
+                            <p className="sm:w-91 text-[14px]">Консультант сервисного центра сопровождает васна протяжении всего времени эксплуатации и помогает решить возникающие вопросы.</p>
+                        </div>
+                    </div>
                 </div>
-                <SelectSectionServicePrice/>
+            </div>
+            <TeamSwiper/>
+            {/* {Посмотрите на процесс работы} */}
+            <div className="hidden md:block">
+                <div className="justify-center grid mb-10">
+                    <div className="justify-between flex w-7xl items-center ">
+                        <h1 className="text-[35px] font-semibold uppercase">Посмотрите<br/>на процесс работы</h1>
+                        <div className="flex bg-[#6F73EE] py-4 px-6 rounded-[5px]">
+                            <img src="./set.svg" alt="" />
+                            <div className="text-white">
+                                <p className=" opacity-70 text-[12px]">В среднем</p>
+                                <h2 className=" text-[20px]">350 доработок</h2>
+                                <p>специалисты выполняют за 1 месяц</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="justify-center flex">
+                    <div className="grid gap-7">
+                        <div className="flex justify-between w-[1440px]">
+                            <img src="./service1.svg" alt="" />
+                            <img src="./service2.svg" alt="" />
+                            <img src="./service5.svg" alt="" />
+                        </div>
+                        <div className="flex justify-between">
+                            <img src="./service4.svg" alt="" />
+                            <img src="./service3.svg" alt="" />
+                            <img src="./service6.svg" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* {Отвечаем на вопросы покупателей} */}
+            <div className="grid justify-center gap-6 lg:gap-[60px] my-8 lg:my-20">
+                <div className="flex justify-center">
+                    <h2 className="text-xl lg:text-[35px] uppercase font-semibold text-center px-4 lg:px-0">
+                        Отвечаем на вопросы покупателей
+                    </h2>
+                </div>
+                <div className="w-full px-4 lg:px-0">
+                    <AccordionDemo/>
+                </div>
+            </div>  
+
+            {/* {Адреса сервисных центров} */}
+            <div className="justify-center grid container">
+                <div className="text-center">
+                    <h1 className="text-2xl uppercase font-semibold sm:text-[35px]">Адреса сервисных центров</h1>
+                </div>
+                <div className="sm:w-[1440px] bg-[#F4F7FB] py-10 rounded-2xl justify-center gap-30 flex-wrap flex my-20">
+                    <div className="grid gap-4">
+                        <h1 className="font-semibold text-[20px] uppercase">Москва</h1>
+                        <div className="flex items-start gap-4">
+                            <img src="./pin.svg" className="w-[18px]" alt="" />
+                            <div>
+                                <p className="font-semibold">Ткацкая улица, 5с16</p>
+                                <p>Пн - Вс 10:00 - 19:00</p>
+                                <a href="">Смотреть на карте</a>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <img src="./call.svg" className="w-[18px]" alt="" />
+                            <p className="font-semibold">+7 (499) 350-76-92</p>
+                        </div>
+                        <div className="flex gap-4">
+                            <img src="./warning.svg" className="w-[18px]" alt="" />
+                            <p className="w-70">При себе иметь паспорт для прохождения через пропускной пункт</p>
+                        </div>
+                    </div>
+                    <div className="grid gap-4">
+                        <h1 className="font-semibold text-[20px] uppercase">Санкт-Петербург</h1>
+                        <div className="flex items-start gap-4">
+                            <img src="./pin.svg" className="w-[18px]" alt="" />
+                            <div>
+                                <p className="font-semibold">Восточно-Кругликовская улица, 86</p>
+                                <p>Вт - Сб 10:00 - 20:00</p>
+                                <a href="">Смотреть на карте</a>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <img src="./call.svg" className="w-[18px]" alt="" />
+                            <p className="font-semibold">+7 (499) 350-76-92</p>
+                        </div>
+                    </div>
+                    
+                    <div className="grid gap-4">
+                        <h1 className="font-semibold text-[20px] uppercase">Краснодар</h1>
+                        <div className="flex items-start gap-4">
+                            <img src="./pin.svg" className="w-[18px]" alt="" />
+                            <div>
+                                <p className="font-semibold">Восточно-Кругликовская улица, 86</p>
+                                <p>Вт - Сб 10:00 - 20:00</p>
+                                <a href="">Смотреть на карте</a>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <img src="./call.svg" className="w-[18px]" alt="" />
+                            <p className="font-semibold">+7 (499) 350-76-92</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </>
     )
 }
