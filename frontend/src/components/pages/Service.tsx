@@ -1,12 +1,88 @@
+
 import { AccordionDemo } from "../forms/AccordionDemo";
 import SelectSectionService from "../forms/SelectSectionService";
 import SelectSectionServicePrice from "../forms/SelectSectionServicePrice";
 import TeamSwiper from "../forms/TeamSwiper";
 import { ScrollToTop } from "../ScrollToTop";
+import { useState } from "react";
+import { Modal, ModalClose } from "../ui/Modal";
+import { PhoneNumber } from "../forms/PhoneNumber";
+import { AlertDialog, Checkbox, RadioCards } from "@radix-ui/themes";
+import { useApiData } from "../useApiData";
+import { useFormSubmit } from "../forms/useFormSubmit";
+import { Breadcrumbs } from "../Breadcrumbs";
 
 export default function Service(){
+    const [email, setEmail] = useState('');
+        const [isEmailValid, setIsEmailValid] = useState(false);
+        const [isSubscribeDialogOpen, setIsSubscribeDialogOpen] = useState(false); 
+        const [isCallDialogOpen, setIsCallDialogOpen] = useState(false); 
+        const [phone, setPhone] = useState('');
+        const [isPhoneValid, setIsPhoneValid] = useState(false);
+        const [isChecked, setIsChecked] = useState(true);
+        const [isSubmitted, setIsSubmitted] = useState(false);
+    
+        const { data: submesData } = useApiData('/submes');
+    
+        const { submit: submitCallOrder, isLoading: isCallLoading, error: callError } = useFormSubmit({
+            endpoint: '/api/call-order',
+            onSuccess: () => {
+                setIsSubmitted(true);
+                setPhone('');
+                setIsPhoneValid(false);
+                setIsChecked(true);
+            }
+        });
+    
+        const { submit: submitSubscribe, isLoading: isSubscribeLoading, error: subscribeError } = useFormSubmit({
+            endpoint: '/api/subscribe',
+            onSuccess: () => {
+                setIsSubscribeDialogOpen(true);
+                setEmail('');
+                setIsEmailValid(false);
+            }
+        });
+    
+        const handleEmailChange = (value: string, isValid: boolean) => {
+            setEmail(value);
+            setIsEmailValid(isValid);
+        };
+    
+        const handleSubscribe = async () => {
+            if (!isEmailValid) return;
+            await submitSubscribe({ email: email });
+        };
+    
+        const handlePhoneChange = (value: string, isValid: boolean) => {
+            setPhone(value);
+            setIsPhoneValid(isValid);
+        };
+    
+        const handleCallOrder = async () => {
+            if (!isPhoneValid || !isChecked) return;
+            await submitCallOrder({ 
+                phone: phone,
+                type: 'callback-consult'
+            });
+        };
+    
+        const handleCloseCallDialog = () => {
+            setIsCallDialogOpen(false);
+            setPhone('');
+            setIsPhoneValid(false);
+            setIsSubmitted(false);
+        };
+    
+        const handleCloseSubscribeDialog = () => {
+            setIsSubscribeDialogOpen(false);
+        };
     return(
         <>
+            <div className="flex justify-center container mt-10!">
+                <div className="justify-between w-7xl">
+                    <Breadcrumbs items={[{label: 'Главная', path: '/main'}, {label: 'Сервис'}]}/>   
+                </div>
+            </div>
             <ScrollToTop/>
             <div className="flex justify-center pt-8 ">
                 <div className="hidden lg:block bg-[url('./bgservicehead.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
@@ -101,7 +177,68 @@ export default function Service(){
                     <div className="justify-end w-7xl grid gap-9 py-[67px]">
                         <p className="text-white bg-[#75D14A] w-fit px-[11px] py-1 rounded-[5px]">Услуга</p>
                         <h1 className="uppercase font-semibold text-[35px] text-white w-110">Определим причину неисправности удаленно или на диагностике!</h1>
-                        <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Записаться на диагностику</button>
+                        <AlertDialog.Root open={isCallDialogOpen} onOpenChange={setIsCallDialogOpen}>
+                            <AlertDialog.Trigger>
+                                <button className="w-fit px-[25px] py-[15px] bg-white rounded-[5px]">Записаться на диагностику</button>
+                            </AlertDialog.Trigger>
+                            <Modal 
+                                open={isCallDialogOpen} 
+                                onOpenChange={setIsCallDialogOpen} 
+                                maxWidth="900px"
+                                className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'
+                            >
+                                <div>
+                                    <ModalClose onClick={handleCloseCallDialog} />
+                                    <div className='flex'>
+                                        <div className='grid gap-9'>
+                                            <div className='grid gap-4'>
+                                                <h1 className='text-[25px] font-semibold uppercase w-115'>Оставьте заявку и получите профессиональную консультацию от нашего менеджера</h1>
+                                                <p className='w-80'>Позвоним в течение 5 минут и ответим на все вопросы.</p>
+                                            </div>
+                                            <div className='grid w-[250px] gap-5'>
+                                                <div className="grid gap-2">
+                                                    <p className="text-[#5D6C7B]">Как с вами удобнее связаться?</p>
+                                                    <div className="flex gap-4">
+                                                        <RadioCards.Root defaultValue="1" className="flex! ">
+                                                            <RadioCards.Item value="1" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                <img className="w-[18px] " src="./viber.svg" alt="" />
+                                                            </RadioCards.Item>
+                                                            <RadioCards.Item value="2" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                <img className="w-[18px] " src="./whatsap.svg" alt="" />
+                                                            </RadioCards.Item>
+                                                            <RadioCards.Item value="3" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
+                                                                <img className="w-[18px] "src="./tg.svg" alt="" />
+                                                            </RadioCards.Item>
+                                                        </RadioCards.Root>
+                                                    </div>
+                                                </div>
+                                                <PhoneNumber onPhoneChange={handlePhoneChange} value={phone}/>
+                                                {callError && (
+                                                    <div className="text-red-500 text-sm mt-1 text-center">{callError}</div>
+                                                )}
+                                                <button 
+                                                    className={`py-3 rounded-[5px] text-white transition-colors ${
+                                                        isSubmitted 
+                                                            ? 'bg-green-500 cursor-default' 
+                                                            : !isPhoneValid || !isChecked || isCallLoading 
+                                                                ? 'bg-[#6F73EE] opacity-50 cursor-not-allowed' 
+                                                                : 'bg-[#6F73EE] hover:bg-[#5a5fc9]'
+                                                    }`}
+                                                    onClick={isSubmitted ? undefined : handleCallOrder}
+                                                    disabled={isSubmitted || !isPhoneValid || !isChecked || isCallLoading}
+                                                >
+                                                    {isSubmitted ? 'Отправлено!' : (isCallLoading ? 'Отправка...' : 'Позвоните мне')}
+                                                </button>
+                                                <div className='flex items-baseline gap-3'>
+                                                    <Checkbox variant="soft" checked={isChecked} onCheckedChange={(checked) => setIsChecked(checked === true)} />
+                                                    <p className='w-59 text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='text-[#6F73EE]'>политикой конфиденциальности</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Modal>
+                        </AlertDialog.Root>
                     </div>
                 </div>
 

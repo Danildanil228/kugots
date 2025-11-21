@@ -8,6 +8,7 @@ import { Footer } from './components/Footer'
 import { MobileNavigation } from './components/MobileNavigation'
 import Service from './components/pages/Service';
 import MainPage from './components/pages/MainPage';
+import CoopPage from './components/pages/CoopPage';
 
 // Lazy loaded pages
 
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/like" element={<Like />} />
                 <Route path="/compare" element={<Compare />} />
                 <Route path="/service" element={<Service />} />
+                <Route path="/cooperation" element={<CoopPage />} />
               </Routes>
             </Suspense>
           </main>

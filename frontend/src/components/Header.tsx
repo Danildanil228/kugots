@@ -326,7 +326,7 @@ export function Header(){
                                         {item.label}
                                     </Link>
                                 ))}
-                                <a href="" className="text-[#5D6C7B]! hover:text-black! transition-colors">Сотрудничество</a>
+                                <Link to="/cooperation"><p className="text-[#5D6C7B]! hover:text-black! transition-colors">Сотрудничество</p></Link>
                                 
                                 <AlertDialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                     <AlertDialog.Trigger className=''>
