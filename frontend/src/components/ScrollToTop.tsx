@@ -24,7 +24,7 @@ export const ScrollToTop: React.FC = () => {
       {isVisible && (
         <button 
           onClick={scrollToTop}
-          className="
+          className=" mb-10 sm:mb-0
             w-12 h-12 
             rounded-full 
             bg-[#6F73EE] 

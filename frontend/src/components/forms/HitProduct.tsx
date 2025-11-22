@@ -66,7 +66,7 @@ const HitProductItem = ({ product }: { product: Product }) => {
                             </p>
                             <p className="text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
                         </div>
-                        <div className="flex gap-2.5">
+                        <div className="grid sm:flex gap-2.5">
                             {product.count > 0 && (
                                 <ActionIcon type="cart" product={product}/>
                             )}
@@ -138,7 +138,7 @@ const MobileHitProductItem = ({ product }: { product: Product }) => {
                             </p>
                             <p className="text-[16px] font-semibold">{formatPrice(product.price)} ₽</p>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="grid sm:flex gap-2">
                             {product.count > 0 && (
                                 <ActionIcon type="cart" product={product}/>
                             )}

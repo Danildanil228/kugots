@@ -77,7 +77,7 @@ const ProductItem = memo(({ product }: { product: ProductItem }) => {
               </p>
               <p className="text-[16px] lg:text-[20px] font-semibold">{formatPrice(product.price)} ₽</p>
             </div>
-            <div className="flex gap-2 lg:gap-2.5">
+            <div className="sm:flex gap-2 lg:gap-2.5 grid">
               {product.count > 0 && (
                 <ActionIcon type="cart" product={{
                   id: product.id,

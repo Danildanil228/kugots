@@ -13,7 +13,7 @@ import { useFormSubmit } from "../forms/useFormSubmit";
 import { Breadcrumbs } from "../Breadcrumbs";
 
 export default function Service(){
-    const [email, setEmail] = useState('');
+        const [email, setEmail] = useState('');
         const [isEmailValid, setIsEmailValid] = useState(false);
         const [isSubscribeDialogOpen, setIsSubscribeDialogOpen] = useState(false); 
         const [isCallDialogOpen, setIsCallDialogOpen] = useState(false); 
@@ -34,24 +34,6 @@ export default function Service(){
             }
         });
     
-        const { submit: submitSubscribe, isLoading: isSubscribeLoading, error: subscribeError } = useFormSubmit({
-            endpoint: '/api/subscribe',
-            onSuccess: () => {
-                setIsSubscribeDialogOpen(true);
-                setEmail('');
-                setIsEmailValid(false);
-            }
-        });
-    
-        const handleEmailChange = (value: string, isValid: boolean) => {
-            setEmail(value);
-            setIsEmailValid(isValid);
-        };
-    
-        const handleSubscribe = async () => {
-            if (!isEmailValid) return;
-            await submitSubscribe({ email: email });
-        };
     
         const handlePhoneChange = (value: string, isValid: boolean) => {
             setPhone(value);
@@ -73,9 +55,6 @@ export default function Service(){
             setIsSubmitted(false);
         };
     
-        const handleCloseSubscribeDialog = () => {
-            setIsSubscribeDialogOpen(false);
-        };
     return(
         <>
             <div className="flex justify-center container mt-10!">
