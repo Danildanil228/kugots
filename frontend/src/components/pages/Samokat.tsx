@@ -5,6 +5,7 @@ import { useApiData } from "../useApiData";
 import { formatPrice, getTagColor } from '../format';
 import { ActionIcon } from "../buttons/ActionIcon";
 import { AlertOrderProduct } from "../forms/AlertOrderProduct";
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -529,68 +530,70 @@ export default function Samokat() {
 // Компонент карточки товара
 function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="border border-[#EAEBED] rounded-xl hover:shadow-lg transition-shadow">
-      <div 
-        className="w-full h-48 bg-cover bg-center rounded-t-xl relative"
-        style={{ backgroundImage: `url(${product.img})` }}
-      >
-        <div className="flex items-center justify-between p-2">
-          <div className={`py-1 px-2 rounded-[5px] text-white text-xs ${getTagColor(product.descr)}`}>
-            {product.descr}
+    <Link to={`/product/${product.id}`} className="block">
+      <div className="border border-[#EAEBED] rounded-xl hover:shadow-lg transition-shadow">
+        <div 
+          className="w-full h-48 bg-cover bg-center rounded-t-xl relative"
+          style={{ backgroundImage: `url(${product.img})` }}
+        >
+          <div className="flex items-center justify-between p-2">
+            <div className={`py-1 px-2 rounded-[5px] text-white text-xs ${getTagColor(product.descr)}`}>
+              {product.descr}
+            </div>
+            <ActionIcon type="compare" product={product}/>
           </div>
-          <ActionIcon type="compare" product={product}/>
         </div>
-      </div>
-      
-      <div className="p-4">
-        <h3 className="font-semibold text-sm mb-3 leading-tight">{product.name}</h3>
         
-        <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
-          <div className="flex items-center gap-1">
-            <img src="./acum.svg" className="w-4 h-4" alt="Батарея" />
-            <span className="text-gray-600">{product.acum} mAh</span>
+        <div className="p-4">
+          <h3 className="font-semibold text-sm mb-3 leading-tight">{product.name}</h3>
+          
+          <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div className="flex items-center gap-1">
+              <img src="./acum.svg" className="w-4 h-4" alt="Батарея" />
+              <span className="text-gray-600">{product.acum} mAh</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <img src="./speed.svg" className="w-4 h-4" alt="Скорость" />
+              <span className="text-gray-600">{product.speed} км/ч</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <img src="./power.svg" className="w-4 h-4" alt="Мощность" />
+              <span className="text-gray-600">{product.power} кВт</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <img src="./time.svg" className="w-4 h-4" alt="Время" />
+              <span className="text-gray-600">{product.time} ч</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <img src="./speed.svg" className="w-4 h-4" alt="Скорость" />
-            <span className="text-gray-600">{product.speed} км/ч</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <img src="./power.svg" className="w-4 h-4" alt="Мощность" />
-            <span className="text-gray-600">{product.power} кВт</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <img src="./time.svg" className="w-4 h-4" alt="Время" />
-            <span className="text-gray-600">{product.time} ч</span>
-          </div>
-        </div>
 
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            {product.oldprice && (
-              <p className="line-through text-gray-500 text-xs">
-                {formatPrice(product.oldprice)} ₽
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              {product.oldprice && (
+                <p className="line-through text-gray-500 text-xs">
+                  {formatPrice(product.oldprice)} ₽
+                </p>
+              )}
+              <p className="text-lg font-bold text-[#6F73EE]">
+                {formatPrice(product.price)} ₽
               </p>
-            )}
-            <p className="text-lg font-bold text-[#6F73EE]">
-              {formatPrice(product.price)} ₽
-            </p>
+            </div>
+            <div className="grid sm:flex gap-2">
+              {product.count > 0 && (
+                <ActionIcon type="cart" product={product}/>
+              )}
+              <ActionIcon type="like" product={product}/>
+            </div>
           </div>
-          <div className="grid sm:flex gap-2">
-            {product.count > 0 && (
-              <ActionIcon type="cart" product={product}/>
-            )}
-            <ActionIcon type="like" product={product}/>
-          </div>
-        </div>
 
-        {product.count === 0 ? (
-          <AlertOrderProduct product={product}/>
-        ) : (
-          <button className="w-full py-2 bg-[#6F73EE] text-white rounded-lg hover:bg-[#5a5fd8] transition-colors text-sm">
-            Купить в 1 клик
-          </button>
-        )}
+          {product.count === 0 ? (
+            <AlertOrderProduct product={product}/>
+          ) : (
+            <button className="w-full py-2 bg-[#6F73EE] text-white rounded-lg hover:bg-[#5a5fd8] transition-colors text-sm">
+              Купить в 1 клик
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

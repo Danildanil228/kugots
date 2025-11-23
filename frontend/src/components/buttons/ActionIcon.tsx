@@ -1,3 +1,4 @@
+// components/buttons/ActionIcon.tsx
 import { useCart } from '../../contexts/CartContext';
 import { useCompare } from '../../contexts/CompareContext';
 import { useLike } from '../../contexts/LikeContext';
@@ -17,22 +18,25 @@ export function ActionIcon({ type, product }: ActionIconProps) {
   const { addToCompare, removeFromCompare, isCompared } = useCompare();
   const { addToLike, removeFromLike, isLiked } = useLike();
 
+  // Функция для корректных путей
+  const getImagePath = (path: string) => path.startsWith('/') ? path : `/${path}`;
+
   const config = {
     cart: {
-      activeIcon: "./cart.svg",
-      inactiveIcon: "./CartIcon.svg",
+      activeIcon: getImagePath("cart.svg"),
+      inactiveIcon: getImagePath("CartIcon.svg"),
       isActive: product ? isInCart(product.id) : false,
       toggle: product ? (isInCart(product.id) ? () => removeFromCart(product.id) : () => addToCart(product)) : () => {}
     },
     compare: {
-      activeIcon: "./comp.svg",
-      inactiveIcon: "./compblack.svg", 
+      activeIcon: getImagePath("comp.svg"),
+      inactiveIcon: getImagePath("compblack.svg"), 
       isActive: product ? isCompared(product.id) : false,
       toggle: product ? (isCompared(product.id) ? () => removeFromCompare(product.id) : () => addToCompare(product)) : () => {}
     },
     like: {
-      activeIcon: "./Heartblue.svg",
-      inactiveIcon: "./Heart.svg",
+      activeIcon: getImagePath("Heartblue.svg"),
+      inactiveIcon: getImagePath("Heart.svg"),
       isActive: product ? isLiked(product.id) : false,
       toggle: product ? (isLiked(product.id) ? () => removeFromLike(product.id) : () => addToLike(product)) : () => {}
     }

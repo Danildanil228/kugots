@@ -11,6 +11,7 @@ import MainPage from './components/pages/MainPage';
 import CoopPage from './components/pages/CoopPage';
 import Catalog from './components/pages/Catalog';
 import Samokat from './components/pages/Samokat';
+import ProductPage from './components/pages/ProductPage';
 
 // Lazy loaded pages
 
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/cooperation" element={<CoopPage />} />
                 <Route path='/catalog' element={<Catalog/>}/>
                 <Route path='/samokat' element={<Samokat/>}/>
+                <Route path='/product/:id' element={<ProductPage />} />
               </Routes>
             </Suspense>
           </main>
