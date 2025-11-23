@@ -1,7 +1,5 @@
 import { Breadcrumbs } from "../Breadcrumbs";
 import { More } from "../buttons/More";
-import { BlogSwiper } from "../forms/BlogSwiper";
-import { CaruselSlider } from "../forms/CaruselSlider";
 import { Category } from "../forms/Category";
 import { HitProduct } from "../forms/HitProduct";
 import { VideoSwiper } from "../forms/VideoSwiper";

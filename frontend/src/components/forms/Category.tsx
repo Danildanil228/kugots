@@ -2,6 +2,7 @@ import { WatchAll } from '../buttons/WatchAll';
 import { formatPrice } from '../format';
 import { useState } from 'react';
 import { useApiData } from '../useApiData';
+import { Link } from 'react-router-dom';
 
 export function Category(){
     const { data, loading } = useApiData('/category');
@@ -31,20 +32,22 @@ export function Category(){
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-[30px]">
                         {visibleProducts.map((category: any) => (
                             <div key={category.id} className="flex justify-center">
-                                <button className="w-full">
-                                    <div className="hidden lg:block w-full h-[255px] rounded-[5px] items-end justify-start grid px-3 pt-44 pb-2 bg-cover bg-center" style={{ backgroundImage: `url(${category.img})`}}>
-                                        <div className="bg-[#00000033] backdrop-blur-[2px] text-white px-4 py-3 rounded-xl w-[270px]">
-                                            <h3 className="text-[18px] w-fit">{category.name}</h3>
-                                            <p className="text-[14px] w-fit">от {formatPrice(category.price)} ₽</p>
-                                        </div>
-                                    </div>
-                                    <div className="lg:hidden w-full h-14 rounded-[5px] bg-[#F4F7FB] flex items-center justify-center px-2 border border-[#EAEBED] hover:border-[#6F73EE] transition-colors">
-                                        <div className="text-center">
-                                            <h3 className="text-xs font-semibold text-gray-900 leading-tight">{category.name}</h3>
-                                            <p className="text-[10px] text-[#5D6C7B]">от {formatPrice(category.price)} ₽</p>
-                                        </div>
-                                    </div>
-                                </button>
+                                    <button className="w-full">
+                                        <Link to='/samokat'>
+                                            <div className="hidden lg:block w-full h-[255px] rounded-[5px] items-end justify-start grid px-3 pt-44 pb-2 bg-cover bg-center" style={{ backgroundImage: `url(${category.img})`}}>
+                                                <div className="bg-[#00000033] backdrop-blur-[2px] text-white px-4 py-3 rounded-xl w-[270px]">
+                                                    <h3 className="text-[18px] w-fit">{category.name}</h3>
+                                                    <p className="text-[14px] w-fit">от {formatPrice(category.price)} ₽</p>
+                                                </div>
+                                            </div>
+                                            <div className="lg:hidden w-full h-14 rounded-[5px] bg-[#F4F7FB] flex items-center justify-center px-2 border border-[#EAEBED] hover:border-[#6F73EE] transition-colors">
+                                                <div className="text-center">
+                                                    <h3 className="text-xs font-semibold text-gray-900 leading-tight">{category.name}</h3>
+                                                    <p className="text-[10px] text-[#5D6C7B]">от {formatPrice(category.price)} ₽</p>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </button>
                             </div>
                         ))}
                     </div>
