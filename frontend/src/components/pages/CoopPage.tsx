@@ -307,30 +307,30 @@ export default function CoopPage(){
                             <div className="justify-between flex  bg-[#4B729F] p-4 rounded-2xl">
                                 <div className="flex gap-5">
                                     <img src="./vkser.svg" alt="" />
-                                    <p>Вконтакте</p>
+                                    <p>{submesData[0]?.mes}</p>
                                 </div>
-                                {submesData.sub}
+                                <p>{submesData[0]?.sub}</p>
                             </div>
                             <div className="justify-between flex  bg-linear-to-r from-amber-500 via-red-500 to-purple-600 p-4 rounded-2xl">
                                 <div className="flex gap-5">
                                     <img src="./instser.svg" alt="" />
-                                    <p>Вконтакте</p>
+                                    <p>{submesData[1]?.mes}</p>
                                 </div>
-                                <p>D</p>
+                                <p>{submesData[1]?.sub}</p>
                             </div>
                             <div className="justify-between flex  bg-[#E53935] p-4 rounded-2xl">
                                 <div className="flex gap-5">
                                     <img src="./yser.svg" alt="" />
-                                    <p>Вконтакте</p>
+                                    <p>{submesData[2]?.mes}</p>
                                 </div>
-                                <p>D</p>
+                                <p>{submesData[2]?.sub}</p>
                             </div>
                             <div className="justify-between flex  bg-[#039BE5] p-4 rounded-2xl">
                                 <div className="flex gap-5">
                                     <img src="./tgser.svg" alt="" />
-                                    <p>Вконтакте</p>
+                                    <p>{submesData[3]?.mes}</p>
                                 </div>
-                                <p>D</p>
+                                <p>{submesData[3]?.sub}</p>
                             </div>
                         </div>
                     </div>

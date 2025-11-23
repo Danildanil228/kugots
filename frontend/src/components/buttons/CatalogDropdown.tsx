@@ -1,5 +1,6 @@
 import { DropdownMenu, Button, Flex, Text, ChevronDownIcon } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
+import { Link } from "react-router-dom";
 
 export function CatalogDropdown() {
   return (
@@ -21,7 +22,7 @@ export function CatalogDropdown() {
       >
         <Flex gap="8">
           <Flex direction="column" gap="3" className="flex-1">
-            <Text weight="bold" size="3" className="text-gray-900 mb-2">Каталог</Text>
+            <Text weight="bold" size="3" className="text-gray-900 mb-2"><Link to='/catalog'>Каталог</Link></Text>
             <DropdownMenu.Item className="text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 px-2 py-1.5 rounded cursor-pointer">
               Электросамокаты
             </DropdownMenu.Item>
