@@ -180,7 +180,7 @@ export default function TestDrive(){
                                     {isSubmitted ? 'Отправлено!' : (isCallLoading ? 'Отправка...' : 'Оставить заявку на тест-драйв')}
                                 </button>
                             </div>
-                            <div className='flex gap-3 items-center mt-5'>
+                            <div className='flex gap-3 items-center mt-5 text-start'>
                                 <Checkbox checked={isChecked} onCheckedChange={(checked) => setIsChecked(checked === true)} />
                                 <p className='sm:text-start text-[14px] sm:w-100'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='underline!'>политикой конфиденциальности</a></p>
                             </div>
