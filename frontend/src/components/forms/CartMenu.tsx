@@ -38,7 +38,7 @@ export function CartMenu(){
         <>
             <button className="cart-icon" onClick={handleOpen}>
                 <div className="cart-bg w-30 h-10 flex justify-center items-center gap-2 rounded-[30px] transition-all duration-200 hover:bg-[#F4F7FB] relative">
-                    <img src="./cart.svg" alt="Корзина" />
+                    <img src="/cart.svg" alt="Корзина" />
                     Корзина
                     {getTotalItems() > 0 && (
                         <span className="absolute -top-2 -right-2 bg-[#6F73EE] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -129,7 +129,7 @@ export function CartMenu(){
                                                     onClick={() => removeFromCart(item.id)}
                                                     size="small"
                                                 >
-                                                    <img src="./Delete.svg" alt="delete" className="w-5 h-5" />
+                                                    <img src="/Delete.svg" alt="delete" className="w-5 h-5" />
                                                 </IconButton>
                                             </div>
                                         </div>

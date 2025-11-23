@@ -113,13 +113,13 @@ export function Header(){
                             onClick={() => setIsMobileCallModalOpen(true)}
                             className="p-2"
                         >
-                            <img src="./call.svg" alt="Позвонить" className="w-6 h-6" />
+                            <img src="/call.svg" alt="Позвонить" className="w-6 h-6" />
                         </button>
                         <button 
                             onClick={() => setIsMobileMenuOpen(true)}
                             className="p-2"
                         >
-                            <img src="./menu.svg" alt="" />
+                            <img src="/menu.svg" alt="" />
                         </button>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ export function Header(){
                             </div>
                             <div className="search-icon">
                                 <button className="bg-[#6F73EE] w-12 h-12 flex items-center justify-center">
-                                    <img src="./Search.svg" alt="Поиск" className="w-5 h-5" />
+                                    <img src="/Search.svg" alt="Поиск" className="w-5 h-5" />
                                 </button>
                             </div>
                         </div>
@@ -209,7 +209,7 @@ export function Header(){
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="p-2"
                             >
-                                <img src="./close.svg" alt="" />
+                                <img src="/close.svg" alt="" />
                             </button>
                         </div>
                     </div>
@@ -245,12 +245,12 @@ export function Header(){
                                     Заказать звонок
                                 </button>
                             </AlertDialog.Trigger>
-                            <AlertDialog.Content maxWidth="100px" height="300px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
+                            <AlertDialog.Content maxWidth="100px" height="300px" className='bg-[url("/maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
                                 <div>
                                     <div className='justify-end flex'>
                                         <AlertDialog.Action>
                                             <img 
-                                                src='./crest.svg' 
+                                                src='/crest.svg' 
                                                 className='rotate-45 cursor-pointer'
                                                 alt="Закрыть"
                                                 onClick={handleCloseDialog}
@@ -334,12 +334,12 @@ export function Header(){
                                             Заказать звонок
                                         </Button>
                                     </AlertDialog.Trigger>
-                                    <AlertDialog.Content maxWidth="800px" height="500px" className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
+                                    <AlertDialog.Content maxWidth="800px" height="500px" className='bg-[url("/maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'>
                                         <div>
                                             <div className='justify-end flex'>
                                                 <AlertDialog.Action>
                                                     <img 
-                                                        src='./crest.svg' 
+                                                        src='/crest.svg' 
                                                         className='rotate-45 cursor-pointer'
                                                         alt="Закрыть"
                                                         onClick={handleCloseDialog}
@@ -405,7 +405,7 @@ export function Header(){
                                     <button onClick={handleOpen} className="plus-btn p-1.5 border border-[#5D6C7B] rounded-full transition-all duration-200 ease-in-out hover:bg-[#5D6C7B] group">
                                     <img 
                                         className="plus transition-all duration-200 ease-in-out group-hover:filter group-hover:brightness-0 group-hover:invert" 
-                                        src="./+.svg" 
+                                        src="/+.svg" 
                                         alt="Add" 
                                     />
                                     </button>

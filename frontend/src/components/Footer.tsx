@@ -109,10 +109,10 @@ export function Footer(){
                                                 <p>Перейдите в свою почту, чтобы подтвердить подписку и получить<br/>видеообзор «Топ-3 электросамоката 2021г.»</p>
                                                 <p className="text-[#5D6C7B]">Выберите свой почтовый сервис</p>
                                                 <div className="flex gap-4 justify-center">
-                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./searchIc.svg" alt="" /></a>
-                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yandexIc.svg" alt="" /></a>
-                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./out.svg" alt="" /></a>
-                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="./yahoo.svg" alt="" /></a>
+                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="/searchIc.svg" alt="" /></a>
+                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="/yandexIc.svg" alt="" /></a>
+                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="/out.svg" alt="" /></a>
+                                                    <a className="p-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href=""><img src="/yahoo.svg" alt="" /></a>
                                                 </div>
                                                 <p className="text-[#5D6C7B]">Если письма не во входящих, проверьте папку «Промоакции»<br/>или «Спам».  Письмо могло попасть туда по ошибке.</p>
                                             </div>
@@ -157,16 +157,16 @@ export function Footer(){
                                             <p className="text-[#5D6C7B] text-sm">Выберите свой почтовый сервис</p>
                                             <div className="flex gap-3 justify-center flex-wrap">
                                                 <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
-                                                    <img src="./searchIc.svg" alt="Gmail" className="w-6 h-6" />
+                                                    <img src="/searchIc.svg" alt="Gmail" className="w-6 h-6" />
                                                 </a>
                                                 <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
-                                                    <img src="./yandexIc.svg" alt="Yandex" className="w-6 h-6" />
+                                                    <img src="/yandexIc.svg" alt="Yandex" className="w-6 h-6" />
                                                 </a>
                                                 <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
-                                                    <img src="./out.svg" alt="Outlook" className="w-6 h-6" />
+                                                    <img src="/out.svg" alt="Outlook" className="w-6 h-6" />
                                                 </a>
                                                 <a className="p-3 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]" href="">
-                                                    <img src="./yahoo.svg" alt="Yahoo" className="w-6 h-6" />
+                                                    <img src="/yahoo.svg" alt="Yahoo" className="w-6 h-6" />
                                                 </a>
                                             </div>
                                             <p className="text-[#5D6C7B] text-sm">Если письма не во входящих, проверьте папку «Промоакции» или «Спам». Письмо могло попасть туда по ошибке.</p>
@@ -231,7 +231,7 @@ export function Footer(){
                                         open={isCallDialogOpen} 
                                         onOpenChange={setIsCallDialogOpen} 
                                         maxWidth="900px"
-                                        className='bg-[url("./maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'
+                                        className='bg-[url("/maskmodal.svg")] bg-no-repeat bg-cover bg-center bg-left-12'
                                     >
                                         <div>
                                             <ModalClose onClick={handleCloseCallDialog} />
@@ -247,13 +247,13 @@ export function Footer(){
                                                             <div className="flex gap-4">
                                                                 <RadioCards.Root defaultValue="1" className="flex! ">
                                                                     <RadioCards.Item value="1" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
-                                                                        <img className="w-[18px] " src="./viber.svg" alt="" />
+                                                                        <img className="w-[18px] " src="/viber.svg" alt="" />
                                                                     </RadioCards.Item>
                                                                     <RadioCards.Item value="2" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
-                                                                        <img className="w-[18px] " src="./whatsap.svg" alt="" />
+                                                                        <img className="w-[18px] " src="/whatsap.svg" alt="" />
                                                                     </RadioCards.Item>
                                                                     <RadioCards.Item value="3" className="px-[30px] py-4 border border-[#EAEBED] rounded-[5px] hover:border-[#6F73EE]">
-                                                                        <img className="w-[18px] "src="./tg.svg" alt="" />
+                                                                        <img className="w-[18px] "src="/tg.svg" alt="" />
                                                                     </RadioCards.Item>
                                                                 </RadioCards.Root>
                                                             </div>
@@ -325,8 +325,8 @@ export function Footer(){
                                 <h1 className="font-bold text-3xl cursor-pointer">KUGOO</h1>
                             </Link>
                             <div className="flex gap-3">
-                                <a href=""><img src="./pmk.svg" alt="" /></a>
-                                <a href=""><img src="./as.svg" alt="" /></a>
+                                <a href=""><img src="/pmk.svg" alt="" /></a>
+                                <a href=""><img src="/as.svg" alt="" /></a>
                             </div>
                         </div>
                         <div className="flex gap-3">
@@ -353,13 +353,13 @@ export function Footer(){
                         </div>
                         <div className="flex gap-10">
                             <div className="flex gap-1">
-                                <img src="./PM4.svg" alt="" />
-                                <img src="./PM3.svg" alt="" />
-                                <img src="./PM2.svg" alt="" />
-                                <img src="./PM.svg" alt="" />
-                                <img src="./PM5.svg" alt="" />
-                                <img src="./webmoney.svg" alt="" />
-                                <img src="./qiwi.svg" alt="" />
+                                <img src="/PM4.svg" alt="" />
+                                <img src="/PM3.svg" alt="" />
+                                <img src="/PM2.svg" alt="" />
+                                <img src="/PM.svg" alt="" />
+                                <img src="/PM5.svg" alt="" />
+                                <img src="/webmoney.svg" alt="" />
+                                <img src="/qiwi.svg" alt="" />
                             </div>
                             <div className="flex gap-4">
                                 <p>Online чат:</p>

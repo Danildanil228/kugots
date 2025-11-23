@@ -10,7 +10,7 @@ export function Search(){
                 </div>
                 <div className="search-icon">
                     <button className="bg-[#6F73EE] w-10 h-10 flex items-center justify-center">
-                        <img src="./Search.svg" alt="" />
+                        <img src="/Search.svg" alt="" />
                     </button>
                 </div>
             </div>

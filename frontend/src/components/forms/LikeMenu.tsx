@@ -37,7 +37,7 @@ export function LikeMenu(){
         <>
             <button className="heart-icon" onClick={handleOpen}>
                 <div className="heart-bg w-10 h-10 flex justify-center items-center gap-2 rounded-[30px] transition-all duration-200 hover:bg-[#F4F7FB] relative">
-                    <img src="./Heartblack.svg" alt="Избранное" />
+                    <img src="/Heartblack.svg" alt="Избранное" />
                     {likeItems.length > 0 && (
                         <span className="absolute -top-2 -right-2 bg-[#6F73EE] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                             {likeItems.length}
@@ -112,7 +112,7 @@ export function LikeMenu(){
                                                     onClick={() => removeFromLike(item.id)}
                                                     size="small"
                                                 >
-                                                    <img src="./Delete.svg" alt="delete" className="w-5 h-5" />
+                                                    <img src="/Delete.svg" alt="delete" className="w-5 h-5" />
                                                 </IconButton>
                                             </div>
                                         </div>

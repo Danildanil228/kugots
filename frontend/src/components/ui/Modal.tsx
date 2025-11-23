@@ -26,7 +26,7 @@ export function ModalClose({ onClick }: { onClick?: () => void }) {
     <div className='justify-end flex'>
       <AlertDialog.Action>
         <img 
-          src='./crest.svg' 
+          src='/crest.svg' 
           className='rotate-45 cursor-pointer'
           alt="Закрыть"
           onClick={onClick}
