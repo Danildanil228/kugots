@@ -3,10 +3,12 @@ import { More } from "../buttons/More";
 import { Category } from "../forms/Category";
 import { HitProduct } from "../forms/HitProduct";
 import { VideoSwiper } from "../forms/VideoSwiper";
+import { ScrollToTop } from "../ScrollToTop";
 
 export default function Catalog(){
     return(
         <>
+            <ScrollToTop/>
             <section className="container justify-center flex min-h-screen">
                 <div className="">
                     <div className="mt-10 sm:px-20">

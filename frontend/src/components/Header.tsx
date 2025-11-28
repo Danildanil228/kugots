@@ -196,7 +196,7 @@ export function Header(){
             />
             
             <div 
-                className={`lg:hidden fixed top-0 left-0 bottom-0 w-80 bg-white z-50 transform transition-transform duration-300 ${
+                className={`lg:hidden fixed top-0 left-0 bottom-0 w-full bg-white z-50 transform transition-transform duration-300 ${
                     isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >

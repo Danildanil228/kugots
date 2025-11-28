@@ -1,8 +1,50 @@
+import { useLike } from "../../contexts/LikeContext";
 import { Breadcrumbs } from "../Breadcrumbs";
-export default function Like(){
-    return(
+import { formatPrice } from '../format';
+
+export default function Compare() {
+    const {likeItems, removeFromLike} = useLike();
+
+    return (
         <>
-            <Breadcrumbs items={[{label: 'Главная', path: '/main'}, {label: 'Лайки'}]}/>
+            <Breadcrumbs items={[
+                { label: 'Главная', path: '/main' },
+                { label: 'Лайки' }
+            ]} />
+            
+            <div className="container mx-auto px-4 py-8">
+                <h1 className="text-2xl font-bold mb-6">Корзина</h1>
+                
+                {likeItems.length === 0 ? (
+                    <div className="text-center py-8">
+                        <p className="text-gray-500">Нет товаров в корзине</p>
+                    </div>
+                ) : (
+                    <div className="grid gap-4">
+                        {likeItems.map((item) => (
+                            <div key={item.id} className="border rounded-lg p-4 flex justify-between items-center">
+                                <div className="flex items-center gap-4">
+                                    <img 
+                                        src={item.img} 
+                                        alt={item.name}
+                                        className="w-16 h-16 object-cover rounded"
+                                    />
+                                    <div>
+                                        <h2 className="font-semibold">{item.name}</h2>
+                                        <p className="text-[#6F73EE] font-bold">{formatPrice(item.price)} ₽</p>
+                                    </div>
+                                </div>
+                                <button 
+                                    onClick={() => removeFromLike(item.id)}
+                                    className="text-red-500 hover:text-red-700"
+                                >
+                                    Удалить
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
         </>
-    )
+    );
 }
