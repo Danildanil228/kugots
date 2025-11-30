@@ -36,7 +36,7 @@ export default function Catalog(){
                                         </div>
                                     </div>
                                     
-                                    {/* Правая часть - текст */}
+                                    {/*  текст */}
                                     <div className="w-[606px] grid gap-8">
                                         <div className="grid gap-[18px]">
                                             <p className="text-[35px] font-semibold uppercase w-120">Kugoo-Russia — первый официальный дилер Kugoo Kirin в России</p>

@@ -7,9 +7,7 @@ import { Link } from 'react-router-dom';
 export function Category(){
     const { data, loading } = useApiData('/category');
     const [showAll, setShowAll] = useState(false);
-    
     const visibleProducts = showAll ? data : data.slice(0, 8);
-
     return(
         <>
             <div className="hidden lg:flex justify-between w-7xl items-center">

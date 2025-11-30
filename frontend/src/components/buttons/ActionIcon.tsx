@@ -1,4 +1,3 @@
-// components/buttons/ActionIcon.tsx
 import { useCart } from '../../contexts/CartContext';
 import { useCompare } from '../../contexts/CompareContext';
 import { useLike } from '../../contexts/LikeContext';
@@ -17,8 +16,6 @@ export function ActionIcon({ type, product }: ActionIconProps) {
   const { addToCart, removeFromCart, isInCart } = useCart();
   const { addToCompare, removeFromCompare, isCompared } = useCompare();
   const { addToLike, removeFromLike, isLiked } = useLike();
-
-  // Функция для корректных путей
   const getImagePath = (path: string) => path.startsWith('/') ? path : `/${path}`;
 
   const config = {

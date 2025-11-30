@@ -8,7 +8,6 @@ export function SelectSection(){
     const [activeTab, setActiveTab] = useState<'shop' | 'service'>('shop');
     const activeStyles = "bg-white text-[#6F73EE] border border-[#6F73EE]";
     const inactiveStyles = "bg-[#F4F7FB] text-[#5D6C7B] border border-[#F4F7FB] hover:bg-white hover:text-[#6F73EE] hover:border hover:border-[#6F73EE]";
-    
     const fetchProducts = async () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/product`);

@@ -95,10 +95,7 @@ export default function CoopPage(){
                                         <Checkbox checked={isChecked} onCheckedChange={(checked) => setIsChecked(checked === true)} />
                                         <p className='sm:text-start text-[14px]'>Нажимая на кнопку, вы соглашаетесь на обработку персональных данных и <a href="" className='underline!'>политикой конфиденциальности</a></p>
                                     </div>
-
                                 </div>
-                                    
-                                
                             </div>
                         </div>
                     </div>
@@ -274,7 +271,6 @@ export default function CoopPage(){
                             </div>
                         </div>
                     </div>
-
                     <div className='justify-center grid mt-20'>
                         <div className='justify-center text-center gap-3 lg:gap-4 grid mb-6 lg:mb-0'>
                             <h1 className='uppercase font-semibold text-2xl lg:text-[35px] sm:w-170'>1 600+ положительных оценок покупателей о продуктах Kugoo</h1>
@@ -286,7 +282,6 @@ export default function CoopPage(){
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </section>
                 <CaruselSlider/>
@@ -344,7 +339,6 @@ export default function CoopPage(){
                             <AccordionDemo/>
                         </div>
                     </div> 
-
                     {/* Обсудите индивидуальное коммерческое предложение */}
                     <div className="justify-center grid my-25">
                         <div className="sm:w-[1440px] bg-[#F4F7FB] text-black rounded-2xl justify-between gap-30 flex-wrap flex sm:px-20 px-2 py-10">

@@ -1,12 +1,10 @@
-// components/pages/ProductPage.tsx
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Breadcrumbs } from "../Breadcrumbs";
 import { ActionIcon } from "../buttons/ActionIcon";
 import { AlertOrderProduct } from "../forms/AlertOrderProduct";
 import { formatPrice, getTagColor } from '../format';
-import { Share } from "../buttons/Share";
-import { useApiData } from "../useApiData";
+import { Share } from "../buttons/Share"; 
 import { API_BASE_URL } from '../../config/api';
 
 interface Product {
@@ -30,11 +28,16 @@ interface Product {
 }
 
 export default function ProductPage() {
+  const [isActive, setIsActive] = useState(false);
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -86,6 +89,7 @@ export default function ProductPage() {
       </div>
     );
   }
+  
 
   return (
     <>
@@ -241,9 +245,10 @@ export default function ProductPage() {
                       <img src="/q.svg" alt="" className='cursor-pointer' />
                   </div>
                   <div className='flex flex-wrap text-center gap'>
-                      <button className="border rounded-xl border-[#EAEBED] sm:py-7 w-[227px]">Базовая</button>
-                      <button className="border rounded-xl border-[#EAEBED] sm:py-7 w-[227px]">Версия MAX</button>
-                      <button className="border rounded-xl border-[#EAEBED] sm:py-7 w-[227px]">VIP-версия</button>
+                      
+                      <button onClick={handleClick} className={`border rounded-xl sm:py-7 w-[227px] ${isActive ? 'border-[#6F73EE]' : 'border-[#EAEBED]'}`}>Базовая</button>
+                      <button onClick={handleClick} className={`border rounded-xl sm:py-7 w-[227px] ${isActive ? 'border-[#6F73EE]' : 'border-[#EAEBED]'}`}>Версия MAX</button>
+                      <button onClick={handleClick} className={`border rounded-xl sm:py-7 w-[227px] ${isActive ? 'border-[#6F73EE]' : 'border-[#EAEBED]'}`}>VIP-версия</button>
                   </div>
                 </div>
               </div>

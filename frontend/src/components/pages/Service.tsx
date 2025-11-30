@@ -138,18 +138,13 @@ export default function Service(){
                         </div>
                     </div>
                 </div>
-
                 {/* Стоимость ремонта */}
                 <div className="grid gap-4 justify-center mb-10">
                     <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость ремонта</h1>
                     <p className="text-center justify-center sm:w-170">Точную стоимость работ вам озвучит специалист сервисного центра после диагностики. Примерные цены на ремонт без учета запчастей смотрите ниже.</p>                
                 </div>
                 <SelectSectionService/>
-
-                
             </div>
-            
-
                 {/* Определим причину неисправности удаленно или на диагностике! */}
             <div className="flex justify-center pt-8 lg:pt-[110px]">
                 <div className="hidden lg:block bg-[url('./bgservice.svg')] bg-center bg-cover bg-no-repeat items-center w-[1440px] rounded-[5px]">
@@ -327,7 +322,6 @@ export default function Service(){
                     </div>
                 </div>
             </div>
-            
             {/* {Стоимость гидроизоляции и настройки} */}
             <div className="grid gap-4 justify-center mb-10">
                 <h1 className="text-2xl sm:text-[35px] font-semibold text-center uppercase">Стоимость гидроизоляции и настройки</h1>
@@ -453,7 +447,6 @@ export default function Service(){
                             <p className="font-semibold">+7 (499) 350-76-92</p>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </>

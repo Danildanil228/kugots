@@ -37,26 +37,20 @@ export default function Samokat() {
     motorPower: [] as string[],
   });
   const [showAllFilters, setShowAllFilters] = useState(false);
-
-  // Берем все товары без ограничения по типу
   const { data: products, loading } = useApiData<Product>('/product');
 
-  // Фильтрация и сортировка товаров
   const filteredAndSortedProducts = useMemo(() => {
     if (!products) return [];
 
     let filtered = products.filter(product => {
-      // Фильтр по цене
       if (product.price < priceRange[0] || product.price > priceRange[1]) {
         return false;
       }
 
-      // Фильтр по типу
       if (filters.type.length > 0 && !filters.type.includes(product.type)) {
         return false;
       }
 
-      // Фильтр по весу (примерная логика)
       if (filters.weight.length > 0) {
         const productWeight = product.weight || 'medium';
         if (!filters.weight.includes(productWeight)) {
@@ -67,14 +61,12 @@ export default function Samokat() {
       return true;
     });
 
-    // Сортировка по цене
     if (priceSort) {
       filtered.sort((a, b) => {
         return priceSort === 'asc' ? a.price - b.price : b.price - a.price;
       });
     }
 
-    // Сортировка по дальности хода
     if (rangeSort) {
       filtered.sort((a, b) => {
         const aRange = parseInt(a.range || a.time) || 0;
@@ -95,7 +87,6 @@ export default function Samokat() {
     }));
   };
 
-  // Товар месяца (берем первый из базы для примера)
   const productOfMonth = products?.[0];
 
   return (
@@ -318,10 +309,7 @@ export default function Samokat() {
               )}
             </div>
           </div>
-
-          {/* Основной контент - фильтры и товары */}
           <div className="flex gap-8 px-4">
-            {/* Левая колонка - фильтры (десктоп) */}
             <div className="hidden lg:block w-80 flex-shrink-0">
               <div className="bg-[#F4F7FB] rounded-lg p-6 mb-6">
                 {/* Фильтр по цене */}
@@ -354,7 +342,6 @@ export default function Samokat() {
                     />
                   </div>
                 </div>
-
                 {/* Фильтр по типу */}
                 <div className="mb-6">
                   <h3 className="font-semibold mb-4">Тип</h3>
@@ -374,8 +361,6 @@ export default function Samokat() {
                     ))}
                   </div>
                 </div>
-
-                {/* Основные фильтры */}
                 <div className="mb-6">
                   <h3 className="font-semibold mb-4">Для кого</h3>
                   <div className="space-y-2">
@@ -394,7 +379,6 @@ export default function Samokat() {
                     ))}
                   </div>
                 </div>
-
                 {/* Дополнительные фильтры */}
                 {showAllFilters && (
                   <>
@@ -464,7 +448,6 @@ export default function Samokat() {
                   {showAllFilters ? 'Скрыть фильтры' : 'Показать все фильтры'}
                 </button>
               </div>
-
               {/* Товар месяца */}
               {productOfMonth && (
                 <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
@@ -526,8 +509,6 @@ export default function Samokat() {
     </>
   );
 }
-
-// Компонент карточки товара
 function ProductCard({ product }: { product: Product }) {
   return (
     <Link to={`/product/${product.id}`} className="block">
