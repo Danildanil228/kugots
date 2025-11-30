@@ -12,16 +12,11 @@ const CACHE_DURATION = 5 * 60 * 1000;
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Разрешаем запросы без origin (например, из мобильных приложений)
     if (!origin) return callback(null, true);
-    
-    // Разрешаем localhost и все IP-адреса локальной сети
     const allowedOrigins = [
       'http://localhost:5173',
       'http://127.0.0.1:5173'
     ];
-    
-    // Добавляем динамически все IP-адреса на 5173 порту
     if (origin.includes(':5173')) {
       return callback(null, true);
     }
@@ -40,7 +35,7 @@ app.use(cors({
 app.use(compression());
 app.use(express.json());
 
-// Функция для очистки устаревшего кэша
+
 const cleanupCache = () => {
   const now = Date.now();
   for (const [key, value] of cache.entries()) {
@@ -50,10 +45,8 @@ const cleanupCache = () => {
   }
 };
 
-// Очистка кэша каждую минуту
 setInterval(cleanupCache, 60000);
 
-// Вспомогательная функция для кэширования
 const getCachedData = (key) => {
   const cached = cache.get(key);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
@@ -85,8 +78,6 @@ app.get('/product', async (req, res) => {
   try {
     const { type } = req.query;
     const cacheKey = `products_${type || 'all'}`;
-    
-    // Проверяем кэш
     const cachedData = getCachedData(cacheKey);
     if (cachedData) {
       console.log('Returning cached products');
@@ -109,8 +100,6 @@ app.get('/product', async (req, res) => {
     
     const result = await pool.query(query, params);
     console.log('Found products:', result.rows.length);
-    
-    // Сохраняем в кэш
     setCachedData(cacheKey, result.rows);
     
     res.json(result.rows);
