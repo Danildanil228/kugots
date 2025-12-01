@@ -13,29 +13,29 @@ export function MobileNavigation() {
         { 
             path: '/main', 
             label: 'Главная', 
-            icon: './HomeNav.svg'
+            icon: '/HomeNav.svg'
         },
         { 
             path: '/catalog', 
             label: 'Каталог', 
-            icon: './SearchNav.svg'
+            icon: '/SearchNav.svg'
         },
         { 
             path: '/cart', 
             label: 'Корзина', 
-            icon: './CartNav.svg',
+            icon: '/CartNav.svg',
             badge: getTotalItems() 
         },
         { 
             path: '/like', 
             label: 'Лайки', 
-            icon: './HeartNav.svg',
+            icon: '/HeartNav.svg',
             badge: likeItems.length 
         },
         { 
             path: '/compare', 
             label: 'Сравнить', 
-            icon: './CompareNav.svg',
+            icon: '/CompareNav.svg',
             badge: compareItems.length 
         },
     ];

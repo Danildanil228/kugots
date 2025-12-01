@@ -12,6 +12,7 @@ import { HitProduct } from '../forms/HitProduct';
 import { ScrollToTop } from '../ScrollToTop';
 import { Link } from 'react-router-dom';
 
+
 export default function MainPage(){
    
     const [activeButton, setActiveButton] = useState('Хиты продаж');

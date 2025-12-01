@@ -39,7 +39,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        {/* Заменил ChevronDownIcon на img с crest.svg */}
+        
         <img 
           src="./crest.svg" 
           alt=""
