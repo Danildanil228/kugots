@@ -6,7 +6,7 @@ import { AlertOrderProduct } from "../forms/AlertOrderProduct";
 import { formatPrice, getTagColor } from '../format';
 import { Share } from "../buttons/Share"; 
 import { API_BASE_URL } from '../../config/api';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordionproduct";
 import { Box, Flex, RadioCards, Text } from '@radix-ui/themes';
 
 interface Product {
@@ -241,48 +241,7 @@ export default function ProductPage() {
                     </ul>
                   </div>
                 </div>
-{/* Комплектация */}
-                <div className='py-8 w-full'>
-                  <div className='flex items-center gap-1 text-center'>
-                    <Accordion type="multiple">
-                      <AccordionItem value='item-1'>
-                        <AccordionTrigger>
-                          <h3 className='font-semibold'>Комплектация</h3>
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <Box maxWidth="600px" width="">
-                          <RadioCards.Root defaultValue="1" columns={{ initial: "1", sm: "3" }}>
-                            <RadioCards.Item value="1" className='sm:py-7! w-70!'>
-                              <Flex direction="column" width="100%">
-                                <h2>Базовая</h2>
-                              </Flex>
-                            </RadioCards.Item>
-                            <RadioCards.Item value="2">
-                              <Flex direction="column" width="100%">
-                                <h2>Версия MAX</h2>
-                              </Flex>
-                            </RadioCards.Item>
-                            <RadioCards.Item value="3">
-                              <Flex direction="column" width="100%">
-                                <h2>VIP-версия</h2>
-                              </Flex>
-                            </RadioCards.Item>
-                          </RadioCards.Root>
-                        </Box>
-                      </AccordionContent>
-                      </AccordionItem>
-
-                    </Accordion>
-                      
-                  </div>
-                  <div className='flex flex-wrap text-center gap-3'>
-                    
-                      
-                      {/* <button onClick={handleClick} className={`border rounded-xl sm:py-7 w-[227px] ${isActive ? 'border-[#6F73EE]' : 'border-[#EAEBED]'}`}>Базовая</button>
-                      <button onClick={handleClick} className={`border rounded-xl sm:py-7 w-[227px] ${isActive ? 'border-[#6F73EE]' : 'border-[#EAEBED]'}`}>Версия MAX</button>
-                      <button onClick={handleClick} className={`border rounded-xl sm:py-7 w-[227px] ${isActive ? 'border-[#6F73EE]' : 'border-[#EAEBED]'}`}>VIP-версия</button> */}
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
