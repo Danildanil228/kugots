@@ -2,9 +2,7 @@ import { Select } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 
 export function Everywhere() {
-  return (
-    <>
-        <Select.Root defaultValue="Везде">
+  return (<Select.Root defaultValue="Везде">
           <Select.Trigger className="bg-[#F4F7FB]!"/>
           <Select.Content>
             <Select.Group>
@@ -13,8 +11,5 @@ export function Everywhere() {
               <Select.Item className='group! transition-all! duration-200! hover:bg-transparent! hover:text-[#6F73EE]! text-[#5D6C7B]!' value="Аксессуары">Аксессуары</Select.Item>
             </Select.Group>
           </Select.Content>
-        </Select.Root>
-
-    </>
-  )
+        </Select.Root>)
 }

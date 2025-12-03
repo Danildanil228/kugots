@@ -8,7 +8,7 @@ const StarRating = ({ rating = 5 }: { rating?: number }) => (
         ))}
     </div>
 );
-const ReviewCard = ({ imageSrc, profileSrc = "./profile1.svg", name = "Имя", level = "Уровень", date = "01.01.2023", text = "Текст отзыва будет отображаться здесь. Очень доволен обслуживанием!" }: {
+const ReviewCard = ({ imageSrc, profileSrc = "/profile1.svg", name = "Имя", level = "Уровень", date = "01.01.2023", text = "Текст отзыва будет отображаться здесь. Очень доволен обслуживанием!" }: {
     imageSrc: string;
     profileSrc?: string;
     name?: string;
@@ -43,8 +43,8 @@ const ReviewCard = ({ imageSrc, profileSrc = "./profile1.svg", name = "Имя", 
 
 export function CaruselSlider() {
     const reviewImages = [
-        "./otziv1.svg", "./otziv2.svg", "./otziv3.svg", "./otziv4.svg", 
-        "./otziv5.svg", "./otziv6.svg", "./otziv7.svg", "./otziv8.svg", "./otziv10.svg"
+        "/otziv1.svg", "/otziv2.svg", "/otziv3.svg", "/otziv4.svg", 
+        "/otziv5.svg", "/otziv6.svg", "/otziv7.svg", "/otziv8.svg", "/otziv10.svg"
     ];
     const doubledImages = [...reviewImages, ...reviewImages];
     return (

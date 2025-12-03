@@ -43,21 +43,22 @@ const HitProductItem = ({ product }: { product: Product }) => {
                         <div className="flex justify-between">
                             <div className="grid gap-4">
                                 <div className="flex gap-2.5">
-                                    <img className="w-5" src="./acum.svg" alt="" />
+                                    <img className="w-5" src="/acum.svg" alt="" />
                                     <p className="text-[#5D6C7B]">{product.acum} mAh</p>
                                 </div>
                                 <div className="flex gap-2.5">
-                                    <img className="w-5" src="./speed.svg" alt="" />
+                                    <img className="w-5" src="/speed.svg" alt="" />
                                     <p className="text-[#5D6C7B]">{product.speed} км/ч</p>
                                 </div>
                             </div>
                             <div className="grid gap-4">
                                 <div className="flex gap-2.5">
-                                    <img className="w-5" src="./power.svg" alt="" />
+                                    <img className="w-5" src="/power.svg" alt="" />
                                     <p className="text-[#5D6C7B]">{product.power}кВт</p>
                                 </div>
                                 <div className="flex gap-2.5">
-                                    <img className="w-5" src="./time.svg" alt="" />
+                                    <img className="w-5" src="
+                                    /time.svg" alt="" />
                                     <p className="text-[#5D6C7B]">{product.time} ч</p>
                                 </div>
                             </div>
@@ -116,21 +117,21 @@ const MobileHitProductItem = ({ product }: { product: Product }) => {
                     <div className="flex justify-between">
                         <div className="grid gap-2">
                             <div className="flex gap-2 items-center">
-                                <img className="w-4" src="./acum.svg" alt="" />
+                                <img className="w-4" src="/acum.svg" alt="" />
                                 <p className="text-[#5D6C7B] text-sm">{product.acum} mAh</p>
                             </div>
                             <div className="flex gap-2 items-center">
-                                <img className="w-4" src="./speed.svg" alt="" />
+                                <img className="w-4" src="/speed.svg" alt="" />
                                 <p className="text-[#5D6C7B] text-sm">{product.speed} км/ч</p>
                             </div>
                         </div>
                         <div className="grid gap-2">
                             <div className="flex gap-2 items-center">
-                                <img className="w-4" src="./power.svg" alt="" />
+                                <img className="w-4" src="/power.svg" alt="" />
                                 <p className="text-[#5D6C7B] text-sm">{product.power}кВт</p>
                             </div>
                             <div className="flex gap-2 items-center">
-                                <img className="w-4" src="./time.svg" alt="" />
+                                <img className="w-4" src="/time.svg" alt="" />
                                 <p className="text-[#5D6C7B] text-sm">{product.time} ч</p>
                             </div>
                         </div>
