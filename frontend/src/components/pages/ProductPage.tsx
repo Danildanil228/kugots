@@ -123,221 +123,227 @@ const handleCallOrder = async () => {
     <>
     <ScrollToTop/>
       <section className="container justify-center flex flex-wrap sm:grid min-h-screen sm:px-0!">
-        <div className='flex justify-between w-7xl'>
-          <div className="w-full max-w-7xl">
-            <div className="mt-10 ">
-              <Breadcrumbs items={[
-                { label: 'Главная', path: '/main' },
-                { label: 'Каталог', path: '/catalog' },
-                { label: 'Электросамокаты', path: '/samokat' },
-                { label: product.name }
-              ]} />
-            </div>
+        <div className='justify-center! flex'>
 
-            <div className="flex flex-col lg:flex-row gap-8  my-8">
-              {/* Левая */}
-              <div className="lg:w-1/2">
-                <div className="bg-white rounded-lg p-4 border border-[#EAEBED]">
-                  <div className="w-full h-96 bg-cover bg-center rounded-lg mb-4"
-                    style={{ backgroundImage: `url(${productImages[selectedImage]})` }} />
-                  <div className="flex gap-2">
-                    {productImages.map((image, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImage(index)}
-                        className={`w-20 h-20 bg-cover bg-center rounded border-2 ${
-                          selectedImage === index ? 'border-[#6F73EE]' : 'border-transparent'
-                        }`}
-                        style={{ backgroundImage: `url(${image})` }}
-                      />
-                    ))}
-                  </div>
-                </div>
+          <div className='flex justify-between w-7xl'>
+            <div className="w-full max-w-7xl">
+              <div className="mt-10 ">
+                <Breadcrumbs items={[
+                  { label: 'Главная', path: '/main' },
+                  { label: 'Каталог', path: '/catalog' },
+                  { label: 'Электросамокаты', path: '/samokat' },
+                  { label: product.name }
+                ]} />
               </div>
 
-              {/* Правая  */}
-              <div className="lg:w-1/2">
-                <div className=" rounded-lg p-6 border border-[#EAEBED]">
-                  {/* Заголовок и тег */}
-                  <div className="flex items-start justify-between mb-4">
-                    <h1 className="text-2xl lg:text-3xl font-semibold">{product.name}</h1>
-                    <div className={`py-1 px-2 rounded-[5px] text-white text-sm ${getTagColor(product.descr)}`}>
-                      {product.descr}
+              <div className="flex flex-col lg:flex-row gap-8  my-8">
+                {/* Левая */}
+                <div className="lg:w-1/2">
+                  <div className="bg-white rounded-lg p-4 border border-[#EAEBED]">
+                    <div className="w-full h-96 bg-cover bg-center rounded-lg mb-4"
+                      style={{ backgroundImage: `url(${productImages[selectedImage]})` }} />
+                    <div className="flex gap-2">
+                      {productImages.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedImage(index)}
+                          className={`w-20 h-20 bg-cover bg-center rounded border-2 ${
+                            selectedImage === index ? 'border-[#6F73EE]' : 'border-transparent'
+                          }`}
+                          style={{ backgroundImage: `url(${image})` }}
+                        />
+                      ))}
                     </div>
                   </div>
+                </div>
 
-                  {/* Цена */}
-                  <div className="mb-6">
-                    {product.oldprice && (
-                      <p className="line-through text-gray-500 text-lg">
-                        {formatPrice(product.oldprice)} ₽
-                      </p>
-                    )}
-                    <p className="text-3xl font-bold text-[#6F73EE]">
-                      {formatPrice(product.price)} ₽
-                    </p>
-                  </div>
-
-                  {/* Характеристики */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-center gap-2">
-                      <img src="/acum.svg" className="w-5 h-5" alt="Батарея" />
-                      <span className="text-gray-700">{product.acum} mAh</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <img src="/speed.svg" className="w-5 h-5" alt="Скорость" />
-                      <span className="text-gray-700">{product.speed} км/ч</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <img src="/power.svg" className="w-5 h-5" alt="Мощность" />
-                      <span className="text-gray-700">{product.power} кВт</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <img src="/time.svg" className="w-5 h-5" alt="Время" />
-                      <span className="text-gray-700">{product.time} ч</span>
-                    </div>
-                  </div>
-
-                  {/* Количество и кнопки */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <span className="font-medium">Количество:</span>
-                      <div className="flex items-center gap-2">
-                        <button 
-                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                          className="w-8 h-8 rounded border border-gray-300 flex items-center justify-center"
-                        >
-                          -
-                        </button>
-                        <span className="w-8 text-center">{quantity}</span>
-                        <button 
-                          onClick={() => setQuantity(quantity + 1)}
-                          className="w-8 h-8 rounded border border-gray-300 flex items-center justify-center"
-                        >
-                          +
-                        </button>
+                {/* Правая  */}
+                <div className="lg:w-1/2">
+                  <div className=" rounded-lg p-6 border border-[#EAEBED]">
+                    {/* Заголовок и тег */}
+                    <div className="flex items-start justify-between mb-4">
+                      <h1 className="text-2xl lg:text-3xl font-semibold">{product.name}</h1>
+                      <div className={`py-1 px-2 rounded-[5px] text-white text-sm ${getTagColor(product.descr)}`}>
+                        {product.descr}
                       </div>
                     </div>
 
-                    <div className="flex gap-3">
-                      {product.count === 0 ? (
-                        <div className="flex-1">
-                          <AlertOrderProduct product={product} />
-                        </div>
-                      ) : (
-                        <>
-                          <button className="flex-1 py-3 bg-[#6F73EE] text-white rounded-lg hover:bg-[#5a5fd8] transition-colors">
-                            Купить сейчас
-                          </button>
-                          <ActionIcon type='cart' product={product}/>
-                        </>
+                    {/* Цена */}
+                    <div className="mb-6">
+                      {product.oldprice && (
+                        <p className="line-through text-gray-500 text-lg">
+                          {formatPrice(product.oldprice)} ₽
+                        </p>
                       )}
+                      <p className="text-3xl font-bold text-[#6F73EE]">
+                        {formatPrice(product.price)} ₽
+                      </p>
                     </div>
 
-                    {/* Действия */}
-                    <div className="flex gap-4 pt-4 border-t border-gray-200">
-                      <ActionIcon type="like" product={product} />
-                      <ActionIcon type="compare" product={product} />
-                      <Share />
+                    {/* Характеристики */}
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="flex items-center gap-2">
+                        <img src="/acum.svg" className="w-5 h-5" alt="Батарея" />
+                        <span className="text-gray-700">{product.acum} mAh</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <img src="/speed.svg" className="w-5 h-5" alt="Скорость" />
+                        <span className="text-gray-700">{product.speed} км/ч</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <img src="/power.svg" className="w-5 h-5" alt="Мощность" />
+                        <span className="text-gray-700">{product.power} кВт</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <img src="/time.svg" className="w-5 h-5" alt="Время" />
+                        <span className="text-gray-700">{product.time} ч</span>
+                      </div>
+                    </div>
+
+                    {/* Количество и кнопки */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4">
+                        <span className="font-medium">Количество:</span>
+                        <div className="flex items-center gap-2">
+                          <button 
+                            onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                            className="w-8 h-8 rounded border border-gray-300 flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="w-8 text-center">{quantity}</span>
+                          <button 
+                            onClick={() => setQuantity(quantity + 1)}
+                            className="w-8 h-8 rounded border border-gray-300 flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        {product.count === 0 ? (
+                          <div className="flex-1">
+                            <AlertOrderProduct product={product} />
+                          </div>
+                        ) : (
+                          <>
+                            <button className="flex-1 py-3 bg-[#6F73EE] text-white rounded-lg hover:bg-[#5a5fd8] transition-colors">
+                              Купить сейчас
+                            </button>
+                            <ActionIcon type='cart' product={product}/>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Действия */}
+                      <div className="flex gap-4 pt-4 border-t border-gray-200">
+                        <ActionIcon type="like" product={product} />
+                        <ActionIcon type="compare" product={product} />
+                        <Share />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Дополнительная информация */}
-                <div className=" rounded-lg p-6 border border-[#EAEBED] mt-6">
-                  <h3 className="font-semibold text-lg mb-4">О товаре</h3>
-                  <p className="text-gray-700">
-                    {product.description || 'Высококачественный электросамокат с отличными характеристиками...'}
-                  </p>
-                  
-                  <div className="mt-4">
-                    <h4 className="font-medium mb-2">Особенности:</h4>
-                    <ul className="list-disc list-inside space-y-1 text-gray-700">
-                      {(product.features || [
-                        'Мощный двигатель',
-                        'Долгий срок службы батареи',
-                        'Прочная конструкция',
-                        'Современный дизайн'
-                      ]).map((feature, index) => (
-                        <li key={index}>{feature}</li>
-                      ))}
-                    </ul>
+                  {/* Дополнительная информация */}
+                  <div className=" rounded-lg p-6 border border-[#EAEBED] mt-6">
+                    <h3 className="font-semibold text-lg mb-4">О товаре</h3>
+                    <p className="text-gray-700">
+                      {product.description || 'Высококачественный электросамокат с отличными характеристиками...'}
+                    </p>
+                    
+                    <div className="mt-4">
+                      <h4 className="font-medium mb-2">Особенности:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-gray-700">
+                        {(product.features || [
+                          'Мощный двигатель',
+                          'Долгий срок службы батареи',
+                          'Прочная конструкция',
+                          'Современный дизайн'
+                        ]).map((feature, index) => (
+                          <li key={index}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div>
+                  <div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         {/* О товаре */}
-        <div>
-          <Tabs.Root defaultValue="about" className='text-2xl!'>
-            <Tabs.List className='flex flex-wrap justify-center! sm:justify-between! text-[14px]!'>
-              <Tabs.Trigger  value="about">О товаре</Tabs.Trigger>
-              <Tabs.Trigger value="set">Характеристики</Tabs.Trigger>
-              <Tabs.Trigger value="delivery">Доставка и оплата</Tabs.Trigger>
-              <Tabs.Trigger value="garant">Гарантии</Tabs.Trigger>
-              <Tabs.Trigger value="max">Версия MAX</Tabs.Trigger>
-            </Tabs.List>
+        <div className='justify-center flex'>
+          <div className='justify-between w-7xl'>
 
-            <Box pt="3">
-              <Tabs.Content value="about">
-                <div className="sm:flex grid justify-between! gap-10 text-center sm:text-start">
-                  <div className="grid gap-7 max-w-[500px]">
-                    <h2 className='font-semibold uppercase text-[25px]'>Электросамокат {product.name} c мощными характеристиками и стильным дизайном</h2>
-                    <p className='text-[14px]'>Приобретая самокат {product.name}, вы получите  множество положительных эмоций и сможете беспрепятственно передвигаться по городу.</p>
-                    <p className='text-[14px]'>Самокат может набирать скорость до {product.speed} км/ч благодаря усиленному мотор-колесу и батарее. Удобный дисплей позволяет легкостью отслеживать и переключать скорости передвижения, контролировать заряд аккумулятора, а также пройденный путь за все время и за текущую поездку в километрах.</p>
-                  </div>
-                  <div className="grid gap-4">
-                    <h2>Что в комплекте</h2>
-                    <div className='grid grid-cols-2 items-center text-[14px] gap-2 justify-center text-center'>
-                      <div className="flex gap-3">
-                        <img className='w-5' src="/charger1.svg" alt="" />
-                        <p>Инструкция</p>
+              <Tabs.Root defaultValue="about" className='text-2xl!'>
+                <Tabs.List className='flex flex-wrap justify-center! sm:justify-between! text-[14px]!'>
+                  <Tabs.Trigger  value="about">О товаре</Tabs.Trigger>
+                  <Tabs.Trigger value="set">Характеристики</Tabs.Trigger>
+                  <Tabs.Trigger value="delivery">Доставка и оплата</Tabs.Trigger>
+                  <Tabs.Trigger value="garant">Гарантии</Tabs.Trigger>
+                  <Tabs.Trigger value="max">Версия MAX</Tabs.Trigger>
+                </Tabs.List>
+
+                <Box pt="3">
+                  <Tabs.Content value="about">
+                    <div className="sm:flex grid justify-between! gap-10 text-center sm:text-start">
+                      <div className="grid gap-7 max-w-[500px]">
+                        <h2 className='font-semibold uppercase text-[25px]'>Электросамокат {product.name} c мощными характеристиками и стильным дизайном</h2>
+                        <p className='text-[14px]'>Приобретая самокат {product.name}, вы получите  множество положительных эмоций и сможете беспрепятственно передвигаться по городу.</p>
+                        <p className='text-[14px]'>Самокат может набирать скорость до {product.speed} км/ч благодаря усиленному мотор-колесу и батарее. Удобный дисплей позволяет легкостью отслеживать и переключать скорости передвижения, контролировать заряд аккумулятора, а также пройденный путь за все время и за текущую поездку в километрах.</p>
                       </div>
-                      <div className="flex gap-3">
-                        <img className='w-5' src="/file1.svg" alt="" />
-                        <p>Чехол</p>
-                      </div>
-                      <div className="flex gap-3">
-                        <img className='w-5' src="/guarantee2.svg" alt="" />
-                        <p>Зарядное устройство</p>
-                      </div>
-                      <div className="flex gap-3">
-                        <img className='w-5' src="/scooter1.svg" alt="" />
-                        <p>Гарантийный талон</p>
+                      <div className="grid gap-4">
+                        <h2>Что в комплекте</h2>
+                        <div className='grid grid-cols-2 items-center text-[14px] gap-2 justify-center text-center'>
+                          <div className="flex gap-3">
+                            <img className='w-5' src="/charger1.svg" alt="" />
+                            <p>Инструкция</p>
+                          </div>
+                          <div className="flex gap-3">
+                            <img className='w-5' src="/file1.svg" alt="" />
+                            <p>Чехол</p>
+                          </div>
+                          <div className="flex gap-3">
+                            <img className='w-5' src="/guarantee2.svg" alt="" />
+                            <p>Зарядное устройство</p>
+                          </div>
+                          <div className="flex gap-3">
+                            <img className='w-5' src="/scooter1.svg" alt="" />
+                            <p>Гарантийный талон</p>
+                          </div>
+                        </div>
+                        <div className='grid'>
+                          <h2 className='font-semibold'>Ключевые особенности Kugoo Kirin M4</h2>
+                          <div className='flex gap-4 text-[14px] items-center'>
+                            <p className='px-5 py-3 bg-[#F4F7FB]'>Для города</p>
+                            <p className='px-5 py-3 bg-[#F4F7FB]'>Быстрый</p>
+                            <p className='px-5 py-3 bg-[#F4F7FB]'>Комфортный</p>
+                            <p className='px-5 py-3 bg-[#F4F7FB]'>Легкий</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className='grid'>
-                      <h2 className='font-semibold'>Ключевые особенности Kugoo Kirin M4</h2>
-                      <div className='flex gap-4 text-[14px] items-center'>
-                        <p className='px-5 py-3 bg-[#F4F7FB]'>Для города</p>
-                        <p className='px-5 py-3 bg-[#F4F7FB]'>Быстрый</p>
-                        <p className='px-5 py-3 bg-[#F4F7FB]'>Комфортный</p>
-                        <p className='px-5 py-3 bg-[#F4F7FB]'>Легкий</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Tabs.Content>
+                  </Tabs.Content>
 
-              <Tabs.Content value="set">
-                <Text size="2">Access and update your documents.</Text>
-              </Tabs.Content>
+                  <Tabs.Content value="set">
+                    <Text size="2">Access and update your documents.</Text>
+                  </Tabs.Content>
 
-              <Tabs.Content value="delivery">
-                <Text size="2">Edit your profile or update contact information.</Text>
-              </Tabs.Content>
-              <Tabs.Content value="garant">
-                <Text size="2">Edit your profile or update contact information.</Text>
-              </Tabs.Content>
-              <Tabs.Content value="max">
-                <Text size="2">Edit your profile or update contact information.</Text>
-              </Tabs.Content>
-            </Box>
-            </Tabs.Root>
-        </div>
+                  <Tabs.Content value="delivery">
+                    <Text size="2">Edit your profile or update contact information.</Text>
+                  </Tabs.Content>
+                  <Tabs.Content value="garant">
+                    <Text size="2">Edit your profile or update contact information.</Text>
+                  </Tabs.Content>
+                  <Tabs.Content value="max">
+                    <Text size="2">Edit your profile or update contact information.</Text>
+                  </Tabs.Content>
+                </Box>
+                </Tabs.Root>
+            </div>
+          </div>
         {/* Запишитесь на бесплатный тест-драйв Kugoo Kirin M4 в Москве */}
         <div className="flex justify-center my-8 lg:my-[100px]">
             <div className="hidden lg:block w-[1440px]">
@@ -444,8 +450,8 @@ const handleCallOrder = async () => {
         </div>
         <CaruselSlider/>
         <div className="flex justify-center hidden md:block">
-          <div className="w-7xl">
-              <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+          <div className="justify-center flex">
+              <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 justify-between w-7xl">
                   {/* Подбор модели */}
                   <div className="bg-[url('/model.svg')] bg-cover bg-no-repeat bg-center flex flex-col justify-between p-6 lg:p-8 rounded-[5px] min-h-[200px] lg:min-h-[280px] lg:w-1/2">
                       <div className="grid gap-3">
