@@ -46,7 +46,7 @@ export default function Actions() {
                   setCurrentPage(swiper.activeIndex + 1);
                 }}
                 onAfterInit={(swiper) => {
-                  const pages = Math.ceil(swiper.slides.length / 4); // 4 карточки на страницу
+                  const pages = Math.ceil(swiper.slides.length / 4); 
                   setTotalPages(pages);
                 }}
                 grid={{ rows: 2, fill: "row" }}
@@ -62,7 +62,7 @@ export default function Actions() {
                   768: { slidesPerView: 2, grid: { rows: 2 } },
                 }}
               >
-                {/* ----- СЛАЙДЫ (твоя сетка карточек, 4 на страницу) ----- */}
+                
 
                 <SwiperSlide className="rounded-3xl">
                   <div className="flex bg-[#F4F7FB] rounded-2xl overflow-hidden">
