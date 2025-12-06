@@ -146,7 +146,7 @@ export function CartMenu(){
                             </div>
                             <div className="grid">
                                 <button className="px-[30px] py-2.5 bg-[#6F73EE] text-white rounded-[5px] hover:bg-[#5A5FD8] transition-colors">
-                                    Оформить заказ
+                                    <Link to='/cart'>Оформить заказ</Link>
                                 </button>
                             </div>
                         </div>

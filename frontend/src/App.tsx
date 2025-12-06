@@ -13,6 +13,7 @@ import Catalog from './components/pages/Catalog';
 import Samokat from './components/pages/Samokat';
 import ProductPage from './components/pages/ProductPage';
 import News from './components/pages/News';
+import Complete from './components/pages/Complete';
 
 // Lazy loaded pages
 
@@ -63,6 +64,7 @@ function App() {
                 <Route path='/catalog' element={<Catalog/>}/>
                 <Route path='/samokat' element={<Samokat/>}/>
                 <Route path='/news' element={<News/>}/>
+                <Route path='/complete' element={<Complete/>}/>
                 <Route path='/product/:id' element={<ProductPage />} />
               </Routes>
             </Suspense>
@@ -70,7 +72,6 @@ function App() {
           <footer>
             <Footer/>
           </footer>
-          
           {/* Мобильная навигация */}
           <MobileNavigation />
       </div>

@@ -4,7 +4,15 @@ import { Breadcrumbs } from "../Breadcrumbs";
 import { formatPrice } from "../format";
 import { ScrollToTop } from "../ScrollToTop";
 import { HitProduct } from "../forms/HitProduct";
-import { AlertDialog, Button, Checkbox, Flex, Select, TextArea } from "@radix-ui/themes";
+import {
+  AlertDialog,
+  Button,
+  Checkbox,
+  Flex,
+  RadioCards,
+  Select,
+  TextArea,
+} from "@radix-ui/themes";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
 import { PhoneNumber } from "../forms/PhoneNumber";
@@ -431,7 +439,7 @@ export default function Cart() {
                                     {activeDelivery === "pickup" &&
                                       "Укажите данные получателя"}
                                     {activeDelivery === "courier" &&
-                                      "Данные для доставки курьером"}
+                                      "Укажите адрес доставки"}
                                     {activeDelivery === "express" &&
                                       "Данные для срочной доставки"}
                                     {activeDelivery === "cdek" &&
@@ -480,13 +488,823 @@ export default function Cart() {
                                         <div className="mt-10">
                                           <div className="grid items-start">
                                             <p>Комментрий</p>
-                                            <TextArea placeholder="Оставьте пожелание или комментарий к заказу "  size="2" className="text-[20px]!"/>
+                                            <TextArea
+                                              placeholder="Оставьте пожелание или комментарий к заказу "
+                                              size="2"
+                                              className="text-[20px]!"
+                                            />
                                           </div>
                                         </div>
                                       </div>
                                       {/* ШАГ 3 */}
+                                      <div className="mt-10 grid items-center">
+                                        <div className="flex gap-4 font-semibold text-[20px]">
+                                          <p className="text-[#6F73EE]">
+                                            Шаг 3.
+                                          </p>
+                                          <p>Выберите способ оплаты</p>
+                                        </div>
+                                        <div className="">
+                                          <RadioCards.Root defaultValue="1">
+                                            <div className="grid grid-cols-3 gap-5 mt-10 text-[20px]">
+                                              <RadioCards.Item value="1">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Картой
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <img
+                                                      src="/PM4.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM3.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM2.svg"
+                                                      alt=""
+                                                    />
+                                                    <img src="/PM.svg" alt="" />
+                                                    <img
+                                                      src="/PM5.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/webmoney.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/qiwi.svg"
+                                                      alt=""
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="2">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Наличными
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Курьеру, в магазине или
+                                                      при доставке CDEK
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="3">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Через интернет-банкинг по
+                                                    счету
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Менеджер свяжется с вами,
+                                                      чтобы выставить счет
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="4">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Онлайн на сайте
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа вы
+                                                      будете перенаправлены на
+                                                      страницу оплаты
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="5">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В рассрочку
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа c
+                                                      вами свяжется менеджер.
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="6">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В кредит от «Сбербанка»
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      С условиями можно
+                                                      ознакомиться на сайте
+                                                      банка
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                            </div>
+                                          </RadioCards.Root>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                  {/* КУРЬЕР */}
+                                  {activeDelivery === "courier" && (
+                                    <div className="grid">
+                                      {/* ШАГ 2 */}
                                       <div>
-                                        
+                                        <div className="grid grid-cols-2 gap-5">
+                                          <div className="grid ">
+                                            <p>Город/населенный пункт*</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Например, Воронеж"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="grid">
+                                            <p>Название улицы*</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Например, Сурганова"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <div className="grid">
+                                              <p>Номер дома</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                            <div className="grid text-[16px]">
+                                              <p>Корпус</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <div className="grid">
+                                              <p>Квартира</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                            <div className="grid text-[16px]">
+                                              <p>Индекс</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        {/* ШАГ 3 */}
+                                        <div className="my-10 text-[20px] font-semibold flex gap-4">
+                                          <p className="text-[#6F73EE] ">
+                                            Шаг 3.
+                                          </p>
+                                          <p>Выберите способ оплаты</p>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-5">
+                                          <div className="grid ">
+                                            <p>Ваша Фамилия</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Введите фамилию"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="grid">
+                                            <p>Ваше Имя</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Введите имя"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div>
+                                            <p>Ваш телефон</p>
+                                            <PhoneForCart
+                                              onPhoneChange={handlePhoneChange}
+                                              value={phone}
+                                            />
+                                          </div>
+                                          <div>
+                                            <p>Ваш email</p>
+                                            <input
+                                              type="email"
+                                              placeholder="Введите email"
+                                              className="inpt w-full"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div className="mt-10">
+                                          <div className="grid items-start">
+                                            <p>Комментрий</p>
+                                            <TextArea
+                                              placeholder="Оставьте пожелание или комментарий к заказу "
+                                              size="2"
+                                              className="text-[20px]!"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {/* ШАГ 4 */}
+                                      <div className="mt-10 grid items-center">
+                                        <div className="flex gap-4 font-semibold text-[20px]">
+                                          <p className="text-[#6F73EE]">
+                                            Шаг 4.
+                                          </p>
+                                          <p>Выберите способ оплаты</p>
+                                        </div>
+                                        <div className="">
+                                          <RadioCards.Root defaultValue="1">
+                                            <div className="grid grid-cols-3 gap-5 mt-10 text-[20px]">
+                                              <RadioCards.Item value="1">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Картой
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <img
+                                                      src="/PM4.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM3.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM2.svg"
+                                                      alt=""
+                                                    />
+                                                    <img src="/PM.svg" alt="" />
+                                                    <img
+                                                      src="/PM5.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/webmoney.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/qiwi.svg"
+                                                      alt=""
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="2">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Наличными
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Курьеру, в магазине или
+                                                      при доставке CDEK
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="3">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Через интернет-банкинг по
+                                                    счету
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Менеджер свяжется с вами,
+                                                      чтобы выставить счет
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="4">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Онлайн на сайте
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа вы
+                                                      будете перенаправлены на
+                                                      страницу оплаты
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="5">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В рассрочку
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа c
+                                                      вами свяжется менеджер.
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="6">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В кредит от «Сбербанка»
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      С условиями можно
+                                                      ознакомиться на сайте
+                                                      банка
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                            </div>
+                                          </RadioCards.Root>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                  {/* СРОЧНАЯ ДОСТ КУРЬЕРОМ */}
+                                  {activeDelivery === "express" && (
+                                    <div className="grid">
+                                      {/* ШАГ 2 */}
+                                      <div>
+                                        <div className="grid grid-cols-2 gap-5">
+                                          <div className="grid ">
+                                            <p>Город/населенный пункт*</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Например, Воронеж"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="grid">
+                                            <p>Название улицы*</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Например, Сурганова"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <div className="grid">
+                                              <p>Номер дома</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                            <div className="grid text-[16px]">
+                                              <p>Корпус</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <div className="grid">
+                                              <p>Квартира</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                            <div className="grid text-[16px]">
+                                              <p>Индекс</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        {/* ШАГ 3 */}
+                                        <div className="my-10 text-[20px] font-semibold flex gap-4">
+                                          <p className="text-[#6F73EE] ">
+                                            Шаг 3.
+                                          </p>
+                                          <p>Укажите данные получателя</p>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-5">
+                                          <div className="grid ">
+                                            <p>Ваша Фамилия</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Введите фамилию"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="grid">
+                                            <p>Ваше Имя</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Введите имя"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div>
+                                            <p>Ваш телефон</p>
+                                            <PhoneForCart
+                                              onPhoneChange={handlePhoneChange}
+                                              value={phone}
+                                            />
+                                          </div>
+                                          <div>
+                                            <p>Ваш email</p>
+                                            <input
+                                              type="email"
+                                              placeholder="Введите email"
+                                              className="inpt w-full"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div className="mt-10">
+                                          <div className="grid items-start">
+                                            <p>Комментрий</p>
+                                            <TextArea
+                                              placeholder="Оставьте пожелание или комментарий к заказу "
+                                              size="2"
+                                              className="text-[20px]!"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {/* ШАГ 4 */}
+                                      <div className="mt-10 grid items-center">
+                                        <div className="flex gap-4 font-semibold text-[20px]">
+                                          <p className="text-[#6F73EE]">
+                                            Шаг 4.
+                                          </p>
+                                          <p>Выберите способ оплаты</p>
+                                        </div>
+                                        <div className="">
+                                          <RadioCards.Root defaultValue="1">
+                                            <div className="grid grid-cols-3 gap-5 mt-10 text-[20px]">
+                                              <RadioCards.Item value="1">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Картой
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <img
+                                                      src="/PM4.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM3.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM2.svg"
+                                                      alt=""
+                                                    />
+                                                    <img src="/PM.svg" alt="" />
+                                                    <img
+                                                      src="/PM5.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/webmoney.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/qiwi.svg"
+                                                      alt=""
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="2">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Наличными
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Курьеру, в магазине или
+                                                      при доставке CDEK
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="3">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Через интернет-банкинг по
+                                                    счету
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Менеджер свяжется с вами,
+                                                      чтобы выставить счет
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="4">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Онлайн на сайте
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа вы
+                                                      будете перенаправлены на
+                                                      страницу оплаты
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="5">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В рассрочку
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа c
+                                                      вами свяжется менеджер.
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="6">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В кредит от «Сбербанка»
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      С условиями можно
+                                                      ознакомиться на сайте
+                                                      банка
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                            </div>
+                                          </RadioCards.Root>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                  {/* CDEK */}
+                                  {activeDelivery === "cdek" && (
+                                    <div className="grid">
+                                      {/* ШАГ 2 */}
+                                      <div>
+                                        <div className="grid grid-cols-2 gap-5">
+                                          <div className="grid ">
+                                            <p>Город/населенный пункт*</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Например, Воронеж"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="grid">
+                                            <p>Название улицы*</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Например, Сурганова"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <div className="grid">
+                                              <p>Номер дома</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                            <div className="grid text-[16px]">
+                                              <p>Корпус</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <div className="grid">
+                                              <p>Квартира</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                            <div className="grid text-[16px]">
+                                              <p>Индекс</p>
+                                              <input
+                                                className="inpt max-w-50"
+                                                placeholder="Введите число"
+                                                type="name"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        {/* ШАГ 3 */}
+                                        <div className="my-10 text-[20px] font-semibold flex gap-4">
+                                          <p className="text-[#6F73EE] ">
+                                            Шаг 3.
+                                          </p>
+                                          <p>Укажите данные получателя</p>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-5">
+                                          <div className="grid ">
+                                            <p>Ваша Фамилия</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Введите фамилию"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div className="grid">
+                                            <p>Ваше Имя</p>
+                                            <input
+                                              className="inpt"
+                                              placeholder="Введите имя"
+                                              type="name"
+                                            />
+                                          </div>
+                                          <div>
+                                            <p>Ваш телефон</p>
+                                            <PhoneForCart
+                                              onPhoneChange={handlePhoneChange}
+                                              value={phone}
+                                            />
+                                          </div>
+                                          <div>
+                                            <p>Ваш email</p>
+                                            <input
+                                              type="email"
+                                              placeholder="Введите email"
+                                              className="inpt w-full"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div className="mt-10">
+                                          <div className="grid items-start">
+                                            <p>Комментрий</p>
+                                            <TextArea
+                                              placeholder="Оставьте пожелание или комментарий к заказу "
+                                              size="2"
+                                              className="text-[20px]!"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {/* ШАГ 4 */}
+                                      <div className="mt-10 grid items-center">
+                                        <div className="flex gap-4 font-semibold text-[20px]">
+                                          <p className="text-[#6F73EE]">
+                                            Шаг 4.
+                                          </p>
+                                          <p>Выберите способ оплаты</p>
+                                        </div>
+                                        <div className="">
+                                          <RadioCards.Root defaultValue="1">
+                                            <div className="grid grid-cols-3 gap-5 mt-10 text-[20px]">
+                                              <RadioCards.Item value="1">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Картой
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <img
+                                                      src="/PM4.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM3.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/PM2.svg"
+                                                      alt=""
+                                                    />
+                                                    <img src="/PM.svg" alt="" />
+                                                    <img
+                                                      src="/PM5.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/webmoney.svg"
+                                                      alt=""
+                                                    />
+                                                    <img
+                                                      src="/qiwi.svg"
+                                                      alt=""
+                                                    />
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="2">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Наличными
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Курьеру, в магазине или
+                                                      при доставке CDEK
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="3">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Через интернет-банкинг по
+                                                    счету
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      Менеджер свяжется с вами,
+                                                      чтобы выставить счет
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="4">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    Онлайн на сайте
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа вы
+                                                      будете перенаправлены на
+                                                      страницу оплаты
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="5">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В рассрочку
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      После оформления заказа c
+                                                      вами свяжется менеджер.
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                              <RadioCards.Item value="6">
+                                                <div className="grid gap-3 p-3">
+                                                  <p className="font-semibold">
+                                                    В кредит от «Сбербанка»
+                                                  </p>
+                                                  <div className="flex flex-wrap max-w-50 gap-3">
+                                                    <p className="text-[16px]">
+                                                      С условиями можно
+                                                      ознакомиться на сайте
+                                                      банка
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </RadioCards.Item>
+                                            </div>
+                                          </RadioCards.Root>
+                                        </div>
                                       </div>
                                     </div>
                                   )}
