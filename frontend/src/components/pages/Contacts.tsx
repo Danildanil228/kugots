@@ -133,7 +133,7 @@ export default function Contacts() {
               </div>
             </div>
           </div>
-          <div className="justify-center flex">
+          <div className="justify-center flex my-20">
           <div className="justify-between sm:w-7xl sm:flex grid">
             <div className="grid text-center sm:text-start">
               <h1 className="text-2xl sm:text-[35px] font-semibold uppercase sm:w-180">
