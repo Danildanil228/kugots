@@ -290,6 +290,71 @@ app.post('/api/call-order', async (req, res) => {
   }
 });
 
+
+// ПОИСК
+app.get('/api/products/search', async (req, res) => {
+    try {
+        const { q } = req.query;
+        
+        if (!q || q.trim() === '') {
+            return res.status(400).json({ 
+                error: 'Не указан поисковый запрос' 
+            });
+        }
+        
+        const searchTerm = `%${q.toLowerCase()}%`;
+        
+        const result = await pool.query(
+            `SELECT * FROM product 
+             WHERE LOWER(name) LIKE LOWER($1) 
+             OR LOWER(descr) LIKE LOWER($1)
+             ORDER BY 
+                 CASE WHEN LOWER(name) LIKE LOWER($1) THEN 0 ELSE 1 END,
+                 name`,
+            [searchTerm]
+        );
+        
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Ошибка поиска в БД:', error);
+        res.status(500).json({ 
+            error: 'Ошибка сервера',
+            details: error.message 
+        });
+    }
+});
+
+// Быстрый поиск для подсказок (автодополнение) - без лимита
+app.get('/api/products/autocomplete', async (req, res) => {
+    try {
+        const { q } = req.query;
+        
+        if (!q || q.trim() === '') {
+            return res.json([]);
+        }
+        
+        const searchTerm = `%${q.toLowerCase()}%`;
+        
+        const result = await pool.query(
+            `SELECT id, name, price, img 
+             FROM product 
+             WHERE LOWER(name) LIKE LOWER($1) 
+             ORDER BY 
+                 CASE WHEN LOWER(name) LIKE LOWER($1) THEN 0 ELSE 1 END,
+                 name`,
+            [searchTerm]
+        );
+        
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Ошибка автодополнения:', error);
+        res.status(500).json({ 
+            error: 'Ошибка сервера',
+            details: error.message 
+        });
+    }
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
