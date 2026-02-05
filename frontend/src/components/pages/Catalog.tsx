@@ -69,7 +69,7 @@ export default function Catalog(){
                                     </div>
                                     
                                     {/* Изображение */}
-                                    <div className="bg-[url('./bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-full h-[200px] relative">
+                                    <div className="bg-[url('/bg-kugo.svg')] bg-cover bg-center bg-no-repeat rounded-xl w-full h-[200px] relative">
                                         <div className="absolute bottom-4 right-4">
                                             <div className="TEXT grid w-fit gap-3 rounded-2xl text-white backdrop-blur-[10px] p-3 bg-black/30">
                                                 <div>
