@@ -358,5 +358,4 @@ app.get('/api/products/autocomplete', async (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
-  console.log('Кэширование включено (5 минут)');
 });

@@ -7,18 +7,39 @@
 *{
   font-family: "Jost", sans-serif !important;
 }
-
 body{
   font-family: "Jost", sans-serif !important;
   font-size: 16px; 
   margin: 0;
   padding: 0;
 }
-
 .container {
   width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
+}
+button{
+  font-size: 16px;
+  font-family: "Jost", sans-serif !important;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+a,p{
+  text-decoration: none;
+  font-family: "Jost", sans-serif !important;
+  transition: 0.2s ease;
+}
+input{
+  font-family: "Jost", sans-serif !important;
+  font-size: 14px;
+  border: none;
+}
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+img{
+  transition: 0.2s ease;
 }
 
 @media (min-width: 640px) {
@@ -47,33 +68,7 @@ body{
 }
 
 
-button{
-  font-size: 16px;
-  font-family: "Jost", sans-serif !important;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
 
-a,p{
-  text-decoration: none;
-  font-family: "Jost", sans-serif !important;
-  transition: 0.2s ease;
-}
-
-input{
-  font-family: "Jost", sans-serif !important;
-  font-size: 14px;
-  border: none;
-}
-
-input:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-img{
-  transition: 0.2s ease;
-}
 
 
 .mobile-bottom-nav {

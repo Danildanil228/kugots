@@ -487,7 +487,7 @@ export default function Cart() {
                                         </div>
                                         <div className="mt-10">
                                           <div className="grid items-start">
-                                            <p>Комментрий</p>
+                                            <p>Комментарий</p>
                                             <TextArea
                                               placeholder="Оставьте пожелание или комментарий к заказу "
                                               size="2"
